@@ -1,18 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'; 
+// import { current } from '@reduxjs/toolkit';
 
 const sideNavSlice = createSlice({
   name: 'sideNav',
   initialState: {
+    toggleSideNav: false,
     sideNavIconClicked: false,
     sideNavHidden: true,
-    // isThisworking: true,
   },
   reducers: {
     showSideNav: (state, action) => {
-      console.log('working'); 
-      // state.sideNavIconClicked = !sideNavIconClicked;
-      // state.sideNavHidden = !sideNavHidden; 
-    }
+      state.toggleSideNav = !state.toggleSideNav; 
+    },
   }
 });
 

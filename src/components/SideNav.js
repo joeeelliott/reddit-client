@@ -1,21 +1,16 @@
 import React from 'react';
 
-// import { useSelector } from 'react-redux'; 
-// import { selectShowSideNav } from '../features/sideNavSlice';
-
-const showSideNav = (e) => {
-  console.log(e.currentTarget.classList); 
-  console.log(e.target.classList); 
-  e.currentTarget.classList.toggle("Header_show-nav-bar");
-}
-
+import { useSelector, useDispatch } from 'react-redux'; 
+import { selectShowSideNav, showSideNav } from '../features/sideNavSlice';
 
 const SideNav = () => {
-  // const sideNavHidden = useSelector(selectShowSideNav)
+  const sideNavState = useSelector(selectShowSideNav)
+  // console.log(sideNavState.sideNavHidden); 
+  // const dispatch = useDispatch();
 
   return (
     <div>
-      <div className="Header_side-nav">
+      <div className={sideNavState.toggleSideNav ? "Header_show-side-nav" : "Header_side-nav"}>
         <form>
           <label>Search: </label>
           <input type="text" placeholder="Search term here..." />
@@ -26,11 +21,11 @@ const SideNav = () => {
             <option value=""></option>
             <option value=""></option>
           </select>
-        </form>
 
-        <div className="Header_side-nav-btn-container">
+          <div className="Header_side-nav-btn-container">
           <button className="Header_side-nav-btn" onClick={showSideNav}>Confirm</button>
         </div>
+        </form>
       </div>
     </div>
   )
