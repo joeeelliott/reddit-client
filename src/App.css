@@ -1,38 +1,145 @@
-.App {
-  text-align: center;
+.Header_header {
+  /* border: 1px solid blue; */
+  height: 80px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+
+  /* offset-x | offset-y | blur-radius | color */
+  box-shadow: 5px 5px 5px #ddd;
+
+  position: relative; 
+  z-index: 10; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Header_toggle-btn-container {
+  /* border: 1px solid green; */
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.Header_logo-title-container {
+  /* border: 1px solid red; */
+  height: 100%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Header_bars-icon {
+  font-size: 1.5rem !important;
+  cursor: pointer;
+  transition: all 1s ease;  /* part 1 of the burger menu rotation */
+}
+
+.Header_bars-icon-rotate {
+  transform: rotate(180deg); /* part 2 of the burger menu rotation */
+}
+
+.Header_reddit-icon {
+  /* color: lightgrey; */
+}
+
+.Header_font-awesome-icon {
+  font-size: 2rem;
+}
+
+.Header_title {
+  font-size: 1.5rem;
+}
+
+.Header_title-span {
+  color: grey
+}
+
+.Header_side-nav {
+  /* border: 1px solid red; */
+  position: absolute; 
+  left: 0;
+  top: 0; 
+  height: 100vh; 
+  margin-top: 80px;
+  z-index: -10; 
+  font-size: 0.7rem;
+  /* width: 170px; */
+  width: 0px;
+  overflow: hidden;
+  background-color: #ddd;
+  transition: width 0.5s;
+}
+
+.Header_show-side-nav {
+  /* border: 1px solid red; */
+  position: absolute; 
+  left: 0;
+  top: 0; 
+  height: 100vh; 
+  margin-top: 80px;
+  z-index: -10; 
+  font-size: 0.7rem;
+  width: 170px;
+  overflow: hidden; 
+  background-color: #ddd;
+  transition: width 0.5s;
+}
+
+.Header_side-nav label, .Header_show-side-nav label {
+  display: block; 
+  margin: 10px; 
+}
+
+.Header_side-nav input, select, .Header_show-side-nav input, select {
+  font-size: 0.7rem;
+  margin: 0px 10px;
+}
+
+.Header_side-nav-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 10px; 
+}
+
+.Header_side-nav-btn {
+  font-size: 0.7rem;
+  cursor: pointer;
+  border: 1px solid grey; 
+  border-radius: 20px;
+}
+
+/* NOTE TO SELF ----> below is how you toggle rotate on each click  */
+/* #shape  { width: 100px; 
+  height: 200px; 
+  background:#000;
+  -moz-transition: all 1s ease;      <------- transition property
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+   transition: all 1s ease;
+ }
+
+.rotate {-moz-transform: rotate(90deg);   <------ rotate property on 
+ -webkit-transform:rotate(90deg);                 a class that will be 
+ -ms-transform:rotate(90deg);                     toggled 
+ -o-transform:rotate(90deg);
+ } */
+
+
+ 
+/*       below is example of an infinite rotation animation 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
