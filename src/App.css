@@ -28,12 +28,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 20%;  /* so the logo and title are in the middle of the header, counters the toggle icon 20% width, didn't want toggle icon in absolute positioning  */
 }
 
 .Header_bars-icon {
   font-size: 1.5rem !important;
   cursor: pointer;
-  transition: all 1s ease;  /* part 1 of the burger menu rotation */
+  transition: all 0.5s ease;  /* part 1 of the burger menu rotation */
 }
 
 .Header_bars-icon-rotate {

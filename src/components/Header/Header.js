@@ -1,11 +1,11 @@
 import React from 'react';
 
-import SideNav from './SideNav'; 
+import SideNav from '../SideNav'; 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useSelector, useDispatch } from 'react-redux'; 
-import { selectShowSideNav, showSideNav } from '../features/sideNavSlice';
+import { selectShowSideNav, showSideNav } from '../../features/sideNavSlice';
 
 
 const Header = () => {
