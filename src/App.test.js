@@ -1,5 +1,5 @@
 import App from './App';
-import Header from './components/Header/Header';
+import Header from './components/header/Header';
 import SideNav from './components/SideNav';
 
 import { shallow } from 'enzyme';  // creates an instance of your component
@@ -7,7 +7,7 @@ import { shallow } from 'enzyme';  // creates an instance of your component
 // import { mount } from 'enzyme';
 // Shallow wrapping doesn’t descend down to sub-components. A full mount also mounts sub-components. We use just shallow here
 
-import { findByTestAttr } from '../Utilities/index'; 
+import { findByTestAttr } from '../utilities/index'; 
 
 // REFACTORING FUNCTIONS TO PREVENT REPETITIVE CODE ---- 
 
@@ -28,47 +28,62 @@ describe('App Component', () => {
     appWrapper = shallowRender();
   }); 
 
-  it('renders without errors', () => {
-    // console.log(appWrapper.debug());  // logs what code is in appWrapper variable (shallow render of component) Shows whatever's inbetween the return () parenthesis. 
+  describe('Rendering of elements', () => {
 
-    expect(appWrapper).toHaveLength(1);  // think this creates an array of how many elements or React components are inside the return () of the App component. 1 passes but 2 does not so I imagine it might be Components. - not sure though
-  });
+    // it('App component renders', () => {
+    //   // console.log(appWrapper.debug());
+    //   expect(appWrapper).toBeDefined();
+    // });
 
-  it('renders in a Header Component', () => {
-    // .find() will find an instance of anything within the appWrapper, from Components right through to attributes.
+    it('App component renders', () => {
+      // console.log(appWrapper.debug());
+      expect(appWrapper).toHaveLength(1);
+    }); 
+  
+  
+    // -------------------------------------------------------
+    // .find('element/component').toHaveLength(num of times expected to appear)    ---->  IS BEST PRACTICE FOR TESTING RENDERING OF ELEMENTS/COMPONENTS. 
+    // -------------------------------------------------------
+    
 
-    // const header = appWrapper.find(<Header />);  
-    // expect(appWrapper).find(<Header />);    // this line doesn't work, looks like the best one to prove render of element is containsMatchingElement used below. 
-  });
+    // VALID
+    it('renders one <Header /> component', () => {
+      // console.log(appWrapper.debug());
+      expect(appWrapper.find('Header')).toHaveLength(1);
+    });  // components with capital, elements with lower case
+  
+    // VALID
+    it('renders one <div> component', () => {
+      // console.log(appWrapper.debug());
+      // expect(appWrapper.find('div').length).toBe(1);
+      expect(appWrapper.find('div')).toHaveLength(1);
+      // either one of above works 
+    });
+  
+    it('renders in all elements', () => {
+      expect(appWrapper.containsMatchingElement(
+        <div>
+          <Header />
+        </div>
+      )).toBeTruthy();
+    }); // can test single or multiple elements, but if multiple, anything inside the most outer tags you're looking for has to match EXACTLY as it is in file (except attributes). E.g. if the <Header /> wasn't included in this test set up and it was just searching for <div></div>, it would fail. 
 
-  it('renders in a Header Component', () => {
-    expect(appWrapper.containsMatchingElement(
-        <Header /> 
-    )).toBeTruthy();
-  });
-  // only passes with a single element, can't include several elements
 
-  it('renders in all elements', () => {
-    expect(appWrapper.containsMatchingElement(
-      <div>
-        <Header />
-      </div>
-    )).toBeTruthy();
-  }); // content inside the element tags you're testing has to be exactly as it is in file BUT doesnt have to have same attributes className etc. 
+    // USING DATASETS OVER CLASSES WARNS OTHER DEVELOPERS TO NOT CHANGE THEM AS THEY ARE USED FOR TESTING PURPOSES. IF PART OF A TEST, CHANGE FROM CLASS TO DATA-SET. 
 
+    // found by className
+    // it('has a div with a class of "App"', () => {
+    //   const app = appWrapper.find('.App'); 
+    //   expect(app.length).toBe(1);
+    // });
 
-  // BELOW IS VALID AND PASSES FINE, BUT CLASSNAMES NOT BEST PRACTICE INCASE OTHER DEVELOPERS CHANGE THEM. SO CHANGE THE CLASSNAME TO A DATA-SET WHICH WILL WARN OTHER DEVELOPERS NOT TO CHANGE THESE AS THEY ARE PART OF A TEST. IF PART OF A TEST, CHANGE TO DATA-SET. 
-  // it('has a div with a class of "App"', () => {
-  //   const app = appWrapper.find('.App'); // found by className
-  //   expect(app.length).toBe(1); // testing length to 1 makes sure it exists, if more than 1, put more.  
-  // });
+    // found by data-set
+    it('has a div with a data-test of "App"', () => {
+      // const div = appWrapper.find(`[data-test='App']`);
 
-  // DATA-SETS WRITTEN DIFFERENT WHEN FINDING THEM, THE REST OF THE CODE THE SAME. 
-  it('has a div with a data-test of "App"', () => {
-    // const div = appWrapper.find(`[data-test='App']`); // found by className
-
-    // the refactored function below removes requirement for above code 
-    const div = findByTestAttr(appWrapper, 'App')
-    expect(div.length).toBe(1); // testing length to 1 makes sure it exists, if more than 1, put more.  
+      // the above code refactored...
+      const div = findByTestAttr(appWrapper, 'App')
+      expect(div.length).toBe(1);  
+    });
   });
 });
