@@ -1,5 +1,5 @@
 import App from './App';
-import Header from './components/header/Header';
+import Header from '../components/Header';
 import SideNav from '../components/SideNav';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
@@ -21,6 +21,7 @@ const shallowRender = (props={}) => {
   const appWrapper = shallow(<App {...props} />); 
   return appWrapper; 
 }
+
 
 // describe creates a test suite 
 describe('App Component', () => {

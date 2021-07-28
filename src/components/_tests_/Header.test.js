@@ -1,31 +1,29 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
 
 import Header from '../Header'; 
 
-const mockStore = configureStore([]); 
+import sideNavSlice from '../../features/sideNavSlice';
+import { configureStore } from "@reduxjs/toolkit";
 
 describe('My Connected React-Redux Component', () => {
   let store;
   let component;
 
   beforeEach(() => {
-    store = mockStore({
-      toggleSideNav: false,
-      sideNavIconClicked: false,
-      sideNavHidden: true,
-    });
+    store = configureStore({
+      reducer: {sideNav: sideNavSlice,}
+    })
   });
 
-  component = renderer.create(
-    <Provider store={store}>
-      <Header />
-    </Provider>
-  );
 
   it('should render with given state from Redux store', () => {
+    component = renderer.create(
+      <Provider store={store}>
+        <Header />
+      </Provider>
+    );
     expect(component.toJSON()).toMatchSnapshot();
   });
   // received the following error for the above test 

@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My Connected React-Redux Component should render with given state from Redux store 1`] = `
+<div
+  className="Header_header"
+>
+  <div
+    className="Header_toggle-btn-container"
+  />
+  <div
+    className="Header_logo-title-container"
+  >
+    <h1
+      className="Header_title"
+    >
+      Reddit
+      <span
+        className="Header_title-span"
+      >
+        Sample
+      </span>
+    </h1>
+  </div>
+  <div>
+    <div
+      className="Header_side-nav"
+    >
+      <form>
+        <label>
+          Search: 
+        </label>
+        <input
+          placeholder="Search term here..."
+          type="text"
+        />
+        <label>
+          Filter: 
+        </label>
+        <select
+          id="filters"
+          name="filters"
+        >
+          <option
+            value=""
+          />
+          <option
+            value=""
+          />
+          <option
+            value=""
+          />
+          <option
+            value=""
+          />
+        </select>
+        <div
+          className="Header_side-nav-btn-container"
+        >
+          <button
+            className="Header_side-nav-btn"
+            onClick={[Function]}
+          >
+            Confirm
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
