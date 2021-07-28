@@ -1,13 +1,16 @@
 import App from './App';
 import Header from './components/header/Header';
-import SideNav from './components/SideNav';
+import SideNav from '../components/SideNav';
+import { Provider } from 'react-redux';
+import ReactDOM from 'react-dom';
+import store from './store';
 
 import { shallow } from 'enzyme';  // creates an instance of your component
 
 // import { mount } from 'enzyme';
 // Shallow wrapping doesn’t descend down to sub-components. A full mount also mounts sub-components. We use just shallow here
 
-import { findByTestAttr } from '../utilities/index'; 
+import { findByTestAttr } from '../../utilities/test-utils'; 
 
 // REFACTORING FUNCTIONS TO PREVENT REPETITIVE CODE ---- 
 

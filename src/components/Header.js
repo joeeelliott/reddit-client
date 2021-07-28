@@ -1,12 +1,12 @@
 import React from 'react';
-
-import SideNav from '../SideNav'; 
-
+import SideNav from './SideNav'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { useSelector, useDispatch } from 'react-redux'; 
-import { selectShowSideNav, showSideNav } from '../../features/sideNavSlice';
+import { selectShowSideNav, showSideNav } from '../features/sideNavSlice';
 
+// used for the ShallowMock test function which doesn't work. 
+// import { store } from '../app/store'; 
+// import { connect } from 'react-redux'; 
 
 const Header = () => {
   const sideNavState = useSelector(selectShowSideNav)
@@ -34,5 +34,20 @@ const Header = () => {
     </div>
   )
 }
+
+// const mapStateToProps = (store) => {
+//   return {
+//     sideNav: store.sideNav
+//   }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+// 	return {}
+// }
+
+// export default connect(
+// 	mapStateToProps,
+// 	mapDispatchToProps
+// )(Header);
 
 export default Header;
