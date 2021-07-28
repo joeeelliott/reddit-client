@@ -1,3 +1,7 @@
+[data-test="App"] {
+
+}
+
 .Header_header {
   /* border: 1px solid blue; */
   height: 80px;
@@ -31,21 +35,28 @@
   margin-right: 20%;  /* so the logo and title are in the middle of the header, counters the toggle icon 20% width, didn't want toggle icon in absolute positioning  */
 }
 
-.Header_bars-icon {
+[data-test-Header_search-icon] {
   font-size: 1.5rem !important;
   cursor: pointer;
   transition: all 0.5s ease;  /* part 1 of the burger menu rotation */
 }
 
-.Header_bars-icon-rotate {
-  transform: rotate(180deg); /* part 2 of the burger menu rotation */
+[data-test-Header_filter-icon] {
+  font-size: 0.8rem !important;
+  cursor: pointer;
+  /* transition: all 0.5s ease; */
+   /* part 1 of the burger menu rotation */
+}
+
+.Header_search-icon-rotate {
+  transform: rotate(90deg); /* part 2 of the burger menu rotation */
 }
 
 .Header_reddit-icon {
   /* color: lightgrey; */
 }
 
-.Header_font-awesome-icon {
+[data-test-Header_font-awesome-icon] {
   font-size: 2rem;
 }
 
@@ -57,7 +68,7 @@
   color: grey
 }
 
-.Header_side-nav {
+.SideNav_hide-nav {
   /* border: 1px solid red; */
   position: absolute; 
   left: 0;
@@ -73,7 +84,7 @@
   transition: width 0.5s;
 }
 
-.Header_show-side-nav {
+.SideNav_show-nav {
   /* border: 1px solid red; */
   position: absolute; 
   left: 0;
@@ -88,27 +99,54 @@
   transition: width 0.5s;
 }
 
-.Header_side-nav label, .Header_show-side-nav label {
+.SideNav_hide-nav label, .SideNav_show-nav label {
   display: block; 
   margin: 10px; 
 }
 
-.Header_side-nav input, select, .Header_show-side-nav input, select {
+.SideNav_hide-nav input, select, .SideNav_show-nav input, select {
   font-size: 0.7rem;
   margin: 0px 10px;
 }
 
-.Header_side-nav-btn-container {
+.SideNav_btn-container {
   display: flex;
   justify-content: flex-end;
   margin: 20px 10px; 
 }
 
-.Header_side-nav-btn {
+.SideNav_btn {
   font-size: 0.7rem;
   cursor: pointer;
   border: 1px solid grey; 
   border-radius: 20px;
+}
+
+.Footer {
+  position: absolute;
+  bottom: 0px;
+  /* border: 1px solid black; */
+  width: 100%;
+  height: 5%;
+  box-shadow: 0px -15px 20px #ddd;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Footer h1 {
+  font-size: 0.8rem;
+  margin: 0px 2px;
+  /* border: 1px solid black; */
+}
+
+.Footer p {
+  font-size: 0.8rem;
+  margin: 0px 2px;
+}
+
+.Footer * {
+  /* margin: 0px 10px; */
 }
 
 /* NOTE TO SELF ----> below is how you toggle rotate on each click  */
@@ -144,3 +182,4 @@
     transform: rotate(360deg);
   }
 } */
+

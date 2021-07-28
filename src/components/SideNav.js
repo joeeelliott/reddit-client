@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useSelector, useDispatch } from 'react-redux'; 
 import { selectShowSideNav, showSideNav } from '../features/sideNavSlice';
@@ -10,7 +11,7 @@ const SideNav = () => {
 
   return (
     <div>
-      <div className={sideNavState.toggleSideNav ? "Header_show-side-nav" : "Header_side-nav"}>
+      <div className={sideNavState.toggleSideNav ? "SideNav_show-nav" : "SideNav_hide-nav"}>
         <form>
           <label>Search: </label>
           <input type="text" placeholder="Search term here..." />
@@ -22,8 +23,10 @@ const SideNav = () => {
             <option value=""></option>
           </select>
 
-          <div className="Header_side-nav-btn-container">
-          <button className="Header_side-nav-btn" onClick={showSideNav}>Confirm</button>
+          <FontAwesomeIcon icon="filter" data-test-Header_filter-icon data-test-Header_font-awesome-icon aria-hidden="true" />
+
+          <div className="SideNav_btn-container">
+          <button className="SideNav_btn" onClick={showSideNav}>Confirm</button>
         </div>
         </form>
       </div>
