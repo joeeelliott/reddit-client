@@ -4,6 +4,8 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
+// this is required to set up Enzyme in our files
+
 // import Enzyme from 'enzyme';
 import { configure } from 'enzyme'; 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
