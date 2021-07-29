@@ -32,7 +32,7 @@ describe('My Connected React-Redux Component', () => {
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it('should render one Header component', () => {
-    expect(component.find('Header')).toHaveLength(1);
+  it('should render one SideNav component', () => {
+    expect(component.find('SideNav')).toHaveLength(1);
   });
 });
