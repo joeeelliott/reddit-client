@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 
 import Header from '../Header'; 
+import Footer from '../Footer'; 
 
 import sideNavSlice from '../../features/sideNavSlice';
 import { configureStore } from "@reduxjs/toolkit";
@@ -14,20 +15,27 @@ describe('My Connected React-Redux Component', () => {
   beforeEach(() => {
     store = configureStore({
       reducer: {sideNav: sideNavSlice,}
-    })
+    });
+    component = renderer.create(
+      <Provider store={store}>
+        <Header />
+        <Footer />
+      </Provider>
+    );
   });
 
 
   it('should render with given state from Redux store', () => {
-    component = renderer.create(
-      <Provider store={store}>
-        <Header />
-      </Provider>
-    );
+    // component = renderer.create(
+    //   <Provider store={store}>
+    //     <Header />
+    //     <Footer />
+    //   </Provider>
+    // );
     expect(component.toJSON()).toMatchSnapshot();
   });
-  // received the following error for the above test 
-  //  FAIL  src/components/_tests_/Header.test.js
-  // ● Test suite failed to run
-  // TypeError: Cannot read property 'getState' of undefined
+
+  it('should render one Header component', () => {
+    expect(component.find('Header')).toHaveLength(1);
+  });
 });

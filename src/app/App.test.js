@@ -1,9 +1,6 @@
 import App from './App';
 import Header from '../components/Header';
-import SideNav from '../components/SideNav';
-import { Provider } from 'react-redux';
-import ReactDOM from 'react-dom';
-import store from './store';
+import Footer from '../components/Footer';
 
 import { shallow } from 'enzyme';  // creates an instance of your component
 
@@ -68,6 +65,7 @@ describe('App Component', () => {
       expect(appWrapper.containsMatchingElement(
         <div>
           <Header />
+          <Footer />
         </div>
       )).toBeTruthy();
     }); // can test single or multiple elements, but if multiple, anything inside the most outer tags you're looking for has to match EXACTLY as it is in file (except attributes). E.g. if the <Header /> wasn't included in this test set up and it was just searching for <div></div>, it would fail. 
