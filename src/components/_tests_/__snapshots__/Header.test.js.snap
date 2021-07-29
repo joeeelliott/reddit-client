@@ -1,82 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`My Connected React-Redux Component should render with given state from Redux store 1`] = `
-Array [
+<div
+  className="Header_header"
+>
   <div
-    className="Header_header"
+    className="Header_toggle-btn-container"
+  />
+  <div
+    className="Header_logo-title-container"
   >
-    <div
-      className="Header_toggle-btn-container"
-    />
-    <div
-      className="Header_logo-title-container"
+    <h1
+      className="Header_title"
     >
-      <h1
-        className="Header_title"
+      Reddit
+      <span
+        className="Header_title-span"
       >
-        Reddit
-        <span
-          className="Header_title-span"
-        >
-          Sample
-        </span>
-      </h1>
-    </div>
-    <div>
-      <div
-        className="SideNav_hide-nav"
-      >
-        <form>
-          <label>
-            Search: 
-          </label>
-          <input
-            placeholder="Search term here..."
-            type="text"
-          />
-          <label>
-            Filter: 
-          </label>
-          <select
-            id="filters"
-            name="filters"
-          >
-            <option
-              value=""
-            />
-            <option
-              value=""
-            />
-            <option
-              value=""
-            />
-            <option
-              value=""
-            />
-          </select>
-          <div
-            className="SideNav_btn-container"
-          >
-            <button
-              className="SideNav_btn"
-              onClick={[Function]}
-            >
-              Confirm
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>,
-  <div
-    class="Footer"
-  >
-    <h1>
-      Joe Elliott
+        Sample
+      </span>
     </h1>
-    <p>
-      ©
-    </p>
-  </div>,
-]
+  </div>
+  <div>
+    <div
+      className="SideNav_hide-nav"
+    >
+      <form>
+        <label>
+          Search: 
+        </label>
+        <input
+          placeholder="Search term here..."
+          type="text"
+        />
+        <label>
+          Filter: 
+        </label>
+        <select
+          id="filters"
+          name="filters"
+        >
+          <option
+            value=""
+          />
+          <option
+            value=""
+          />
+          <option
+            value=""
+          />
+          <option
+            value=""
+          />
+        </select>
+        <div
+          className="SideNav_btn-container"
+        >
+          <button
+            className="SideNav_btn"
+            onClick={[Function]}
+          >
+            Confirm
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 `;
