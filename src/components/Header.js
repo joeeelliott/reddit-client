@@ -9,21 +9,21 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const handleShowSideNavClick = (e) => {
-    sideNavState.toggleSideNav ? e.currentTarget.classList.toggle('Header_search-icon-rotate') : e.currentTarget.classList.toggle('Header_search-icon-rotate'); 
+    sideNavState.toggleSideNav ? e.currentTarget.classList.toggle('header_search-icon-rotate') : e.currentTarget.classList.toggle('header_search-icon-rotate'); 
 
     dispatch(showSideNav()); 
   }
 
   return (
-    <div className="Header_header">
-      <div className="Header_toggle-btn-container">
-        <FontAwesomeIcon icon="search" data-test-Header_search-icon data-test-Header_font-awesome-icon onClick={handleShowSideNavClick} />
+    <div role="outer-div" className="header_header">
+      <div role="inner-div" className="header_toggle-btn-container">
+        <FontAwesomeIcon data-testid="search-icon" icon="search" className="header_search-icon header_font-awesome-icon" onClick={handleShowSideNavClick} />
       </div>
 
-      <div className="Header_logo-title-container">
-        <FontAwesomeIcon icon={['fab', 'reddit']} className="Header_font-awesome-icon" />
+      <div role="inner-div" className="header_logo-title-container">
+        <FontAwesomeIcon data-testid="reddit-icon" icon={['fab', 'reddit']} className="header_font-awesome-icon" />
 
-        <h1 className="Header_title">Reddit<span className="Header_title-span">Sample</span></h1>
+        <h1 className="header_title">Reddit<span className="header_title-span">Sample</span></h1>
       </div>
 
       <SideNav />

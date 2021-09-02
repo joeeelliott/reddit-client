@@ -1,8 +1,16 @@
 [data-test="App"] {
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.Header_header {
+
+
+/* HEADER COMPONENT */
+
+
+.header_header {
   /* border: 1px solid blue; */
   height: 80px;
   background-color: white;
@@ -16,7 +24,7 @@
   z-index: 10; 
 }
 
-.Header_toggle-btn-container {
+.header_toggle-btn-container {
   /* border: 1px solid green; */
   height: 100%;
   width: 20%;
@@ -25,7 +33,7 @@
   align-items: center;
 }
 
-.Header_logo-title-container {
+.header_logo-title-container {
   /* border: 1px solid red; */
   height: 100%;
   width: 80%;
@@ -35,40 +43,46 @@
   margin-right: 20%;  /* so the logo and title are in the middle of the header, counters the toggle icon 20% width, didn't want toggle icon in absolute positioning  */
 }
 
-[data-test-Header_search-icon] {
-  font-size: 1.5rem !important;
+.header_search-icon {
   cursor: pointer;
+  /* font-size: 1.5rem !important; */
   transition: all 0.5s ease;  /* part 1 of the burger menu rotation */
 }
 
-[data-test-Header_filter-icon] {
+.header_filter-icon {
   font-size: 0.8rem !important;
   cursor: pointer;
   /* transition: all 0.5s ease; */
    /* part 1 of the burger menu rotation */
 }
 
-.Header_search-icon-rotate {
+.header_search-icon-rotate {
   transform: rotate(90deg); /* part 2 of the burger menu rotation */
 }
 
-.Header_reddit-icon {
+.header_reddit-icon {
   /* color: lightgrey; */
 }
 
-[data-test-Header_font-awesome-icon] {
-  font-size: 2rem;
-}
-
-.Header_title {
+.header_font-awesome-icon {
   font-size: 1.5rem;
 }
 
-.Header_title-span {
+.header_title {
+  font-size: 1.5rem;
+}
+
+.header_title-span {
   color: grey
 }
 
-.SideNav_hide-nav {
+
+
+
+/* SIDENAV COMPONENT */
+
+
+.sideNav_hide-nav {
   /* border: 1px solid red; */
   position: absolute; 
   left: 0;
@@ -81,15 +95,16 @@
   width: 0px;
   overflow: hidden;
   background-color: #ddd;
-  transition: width 0.5s;
+  transition: width 0.4s;
 }
 
-.SideNav_show-nav {
+.sideNav_show-nav {
   /* border: 1px solid red; */
   position: absolute; 
   left: 0;
   top: 0; 
-  height: 100vh; 
+  /* height: 100vh;  */
+  height: calc(100vh - 80px);
   margin-top: 80px;
   z-index: -10; 
   font-size: 0.7rem;
@@ -97,33 +112,136 @@
   overflow: hidden; 
   background-color: #ddd;
   transition: width 0.5s;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-.SideNav_hide-nav label, .SideNav_show-nav label {
+.sideNav_hide-nav label, .sideNav_show-nav label {
   display: block; 
   margin: 10px; 
 }
 
-.SideNav_hide-nav input, select, .SideNav_show-nav input, select {
+.sideNav_hide-nav input, select, .sideNav_show-nav input, select {
   font-size: 0.7rem;
   margin: 0px 10px;
 }
 
-.SideNav_btn-container {
+.sideNav_btn-container {
   display: flex;
   justify-content: flex-end;
   margin: 20px 10px; 
 }
 
-.SideNav_btn {
+.sideNav_btn {
   font-size: 0.7rem;
   cursor: pointer;
   border: 1px solid grey; 
   border-radius: 20px;
 }
 
-.Footer {
-  position: absolute;
+
+
+
+/* ARTICLE COMPONENT */
+
+.article_container {
+  /* border: black 1px solid; */
+  /* display: flex;
+  justify-content: center;
+  align-content: center; */
+  border-radius: 15px;
+  margin: 30px 7.5%;
+}
+
+.article_article-div {
+  /* border: red 1px solid; */
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: center;
+  align-items: center; */
+  height: 350px;
+  margin-bottom: 50px;
+  /* background-color: rgb(235, 235, 235, 0.5); */
+  background-color: rgba(221, 221, 221, 0.4);
+  border-radius: 20px;
+}
+
+.article_comments-column {
+  /* border: 1px solid green; */
+  width: 20%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.article_total-comments {
+  /* border: 1px solid lightblue; */
+  height: 15%;
+  width: 40%;
+  margin: 0;
+  margin-top: 50px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article_main-content-div {
+  /* border: 1px solid darkblue; */
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.article_title {
+  /* border: 1px solid yellow; */
+  margin: 15px 10% 15px 0px;
+  /* margin: 15px; */
+  width: 90%;
+  /* margin-right: 10%; */
+  text-align: center;
+}
+
+.article_article {
+  /* border: 1px solid orange; */
+  height: 60%;
+  width: 90%;
+  margin-right: 10%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.article_article-img {
+}
+
+.article_article-details-div {
+  /* border: 1px solid purple; */
+  width: 90%;
+  height: 5%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10%;
+}
+
+.article_article-detail {
+  /* border: 1px solid black; */
+  width: 30%;
+  font-size: 0.6rem;
+  text-align: center;
+}
+
+
+
+
+/* FOOTER COMPONENT */
+
+
+.footer {
+  position: fixed;
   bottom: 0px;
   /* border: 1px solid black; */
   width: 100%;
@@ -132,20 +250,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #fff;
 }
 
-.Footer h1 {
+.footer h1 {
   font-size: 0.8rem;
   margin: 0px 2px;
   /* border: 1px solid black; */
 }
 
-.Footer p {
+.footer p {
   font-size: 0.8rem;
   margin: 0px 2px;
 }
 
-.Footer * {
+.footer * {
   /* margin: 0px 10px; */
 }
 

@@ -10,27 +10,28 @@ const SideNav = () => {
   // const dispatch = useDispatch();
 
   return (
-    <div>
-      <div className={sideNavState.toggleSideNav ? "SideNav_show-nav" : "SideNav_hide-nav"}>
-        <form>
-          <label>Search: </label>
-          <input type="text" placeholder="Search term here..." />
-          <label>Filter: </label>
-          <select id="filters" name="filters">
+    // <div role="sideNav-outer-div">
+      <div role="sideNav-outer-div" className={sideNavState.toggleSideNav ? "sideNav_show-nav" : "sideNav_hide-nav"}>
+        <form role="form">
+          <label role="label">Search: </label>
+          <input role="input" type="text" placeholder="Search term here..." />
+          <label role="label">Filter: </label>
+          <select role="select" id="filters" name="filters">
             <option value=""></option>
             <option value=""></option>
             <option value=""></option>
             <option value=""></option>
           </select>
 
-          <FontAwesomeIcon icon="filter" data-test-Header_filter-icon data-test-Header_font-awesome-icon aria-hidden="true" />
+          <FontAwesomeIcon data-testid="filter-icon" icon="filter" data-test-header_filter-icon data-test-header_font-awesome-icon aria-hidden="true" />
 
-          <div className="SideNav_btn-container">
-          <button className="SideNav_btn" onClick={showSideNav}>Confirm</button>
+          <div role="btn-container" className="sideNav_btn-container">
+          <button className="sideNav_btn" >Confirm</button>
+          {/* onClick={showSideNav} */}
         </div>
         </form>
       </div>
-    </div>
+    // </div>
   )
 }
 

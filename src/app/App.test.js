@@ -1,6 +1,7 @@
 import App from './App';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Article from '../components/Article';
 
 import { shallow } from 'enzyme';  // creates an instance of your component
 
@@ -9,43 +10,28 @@ import { shallow } from 'enzyme';  // creates an instance of your component
 
 import { findByTestAttr } from '../../utilities/test-utils'; 
 
-// REFACTORING FUNCTIONS TO PREVENT REPETITIVE CODE ---- 
-
-// any kept in here and not in utilities folder is because they are likely to change slightly from file to file, but will be used repetitively within that file so best to write individually
-
 // Creates a shallow render wrap for the <App /> component 
 const shallowRender = (props={}) => {
   const appWrapper = shallow(<App {...props} />); 
   return appWrapper; 
 }
 
-
 // describe creates a test suite 
 describe('App Component', () => {
 
   // Prevents us having to declare shallow render variable in each test by invoking the shallowRender before each test
   let appWrapper;
+
   beforeEach(() => {
     appWrapper = shallowRender();
   }); 
 
   describe('Rendering of elements', () => {
 
-    // it('App component renders', () => {
-    //   // console.log(appWrapper.debug());
-    //   expect(appWrapper).toBeDefined();
-    // });
-
     it('App component renders', () => {
       // console.log(appWrapper.debug());
       expect(appWrapper).toHaveLength(1);
     }); 
-  
-  
-    // -------------------------------------------------------
-    // .find('element/component').toHaveLength(num of times expected to appear)    ---->  IS BEST PRACTICE FOR TESTING RENDERING OF ELEMENTS/COMPONENTS. 
-    // -------------------------------------------------------
-    
 
     // VALID
     it('renders one <Header /> component', () => {
@@ -53,18 +39,26 @@ describe('App Component', () => {
       expect(appWrapper.find('Header')).toHaveLength(1);
     });  // components with capital, elements with lower case
   
+    it('renders one <Footer /> component', () => {
+      // console.log(appWrapper.debug());
+      expect(appWrapper.find('Footer')).toHaveLength(1);
+    });
+
     // VALID
     it('renders one <div> component', () => {
       // console.log(appWrapper.debug());
       // expect(appWrapper.find('div').length).toBe(1);
-      expect(appWrapper.find('div')).toHaveLength(1);
+      expect(appWrapper.find('div')).toHaveLength(2);
       // either one of above works 
     });
   
     it('renders in all elements', () => {
       expect(appWrapper.containsMatchingElement(
-        <div>
+        <div data-test="App">
           <Header />
+          <div className="article_container">
+            <Article />
+          </div>
           <Footer />
         </div>
       )).toBeTruthy();
@@ -82,7 +76,6 @@ describe('App Component', () => {
     // found by data-set
     it('has a div with a data-test of "App"', () => {
       // const div = appWrapper.find(`[data-test='App']`);
-
       // the above code refactored...
       const div = findByTestAttr(appWrapper, 'App')
       expect(div.length).toBe(1);  

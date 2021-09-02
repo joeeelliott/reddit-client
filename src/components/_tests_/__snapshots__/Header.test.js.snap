@@ -1,127 +1,690 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`My Connected React-Redux Component should render with given state from Redux store 1`] = `
-<div
-  className="Header_header"
->
-  <div
-    className="Header_toggle-btn-container"
-  >
-    <svg
-      aria-hidden="true"
-      className="svg-inline--fa fa-search fa-w-16 "
-      data-icon="search"
-      data-prefix="fas"
-      data-test-Header_font-awesome-icon={true}
-      data-test-Header_search-icon={true}
-      focusable="false"
-      onClick={[Function]}
-      role="img"
-      style={Object {}}
-      viewBox="0 0 512 512"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
-        fill="currentColor"
-        style={Object {}}
-      />
-    </svg>
-  </div>
-  <div
-    className="Header_logo-title-container"
-  >
-    <svg
-      aria-hidden="true"
-      className="svg-inline--fa fa-reddit fa-w-16 Header_font-awesome-icon"
-      data-icon="reddit"
-      data-prefix="fab"
-      focusable="false"
-      role="img"
-      style={Object {}}
-      viewBox="0 0 512 512"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"
-        fill="currentColor"
-        style={Object {}}
-      />
-    </svg>
-    <h1
-      className="Header_title"
-    >
-      Reddit
-      <span
-        className="Header_title-span"
+exports[`Header Component renders in the correct elements should render with given state from Redux store 1`] = `
+Object {
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "logTestingPlaygroundURL": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+}
+`;
+
+exports[`Header Component side nav animates on screen as expected side nav not visible when search icon button is clicked a second time - matches snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="header_header"
+        role="outer-div"
       >
-        Sample
-      </span>
-    </h1>
-  </div>
-  <div>
-    <div
-      className="SideNav_hide-nav"
-    >
-      <form>
-        <label>
-          Search: 
-        </label>
-        <input
-          placeholder="Search term here..."
-          type="text"
-        />
-        <label>
-          Filter: 
-        </label>
-        <select
-          id="filters"
-          name="filters"
+        <div
+          class="header_toggle-btn-container"
+          role="inner-div"
         >
-          <option
-            value=""
-          />
-          <option
-            value=""
-          />
-          <option
-            value=""
-          />
-          <option
-            value=""
-          />
-        </select>
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-search fa-w-16 header_search-icon header_font-awesome-icon"
+            data-icon="search"
+            data-prefix="fas"
+            data-testid="search-icon"
+            focusable="false"
+            role="img"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          class="header_logo-title-container"
+          role="inner-div"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-reddit fa-w-16 header_font-awesome-icon"
+            data-icon="reddit"
+            data-prefix="fab"
+            data-testid="reddit-icon"
+            focusable="false"
+            role="img"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"
+              fill="currentColor"
+            />
+          </svg>
+          <h1
+            class="header_title"
+          >
+            Reddit
+            <span
+              class="header_title-span"
+            >
+              Sample
+            </span>
+          </h1>
+        </div>
+        <div
+          class="sideNav_hide-nav"
+          role="sideNav-outer-div"
+        >
+          <form
+            role="form"
+          >
+            <label
+              role="label"
+            >
+              Search: 
+            </label>
+            <input
+              placeholder="Search term here..."
+              role="input"
+              type="text"
+            />
+            <label
+              role="label"
+            >
+              Filter: 
+            </label>
+            <select
+              id="filters"
+              name="filters"
+              role="select"
+            >
+              <option
+                value=""
+              />
+              <option
+                value=""
+              />
+              <option
+                value=""
+              />
+              <option
+                value=""
+              />
+            </select>
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-filter fa-w-16 "
+              data-icon="filter"
+              data-prefix="fas"
+              data-test-header_filter-icon="true"
+              data-test-header_font-awesome-icon="true"
+              data-testid="filter-icon"
+              focusable="false"
+              role="img"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
+                fill="currentColor"
+              />
+            </svg>
+            <div
+              class="sideNav_btn-container"
+              role="btn-container"
+            >
+              <button
+                class="sideNav_btn"
+              >
+                Confirm
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="header_header"
+      role="outer-div"
+    >
+      <div
+        class="header_toggle-btn-container"
+        role="inner-div"
+      >
         <svg
           aria-hidden="true"
-          className="svg-inline--fa fa-filter fa-w-16 "
-          data-icon="filter"
+          class="svg-inline--fa fa-search fa-w-16 header_search-icon header_font-awesome-icon"
+          data-icon="search"
           data-prefix="fas"
-          data-test-Header_filter-icon={true}
-          data-test-Header_font-awesome-icon={true}
+          data-testid="search-icon"
           focusable="false"
           role="img"
-          style={Object {}}
           viewBox="0 0 512 512"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
+            d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
             fill="currentColor"
-            style={Object {}}
           />
         </svg>
-        <div
-          className="SideNav_btn-container"
+      </div>
+      <div
+        class="header_logo-title-container"
+        role="inner-div"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-reddit fa-w-16 header_font-awesome-icon"
+          data-icon="reddit"
+          data-prefix="fab"
+          data-testid="reddit-icon"
+          focusable="false"
+          role="img"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <button
-            className="SideNav_btn"
-            onClick={[Function]}
+          <path
+            d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"
+            fill="currentColor"
+          />
+        </svg>
+        <h1
+          class="header_title"
+        >
+          Reddit
+          <span
+            class="header_title-span"
           >
-            Confirm
-          </button>
-        </div>
-      </form>
+            Sample
+          </span>
+        </h1>
+      </div>
+      <div
+        class="sideNav_hide-nav"
+        role="sideNav-outer-div"
+      >
+        <form
+          role="form"
+        >
+          <label
+            role="label"
+          >
+            Search: 
+          </label>
+          <input
+            placeholder="Search term here..."
+            role="input"
+            type="text"
+          />
+          <label
+            role="label"
+          >
+            Filter: 
+          </label>
+          <select
+            id="filters"
+            name="filters"
+            role="select"
+          >
+            <option
+              value=""
+            />
+            <option
+              value=""
+            />
+            <option
+              value=""
+            />
+            <option
+              value=""
+            />
+          </select>
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-filter fa-w-16 "
+            data-icon="filter"
+            data-prefix="fas"
+            data-test-header_filter-icon="true"
+            data-test-header_font-awesome-icon="true"
+            data-testid="filter-icon"
+            focusable="false"
+            role="img"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
+              fill="currentColor"
+            />
+          </svg>
+          <div
+            class="sideNav_btn-container"
+            role="btn-container"
+          >
+            <button
+              class="sideNav_btn"
+            >
+              Confirm
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-</div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Header Component side nav animates on screen as expected side nav should be visible when search icon button is clicked - matches snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="header_header"
+        role="outer-div"
+      >
+        <div
+          class="header_toggle-btn-container"
+          role="inner-div"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-search fa-w-16 header_search-icon header_font-awesome-icon"
+            data-icon="search"
+            data-prefix="fas"
+            data-testid="search-icon"
+            focusable="false"
+            role="img"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          class="header_logo-title-container"
+          role="inner-div"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-reddit fa-w-16 header_font-awesome-icon"
+            data-icon="reddit"
+            data-prefix="fab"
+            data-testid="reddit-icon"
+            focusable="false"
+            role="img"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"
+              fill="currentColor"
+            />
+          </svg>
+          <h1
+            class="header_title"
+          >
+            Reddit
+            <span
+              class="header_title-span"
+            >
+              Sample
+            </span>
+          </h1>
+        </div>
+        <div
+          class="sideNav_show-nav"
+          role="sideNav-outer-div"
+        >
+          <form
+            role="form"
+          >
+            <label
+              role="label"
+            >
+              Search: 
+            </label>
+            <input
+              placeholder="Search term here..."
+              role="input"
+              type="text"
+            />
+            <label
+              role="label"
+            >
+              Filter: 
+            </label>
+            <select
+              id="filters"
+              name="filters"
+              role="select"
+            >
+              <option
+                value=""
+              />
+              <option
+                value=""
+              />
+              <option
+                value=""
+              />
+              <option
+                value=""
+              />
+            </select>
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-filter fa-w-16 "
+              data-icon="filter"
+              data-prefix="fas"
+              data-test-header_filter-icon="true"
+              data-test-header_font-awesome-icon="true"
+              data-testid="filter-icon"
+              focusable="false"
+              role="img"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
+                fill="currentColor"
+              />
+            </svg>
+            <div
+              class="sideNav_btn-container"
+              role="btn-container"
+            >
+              <button
+                class="sideNav_btn"
+              >
+                Confirm
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="header_header"
+      role="outer-div"
+    >
+      <div
+        class="header_toggle-btn-container"
+        role="inner-div"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-search fa-w-16 header_search-icon header_font-awesome-icon"
+          data-icon="search"
+          data-prefix="fas"
+          data-testid="search-icon"
+          focusable="false"
+          role="img"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="header_logo-title-container"
+        role="inner-div"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-reddit fa-w-16 header_font-awesome-icon"
+          data-icon="reddit"
+          data-prefix="fab"
+          data-testid="reddit-icon"
+          focusable="false"
+          role="img"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"
+            fill="currentColor"
+          />
+        </svg>
+        <h1
+          class="header_title"
+        >
+          Reddit
+          <span
+            class="header_title-span"
+          >
+            Sample
+          </span>
+        </h1>
+      </div>
+      <div
+        class="sideNav_show-nav"
+        role="sideNav-outer-div"
+      >
+        <form
+          role="form"
+        >
+          <label
+            role="label"
+          >
+            Search: 
+          </label>
+          <input
+            placeholder="Search term here..."
+            role="input"
+            type="text"
+          />
+          <label
+            role="label"
+          >
+            Filter: 
+          </label>
+          <select
+            id="filters"
+            name="filters"
+            role="select"
+          >
+            <option
+              value=""
+            />
+            <option
+              value=""
+            />
+            <option
+              value=""
+            />
+            <option
+              value=""
+            />
+          </select>
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-filter fa-w-16 "
+            data-icon="filter"
+            data-prefix="fas"
+            data-test-header_filter-icon="true"
+            data-test-header_font-awesome-icon="true"
+            data-testid="filter-icon"
+            focusable="false"
+            role="img"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
+              fill="currentColor"
+            />
+          </svg>
+          <div
+            class="sideNav_btn-container"
+            role="btn-container"
+          >
+            <button
+              class="sideNav_btn"
+            >
+              Confirm
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
