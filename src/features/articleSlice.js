@@ -21,7 +21,7 @@ const articleSlice = createSlice({
     articles: [],
     articlesWithThumbnails: [],
     articlesWithoutThumbnails: [],
-    isLoading: false,
+    isLoading: true,
     hasError: false
   },
   reducers: {},
@@ -56,5 +56,6 @@ const articleSlice = createSlice({
 
 export const { } = articleSlice.actions;
 
-export const selectArticle = state => state;
+export const selectArticle = state => state.articles.articles;
+export const selectArticleIsLoading = state => state.articles.isLoading; 
 export default articleSlice.reducer; 
