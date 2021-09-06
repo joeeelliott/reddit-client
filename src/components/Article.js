@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux'; 
 import mockImg from '../images/mockpic.png';
 
+import { fetchArticles } from '../features/articleSlice'; 
+
 const Article = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchArticles());
+  });
+
+
   return (
     <div role="outer-div">
 
