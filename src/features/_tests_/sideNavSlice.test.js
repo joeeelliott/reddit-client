@@ -15,11 +15,11 @@ const initialState = {
 
 describe('sideNavSlice tests', () => {
   describe('state and reducers', () => {
-    it('should return the initial state', () => {
+    it('initialState is as expected', () => {
       expect(reducer(undefined, {})).toEqual(initialState);
     });
   
-    it('test toggleSideNav works properly', () => {
+    it('showSideNav reducer changes state as expected', () => {
       const previousState = initialState;
       expect(reducer(previousState, showSideNav())).toEqual(
         {

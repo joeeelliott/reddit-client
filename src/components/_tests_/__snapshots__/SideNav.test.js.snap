@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SideNav Component renders in correct content should render with given state from Redux store 1`] = `
+exports[`SideNav Component renders as expected; matches snapshot 1`] = `
 Object {
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -52,5 +52,210 @@ Object {
   "queryByTestId": [Function],
   "queryByText": [Function],
   "queryByTitle": [Function],
+}
+`;
+
+exports[`SideNav Component renders as expected; matches snapshot 2`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="sideNav_hide-nav"
+        data-testid="sideNav"
+        role="sideNav-outer-div"
+      >
+        <form
+          role="form"
+        >
+          <label
+            role="label"
+          >
+            Search: 
+          </label>
+          <input
+            placeholder="Search term here..."
+            role="input"
+            type="text"
+          />
+          <label
+            role="label"
+          >
+            Filter: 
+          </label>
+          <select
+            id="filters"
+            name="filters"
+            role="select"
+          >
+            <option
+              value=""
+            />
+            <option
+              value=""
+            />
+            <option
+              value=""
+            />
+            <option
+              value=""
+            />
+          </select>
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-filter fa-w-16 "
+            data-icon="filter"
+            data-prefix="fas"
+            data-test-header_filter-icon="true"
+            data-test-header_font-awesome-icon="true"
+            data-testid="filter-icon"
+            focusable="false"
+            role="img"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
+              fill="currentColor"
+            />
+          </svg>
+          <div
+            class="sideNav_btn-container"
+            role="btn-container"
+          >
+            <button
+              class="sideNav_btn"
+            >
+              Confirm
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="sideNav_hide-nav"
+      data-testid="sideNav"
+      role="sideNav-outer-div"
+    >
+      <form
+        role="form"
+      >
+        <label
+          role="label"
+        >
+          Search: 
+        </label>
+        <input
+          placeholder="Search term here..."
+          role="input"
+          type="text"
+        />
+        <label
+          role="label"
+        >
+          Filter: 
+        </label>
+        <select
+          id="filters"
+          name="filters"
+          role="select"
+        >
+          <option
+            value=""
+          />
+          <option
+            value=""
+          />
+          <option
+            value=""
+          />
+          <option
+            value=""
+          />
+        </select>
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-filter fa-w-16 "
+          data-icon="filter"
+          data-prefix="fas"
+          data-test-header_filter-icon="true"
+          data-test-header_font-awesome-icon="true"
+          data-testid="filter-icon"
+          focusable="false"
+          role="img"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
+            fill="currentColor"
+          />
+        </svg>
+        <div
+          class="sideNav_btn-container"
+          role="btn-container"
+        >
+          <button
+            class="sideNav_btn"
+          >
+            Confirm
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
 }
 `;

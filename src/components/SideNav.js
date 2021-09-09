@@ -11,7 +11,7 @@ const SideNav = () => {
 
   return (
     // <div role="sideNav-outer-div">
-      <div role="sideNav-outer-div" className={sideNavState.toggleSideNav ? "sideNav_show-nav" : "sideNav_hide-nav"}>
+      <div role="sideNav-outer-div" data-testid="sideNav" className={sideNavState.toggleSideNav ? "sideNav_show-nav" : "sideNav_hide-nav"}>
         <form role="form">
           <label role="label">Search: </label>
           <input role="input" type="text" placeholder="Search term here..." />
