@@ -35,22 +35,22 @@ const Article = () => {
   // console.log(abbrScore(66666))
 
   return (
-    <div role="outer-div">
+    <div>
 
-      <div role="article-div" className="article_article-div">
-        <div role="left-sided-column" className="article_comments-column">
-          <p role="comments-total" className="article_total-comments">{articlesLoading ? 'Data loading...' : abbrScore(articles[0].score)}</p>
+      <div className="article_article-div">
+        <div className="article_comments-column">
+          <p className="article_total-comments">{articlesLoading ? 'Data loading...' : abbrScore(articles[0].score)}</p>
         </div>
-        <div role="main-content-div" className="article_main-content-div">
-          <h1 role="title" className="article_title">Article Title</h1>
-          <div role="article" className="article_article">
+        <div className="article_main-content-div">
+          <h1 className="article_title">Article Title</h1>
+          <div className="article_article">
             <img src={mockImg} className="article_article-img"></img>
           </div>
 
-          <div role="article-details-div" className="article_article-details-div">
-            <p role="article-detail" className="article_article-detail">Posted By: Joe Elliott</p>
-            <p role="article-detail" className="article_article-detail">2hrs ago</p>
-            <p role="article-detail" className="article_article-detail">22.2k comments</p>
+          <div className="article_article-details-div">
+            <p className="article_article-detail">Posted By: Joe Elliott</p>
+            <p className="article_article-detail">2hrs ago</p>
+            <p className="article_article-detail">22.2k comments</p>
           </div>
         </div>
       </div>
