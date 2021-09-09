@@ -11,12 +11,12 @@ const SideNav = () => {
 
   return (
     // <div role="sideNav-outer-div">
-      <div role="sideNav-outer-div" data-testid="sideNav" className={sideNavState.toggleSideNav ? "sideNav_show-nav" : "sideNav_hide-nav"}>
-        <form role="form">
-          <label role="label">Search: </label>
-          <input role="input" type="text" placeholder="Search term here..." />
-          <label role="label">Filter: </label>
-          <select role="select" id="filters" name="filters">
+      <div data-testid="sideNav" className={sideNavState.toggleSideNav ? "sideNav_show-nav" : "sideNav_hide-nav"}>
+        <form>
+          <label>Search: </label>
+          <input type="text" placeholder="Search term here..." />
+          <label>Filter: </label>
+          <select id="filters" name="filters">
             <option value=""></option>
             <option value=""></option>
             <option value=""></option>
@@ -25,7 +25,7 @@ const SideNav = () => {
 
           <FontAwesomeIcon data-testid="filter-icon" icon="filter" data-test-header_filter-icon data-test-header_font-awesome-icon aria-hidden="true" />
 
-          <div role="btn-container" className="sideNav_btn-container">
+          <div className="sideNav_btn-container">
           <button className="sideNav_btn" >Confirm</button>
           {/* onClick={showSideNav} */}
         </div>
