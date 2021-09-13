@@ -1,43 +1,47 @@
-import reducer, { testFetchArticles, fetchArticles, selectArticle, initialState } from '../articleSlice';
+import reducer from '../articleSlice';
 
-// import reducer from '../articleSlice';
+describe('articleSlice tests', () => {
 
-import { createAsyncThunk } from '@reduxjs/toolkit';
-
-const mockInitialState = {
-  articles: [],
-  articlesWithThumbnails: [],
-  articlesWithoutThumbnails: [],
-  isLoading: true,
-  hasError: false
-}
-
-// const testResult = testFetchArticles('https://www.reddit.com/r/popular.json?limit=10');
-
-
-
-// fetch is a global method. In this instance we make it equivalent to a mock function.
-global.fetch = jest.fn(() => {  // mock function: what does fetch return? 
-  Promise.resolve({   // it returns a Promise we want to resolve 
-    // the data the Promise resolves with contains json, which is a function which can be called 'something.json();' , and then that again returns a promise.
-    json: () => Promise.resolve('pn7fst')  // within the data we get back from calling json (providing the promise is fulfilled) is 
-  })
-})
-
-// describe('articleSlice tests', () => {
   it('initialState is as expected', () => {
+    const mockInitialState = {
+      articles: [],
+      articlesWithThumbnails: [],
+      articlesWithoutThumbnails: [],
+      isLoading: true,
+      hasError: false
+    }
+    
     expect(reducer(undefined, {})).toEqual(mockInitialState);
   });
 
-  it('fetch method works as expected', async () => {
+  it('fetchArticles should return the expected result', async () => {
+    let testIdResult;
+  
+    const testFetchArticles = async () => {
+      try {
+        const response = await fetch('https://www.reddit.com/r/popular.json?limit=10');
+    
+        const json = await response.json();
+        // console.log(json.data.children[0].data.id)
+        testIdResult = json.data.children[0].data.id;
+        return json.data.children[0].data.id;
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
     const result = await testFetchArticles();
 
-    expect(result).toBe('pn7fst');
+    expect(result).toBe(testIdResult);
   });
 
-  // it('state.article stores data correctly', () => {
+  it('mocked function should match result', async () => {
+    const fetchArticles = () => {
+      return Promise.resolve('pnewzf');
+    };
 
-  // });
-  
-// });
+    const result = await fetchArticles();
+
+    expect(result).toBe('pnewzf'); 
+  });
+});

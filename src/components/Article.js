@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
 import mockImg from '../images/mockpic.png';
 
-import { fetchArticles, testFetchArticles, selectArticle, selectArticleIsLoading } from '../features/articleSlice'; 
+import { fetchArticles, selectArticle, selectArticleIsLoading } from '../features/articleSlice'; 
 
 const Article = () => {
   const articles = useSelector(selectArticle);
