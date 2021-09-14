@@ -41,9 +41,9 @@ const articleSlice = createSlice({
 
       action.payload.forEach(article => {
         state.articles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created, numComments: article.data.num_comments 
-        })
+        });
 
-        article.data.thumbnail && article.data.thumbnail.includes('https') ? state.articlesWithThumbnails.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created, numComments: article.data.num_comments, thumbnail: article.data.thumbnail, thumbnailHeight: article.data.thumbnail_height, thumbnailWidth: article.data.thumbnail_width }) : state.articlesWithoutThumbnails.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, numComments: article.data.num_comments })
+        article.data.thumbnail && article.data.thumbnail.includes('https') ? state.articlesWithThumbnails.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created, numComments: article.data.num_comments, thumbnail: article.data.thumbnail, thumbnailHeight: article.data.thumbnail_height, thumbnailWidth: article.data.thumbnail_width }) : state.articlesWithoutThumbnails.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created, numComments: article.data.num_comments });
       });
 
       // console.log(current(state))
