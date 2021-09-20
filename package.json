@@ -20,6 +20,9 @@
     "seamless-immutable": "^7.1.4",
     "web-vitals": "^1.1.2"
   },
+  "jest": {
+    "resetMocks": false
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

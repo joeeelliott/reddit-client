@@ -2,10 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
 import mockImg from '../images/mockpic.png';
 
-import { fetchArticles, selectArticle, selectArticleIsLoading } from '../features/articleSlice'; 
+import { fetchArticles, selectArticle, selectArticleWithThumbnails, selectArticleWithoutThumbnails, selectArticleIsLoading } from '../features/articleSlice'; 
+import { abbrNum, convertUnixTimeStamp } from '../utils';
 
 const Article = () => {
   const articles = useSelector(selectArticle);
+  const articlesWithThumbnails = useSelector(selectArticleWithThumbnails);
+  const articlesWithoutThumbnails = useSelector(selectArticleWithoutThumbnails);
   const articlesLoading = useSelector(selectArticleIsLoading);
   const dispatch = useDispatch();
 
@@ -16,49 +19,32 @@ const Article = () => {
 
   // console.log(articlesLoading);
 
-  const abbrScore = num => {
-    const string = num.toString(); 
-    const numLength = num.toString().length; 
-
-    if(numLength <= 3) {
-      return num;
-    } else if(numLength > 3) {
-      if(numLength === 4) {
-        return `${string.substring(0, 1)}.${string.substring(1, 2)}K`;
-      } else if(numLength === 5) {
-        return `${string.substring(0, 2)}.${string.substring(2, 3)}K`; 
-      } else if(numLength === 6){
-        return `${string.substring(0, 3)}K`; 
-      }
-    }
-  }
-
-  // console.log(abbrScore(66666))
+  // console.log((convertUnixTimeStamp(1632145047)));
 
   return (
     <div>
 
       <div className="article_article-div">
         <div className="article_comments-column">
-          <p className="article_total-comments">{articlesLoading ? 'Data loading...' : abbrScore(articles[0].score)}</p>
+          <p className="article_total-comments">{articlesLoading ? 'Data loading...' : abbrNum(articlesWithThumbnails[0].score)}</p>
         </div>
         <div className="article_main-content-div">
-          <h1 className="article_title">Article Title</h1>
+          <h1 className="article_title">{articlesLoading ? 'Data loading...' : articlesWithThumbnails[0].title}</h1>
           <div className="article_article">
-            <img src={mockImg} alt="" className="article_article-img"></img>
+            <img src={articlesLoading ? mockImg : articlesWithThumbnails[0].thumbnail} height="100%" width="100%" alt="Data loading..." className="article_article-img"></img>
           </div>
 
           <div className="article_article-details-div">
-            <p className="article_article-detail">Posted By: Joe Elliott</p>
-            <p className="article_article-detail">2hrs ago</p>
-            <p className="article_article-detail">22.2k comments</p>
+            <p className="article_article-detail">Posted By: <strong>{articlesLoading ? 'Data loading...' : articlesWithThumbnails[0].author}</strong></p>
+            <p className="article_article-detail">{articlesLoading ? 'Data loading...' : convertUnixTimeStamp(articlesWithThumbnails[0].created)}</p>
+            <p className="article_article-detail">{articlesLoading ? 'Data loading...' : `${abbrNum(articlesWithThumbnails[0].numComments)} comments`}</p>
           </div>
         </div>
       </div>
 
       <div className="article_article-div">
         <div className="article_comments-column">
-          <p className="article_total-comments">{articlesLoading ? 'Data loading...' : abbrScore(articles[9].score)}</p>
+          <p className="article_total-comments">{articlesLoading ? 'Data loading...' : abbrNum(articles[6].score)}</p>
         </div>
         <div className="article_main-content-div">
           <h1 className="article_title">Article Title</h1>

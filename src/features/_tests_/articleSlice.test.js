@@ -1,4 +1,5 @@
-import reducer from '../articleSlice';
+import reducer, { fetchArticles } from '../articleSlice';
+// import fetchMock from 'jest-fetch-mock';
 
 describe('articleSlice tests', () => {
 
@@ -10,7 +11,61 @@ describe('articleSlice tests', () => {
     hasError: false
   }
 
-  const fetchArticles = () => {
+  // const fetchPromiseResolve = jest.fn(() => {
+  //   return Promise.resolve([
+  //     {
+  //       data: {
+  //         id: 'pnrdxu',
+  //         author: '2old-you',
+  //         title: 'AOC is at the Met Gala. The back of her dress reads "TAX THE RICH."',
+  //         score: 81480,
+  //         created: 1631577125,
+  //         num_comments: 13551,
+  //         thumbnail: "https://b.thumbs.redditmedia.com/tJfASDgoMM3bJVCZX-Qi73w3LEOG2s5vrMsrdrV9SPc.jpg",
+  //         thumbnail_height: 140,
+  //         thumbnail_width: 140,
+  //       }
+  //     }, 
+  //     {
+  //       data: {
+  //         id: 'pnu0lx',
+  //         author: 'purple-circle',
+  //         title: '🔥 A hunter wakes up two sleeping caribou after a snowfall',
+  //         score: 20490,
+  //         created: 1631586720,
+  //         num_comments: 654,
+  //         thumbnail: "https://a.thumbs.redditmedia.com/UOQRrKmzQbxQjmKfzVSrK9AG3JtrycrA4C205EF9E-8.jpg",
+  //         thumbnail_height: 140,
+  //         thumbnail_width: 140,
+  //       }
+  //     },
+  //     {
+  //       data: {
+  //         id: 'pnup99',
+  //         author: 'Jonathan_408',
+  //         title: 'This kitty\'s classical pose',
+  //         score: 11732,
+  //         created: 1631589316,
+  //         num_comments: 45,
+  //         thumbnail: "https://b.thumbs.redditmedia.com/4ywvJovD_JpbXIQCdU1j6BiM3L9WtCjR14_w9qBsbtI.jpg",
+  //         thumbnail_height: 140,
+  //         thumbnail_width: 140,
+  //       }
+  //     },
+  //     {
+  //       data: {
+  //         id: "pnijr8",
+  //         author: "FF-coolbeans",
+  //         title: "What are you glad isn’t “cool” anymore?",
+  //         score: 17294,
+  //         created: 1631549387,
+  //         num_comments: 11087,
+  //       }
+  //     }
+  //   ]);
+  // });
+
+  const fetchPromise = jest.fn(() => {
     return Promise.resolve([
       {
         data: {
@@ -61,16 +116,18 @@ describe('articleSlice tests', () => {
           num_comments: 11087,
         }
       }
-    ]);
-  };
-
-  it('initialState is as expected', () => {
-    
-    expect(reducer(undefined, {})).toEqual(mockInitialState);
+    ])
   });
 
-  it('fetch promise returns as expected', async () => {
-    const result = await fetchArticles();
+  afterEach(jest.clearAllMocks); 
+
+  it('initialState is as expected', () => {
+    expect(reducer(undefined, {})).toEqual(mockInitialState);
+    expect.assertions(1);
+  });
+
+  it('interpretation of returned data is correct', async () => {
+    const result = await fetchPromise();
 
     expect(result[0].data.id).toBe('pnrdxu'); 
     expect(result[0].data.author).toBe('2old-you'); 
@@ -81,10 +138,13 @@ describe('articleSlice tests', () => {
     expect(result[0].data.thumbnail).toBe("https://b.thumbs.redditmedia.com/tJfASDgoMM3bJVCZX-Qi73w3LEOG2s5vrMsrdrV9SPc.jpg"); 
     expect(result[1].data.thumbnail_height).toBe(140); 
     expect(result[2].data.thumbnail_width).toBe(140); 
+    
+    expect(fetchPromise).toHaveBeenCalledTimes(1); 
+    expect.assertions(10);
   });
 
-  it('state stores data correctly', async () => {
-    const result = await fetchArticles(); 
+  it('state.articles,state.articlesWithThumbnails, state.articlesWithoutThumbnails store data correctly', async () => {
+    const result = await fetchPromise(); 
 
     result.forEach(article => {
       mockInitialState.articles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created, numComments: article.data.num_comments });
@@ -174,7 +234,48 @@ describe('articleSlice tests', () => {
       }
     ]);
 
-    expect(fetchArticles).toHaveBeenCalledTimes(1); 
-    /// NEED TO FIX THIS INTO A MOCK OR SPY FUNCTION - GOOGLE THE ERROR 
+    expect(fetchPromise).toHaveBeenCalledTimes(1); 
+    expect.assertions(4); 
   });
+
+  it('works with async/await and resolves', async () => {
+    const promise = await fetchPromise();
+
+    expect(promise).toBeTruthy();
+    expect(promise[0].data.id).toEqual('pnrdxu');
+    expect(promise[1].data.id).toEqual('pnu0lx');
+
+    expect(fetchPromise).toHaveBeenCalledTimes(1); 
+    expect.assertions(4)
+  });
+
+  it('tests error with async/await', async () => {
+    const rejectPromise = jest.fn(() => {
+      try {
+        return Promise.reject(new Error('data not found')); 
+      } catch(e) {
+        return e; 
+      }
+    })
+
+    await expect(rejectPromise()).rejects.toThrow('data not found'); 
+
+    expect(rejectPromise).toHaveBeenCalledTimes(1);
+    expect.assertions(2);
+  });
+
+  it('tests error with async/await and rejects', async () => {
+    const fetchPromiseReject = jest.fn(() => {
+      return Promise.reject({ error: 'data not found'});
+    });
+
+    try {
+      await fetchPromiseReject();
+    } catch (e) {
+      expect(e).toEqual({ error: 'data not found' }); 
+    }
+
+    expect(fetchPromiseReject).toHaveBeenCalledTimes(1); 
+    expect.assertions(2); 
+  });  
 });
