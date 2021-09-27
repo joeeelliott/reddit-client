@@ -1,78 +1,91 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
-import mockImg from '../images/mockpic.png';
+// import mockImg from '../images/mockpic.png';
 
-import { fetchArticles, selectArticle, selectArticleIsLoading } from '../features/articleSlice'; 
+import { abbrNum, convertUnixTimeStamp } from '../utils';
+
+import { fetchPopularArticles, fetchTrendingArticles, fetchSportArticles, fetchNewsArticles, selectPopularArticle, selectTrendingArticle, selectSportArticle, selectnewsArticle,  selectPopularArticleWithThumbnails, selectPopularArticleWithoutThumbnails, selectPopularArticleIsLoading, selectTrendingArticleIsLoading, selectSportArticleIsLoading, selectNewsArticleIsLoading, selectDataIsLoading } from '../features/articleSlice'; 
+
 
 const Article = () => {
-  const articles = useSelector(selectArticle);
-  const articlesLoading = useSelector(selectArticleIsLoading);
+  const popularArticles = useSelector(selectPopularArticle);
+  // const trendingArticles = useSelector(selectTrendingArticle);
+  // const sportArticles = useSelector(selectSportArticle);
+  // const newsArticles = useSelector(selectnewsArticle);
+
+  // const popularArticlesWithThumbnails = useSelector(selectPopularArticleWithThumbnails);
+  // const popularArticlesrWithoutThumbnails = useSelector(selectPopularArticleWithoutThumbnails);
+
+  // const popularArticlesLoading = useSelector(selectPopularArticleIsLoading);
+  // const trendingArticleLoading = useSelector(selectTrendingArticleIsLoading);
+  // const sportArticlesLoading = useSelector(selectSportArticleIsLoading);
+  // const newsArticlesLoading = useSelector(selectNewsArticleIsLoading);
+
+  const dataLoading = useSelector(selectDataIsLoading);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchArticles());
+    popularArticles.length === 0 &&  // prevents from fetching 10 more articles each re-render, only runs if no data is stored
+    (async () => {
+      await dispatch(fetchPopularArticles());
+      await dispatch(fetchTrendingArticles());
+      await dispatch(fetchSportArticles());
+      await dispatch(fetchNewsArticles());
+    })()
+    // return () => {
+    //   return; 
+    // }
   }, []);
 
-  // console.log(articlesLoading);
 
-  const abbrScore = num => {
-    const string = num.toString(); 
-    const numLength = num.toString().length; 
+  // console.log(popularArticlesWithThumbnails[0].title);
 
-    if(numLength <= 3) {
-      return num;
-    } else if(numLength > 3) {
-      if(numLength === 4) {
-        return `${string.substring(0, 1)}.${string.substring(1, 2)}K`;
-      } else if(numLength === 5) {
-        return `${string.substring(0, 2)}.${string.substring(2, 3)}K`; 
-      } else if(numLength === 6){
-        return `${string.substring(0, 3)}K`; 
-      }
-    }
-  }
-
-  // console.log(abbrScore(66666))
+  // console.log((convertUnixTimeStamp(1632145047)));
 
   return (
     <div>
-
-      <div className="article_article-div">
-        <div className="article_comments-column">
-          <p className="article_total-comments">{articlesLoading ? 'Data loading...' : abbrScore(articles[0].score)}</p>
+      
+      {!dataLoading && popularArticles.map(article => ( 
+        <div className="article_article-div" key={article.id}>
+        <div className="article_score-column">
+          <p className="article_score">{abbrNum(article.score)}</p>
         </div>
         <div className="article_main-content-div">
-          <h1 className="article_title">Article Title</h1>
-          <div className="article_article">
-            <img src={mockImg} className="article_article-img"></img>
-          </div>
+          <h1 className="article_title">{article.title}</h1>
+
+          {article.thumbnail.url.includes('https') && <div className="article_article-img-div">
+            <img src={article.thumbnail.url} height="100%" width="100%" alt="Data loading..." className="article_article-img"></img>
+          </div>}
 
           <div className="article_article-details-div">
-            <p className="article_article-detail">Posted By: Joe Elliott</p>
-            <p className="article_article-detail">2hrs ago</p>
-            <p className="article_article-detail">22.2k comments</p>
+            <p className="article_article-detail">Posted By: <strong>{article.author}</strong></p>
+            <p className="article_article-detail">{convertUnixTimeStamp(article.created)}</p>
+            <p className="article_article-detail">{`${abbrNum(article.numComments)} comments`}</p>
           </div>
         </div>
       </div>
+      )
+      )}        
 
-      {/* <div role="article-div" className="article_article-div">
-        <div role="left-sided-column" className="article_comments-column">
-          <p role="comments-total" className="article_total-comments">21.2k</p>
-        </div>
-        <div role="main-content-div" className="article_main-content-div">
-          <h1 role="title" className="article_title">Article Title</h1>
-          <div role="article" className="article_article">
-
+        {/* <div className="article_article-div">
+          <div className="article_comments-column">
+            <p className="article_total-comments">{popularArticlesLoading ? 'Data loading...' : abbrNum(popularArticles[0].score)}</p>
           </div>
+          <div className="article_main-content-div">
+            <h1 className="article_title">{popularArticlesLoading ? 'Data loading...' : popularArticles[0].title}</h1>
+            <div className="article_article">
+              <img src={popularArticlesLoading ? mockImg : popularArticles[0].thumbnail.url} height="100%" width="100%" alt="Data loading..." className="article_article-img"></img>
+            </div>
 
-          <div role="article-details-div" className="article_article-details-div">
-            <p role="article-detail" className="article_article-detail"></p>
-            <p role="article-detail" className="article_article-detail"></p>
-            <p role="article-detail" className="article_article-detail"></p>
+            <div className="article_article-details-div">
+              <p className="article_article-detail">Posted By: <strong>{popularArticlesLoading ? 'Data loading...' : popularArticles[0].author}</strong></p>
+              <p className="article_article-detail">{popularArticlesLoading ? 'Data loading...' : convertUnixTimeStamp(popularArticles[0].created)}</p>
+              <p className="article_article-detail">{popularArticlesLoading ? 'Data loading...' : `${abbrNum(popularArticles[0].numComments)} comments`}</p>
+            </div>
           </div>
-        </div>
-      </div> */}
-
+        </div> */}
+        
     </div>
   )
 }

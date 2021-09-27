@@ -10,11 +10,14 @@ import '@testing-library/jest-dom';
 import { configure } from 'enzyme'; 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
+import registerFaIcons from './modules/@fortawesome/react-fontawesome';
+
+import fetchMock from 'jest-fetch-mock';
+fetchMock.enableMocks();
+
 // Once installed, configure an instance of the adapter for the test runner 
 // Enzyme.configure({ adapter: new Adapter() });
 configure({ adapter: new Adapter() });
 
-
-import registerFaIcons from './modules/@fortawesome/react-fontawesome';
 
 registerFaIcons();
