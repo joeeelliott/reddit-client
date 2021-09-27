@@ -1,122 +1,72 @@
-import reducer, { fetchArticles } from '../articleSlice';
+import reducer from '../articleSlice';
 // import fetchMock from 'jest-fetch-mock';
 
 describe('articleSlice tests', () => {
 
-  const mockInitialState = {
-    articles: [],
-    articlesWithThumbnails: [],
-    articlesWithoutThumbnails: [],
-    isLoading: true,
-    hasError: false
-  }
+  let result; 
+  let mockInitialState; 
+  let fetchPromise;
+  // let fetchPopularPromise; 
+  // let fetchTrendingPromise;
+  // let fetchSportPromise;
+  // let fetchNewsPromise;
 
-  // const fetchPromiseResolve = jest.fn(() => {
-  //   return Promise.resolve([
-  //     {
-  //       data: {
-  //         id: 'pnrdxu',
-  //         author: '2old-you',
-  //         title: 'AOC is at the Met Gala. The back of her dress reads "TAX THE RICH."',
-  //         score: 81480,
-  //         created: 1631577125,
-  //         num_comments: 13551,
-  //         thumbnail: "https://b.thumbs.redditmedia.com/tJfASDgoMM3bJVCZX-Qi73w3LEOG2s5vrMsrdrV9SPc.jpg",
-  //         thumbnail_height: 140,
-  //         thumbnail_width: 140,
-  //       }
-  //     }, 
-  //     {
-  //       data: {
-  //         id: 'pnu0lx',
-  //         author: 'purple-circle',
-  //         title: '🔥 A hunter wakes up two sleeping caribou after a snowfall',
-  //         score: 20490,
-  //         created: 1631586720,
-  //         num_comments: 654,
-  //         thumbnail: "https://a.thumbs.redditmedia.com/UOQRrKmzQbxQjmKfzVSrK9AG3JtrycrA4C205EF9E-8.jpg",
-  //         thumbnail_height: 140,
-  //         thumbnail_width: 140,
-  //       }
-  //     },
-  //     {
-  //       data: {
-  //         id: 'pnup99',
-  //         author: 'Jonathan_408',
-  //         title: 'This kitty\'s classical pose',
-  //         score: 11732,
-  //         created: 1631589316,
-  //         num_comments: 45,
-  //         thumbnail: "https://b.thumbs.redditmedia.com/4ywvJovD_JpbXIQCdU1j6BiM3L9WtCjR14_w9qBsbtI.jpg",
-  //         thumbnail_height: 140,
-  //         thumbnail_width: 140,
-  //       }
-  //     },
-  //     {
-  //       data: {
-  //         id: "pnijr8",
-  //         author: "FF-coolbeans",
-  //         title: "What are you glad isn’t “cool” anymore?",
-  //         score: 17294,
-  //         created: 1631549387,
-  //         num_comments: 11087,
-  //       }
-  //     }
-  //   ]);
-  // });
+  beforeEach( async () => {
+    mockInitialState = {
+      popularArticles: [],
+      trendingArticles: [],
+      sportArticles: [],
+      newsArticles: [],
+      dataLoading: true, 
+      popularHasError: false,
+      trendingHasError: false,
+      sportHasError: false,
+      newsHasError: false,
+    }
 
-  const fetchPromise = jest.fn(() => {
-    return Promise.resolve([
-      {
-        data: {
-          id: 'pnrdxu',
-          author: '2old-you',
-          title: 'AOC is at the Met Gala. The back of her dress reads "TAX THE RICH."',
-          score: 81480,
-          created: 1631577125,
-          num_comments: 13551,
-          thumbnail: "https://b.thumbs.redditmedia.com/tJfASDgoMM3bJVCZX-Qi73w3LEOG2s5vrMsrdrV9SPc.jpg",
-          thumbnail_height: 140,
-          thumbnail_width: 140,
+    fetchPromise = jest.fn(() => {
+      return Promise.resolve([
+        {
+          data: {
+            id: 'pnrdxu',
+            author: '2old-you',
+            title: 'AOC is at the Met Gala. The back of her dress reads "TAX THE RICH."',
+            score: 81480,
+            created_utc: 1631577125,
+            num_comments: 13551,
+            thumbnail: "https://b.thumbs.redditmedia.com/tJfASDgoMM3bJVCZX-Qi73w3LEOG2s5vrMsrdrV9SPc.jpg",
+            thumbnail_height: 140,
+            thumbnail_width: 140,
+            url: "https://www.reddit.com/r/pics/comments/pnrdxu/aoc_is_at_the_met_gala_the_back_of_her_dress/",
+            media: {
+              reddit_video: {
+                bitrate_kbbs: 2400,
+                dash_url: "https://url",
+              }
+            },
+            media_embed: {},
+          }
+        }, 
+        {
+          data: {
+            id: "pnijr8",
+            author: "FF-coolbeans",
+            title: "What are you glad isn’t “cool” anymore?",
+            score: 17294,
+            created_utc: 1631549387,
+            num_comments: 11087,
+            thumbnail: "self",
+            thumbnail_height: null,
+            thumbnail_width: undefined,
+            url: "https://www.reddit.com/r/AskReddit/comments/pnijr8/what_are_you_glad_isnt_cool_anymore/",
+            media: null,
+            media_embed: {},
+          }
         }
-      }, 
-      {
-        data: {
-          id: 'pnu0lx',
-          author: 'purple-circle',
-          title: '🔥 A hunter wakes up two sleeping caribou after a snowfall',
-          score: 20490,
-          created: 1631586720,
-          num_comments: 654,
-          thumbnail: "https://a.thumbs.redditmedia.com/UOQRrKmzQbxQjmKfzVSrK9AG3JtrycrA4C205EF9E-8.jpg",
-          thumbnail_height: 140,
-          thumbnail_width: 140,
-        }
-      },
-      {
-        data: {
-          id: 'pnup99',
-          author: 'Jonathan_408',
-          title: 'This kitty\'s classical pose',
-          score: 11732,
-          created: 1631589316,
-          num_comments: 45,
-          thumbnail: "https://b.thumbs.redditmedia.com/4ywvJovD_JpbXIQCdU1j6BiM3L9WtCjR14_w9qBsbtI.jpg",
-          thumbnail_height: 140,
-          thumbnail_width: 140,
-        }
-      },
-      {
-        data: {
-          id: "pnijr8",
-          author: "FF-coolbeans",
-          title: "What are you glad isn’t “cool” anymore?",
-          score: 17294,
-          created: 1631549387,
-          num_comments: 11087,
-        }
-      }
-    ])
+      ])
+    });
+
+    result = await fetchPromise();
   });
 
   afterEach(jest.clearAllMocks); 
@@ -127,32 +77,59 @@ describe('articleSlice tests', () => {
   });
 
   it('interpretation of returned data is correct', async () => {
-    const result = await fetchPromise();
 
     expect(result[0].data.id).toBe('pnrdxu'); 
     expect(result[0].data.author).toBe('2old-you'); 
-    expect(result[1].data.title).toBe('🔥 A hunter wakes up two sleeping caribou after a snowfall'); 
-    expect(result[1].data.score).toBe(20490); 
-    expect(result[2].data.created).toBe(1631589316); 
-    expect(result[2].data.num_comments).toBe(45); 
-    expect(result[0].data.thumbnail).toBe("https://b.thumbs.redditmedia.com/tJfASDgoMM3bJVCZX-Qi73w3LEOG2s5vrMsrdrV9SPc.jpg"); 
-    expect(result[1].data.thumbnail_height).toBe(140); 
-    expect(result[2].data.thumbnail_width).toBe(140); 
+    expect(result[1].data.title).toBe('What are you glad isn’t “cool” anymore?'); 
+    expect(result[1].data.score).toBe(17294); 
+    expect(result[0].data.created_utc).toBe(1631577125); 
+    expect(result[0].data.num_comments).toBe(13551); 
+    expect(result[1].data.thumbnail).toBe("self"); 
+    expect(result[1].data.thumbnail_height).toBe(null); 
+    expect(result[0].data.thumbnail_width).toBe(140); 
+    expect(result[0].data.url).toBe("https://www.reddit.com/r/pics/comments/pnrdxu/aoc_is_at_the_met_gala_the_back_of_her_dress/")
+    expect(result[0].data.media).toStrictEqual({
+      reddit_video: {
+        "bitrate_kbbs": 2400,
+        "dash_url": "https://url",
+      }
+    });
+    expect(result[1].data.media).toBe(null);
+    expect(result[1].data.media_embed).toStrictEqual({});
     
     expect(fetchPromise).toHaveBeenCalledTimes(1); 
-    expect.assertions(10);
+    expect.assertions(14);
   });
 
-  it('state.articles,state.articlesWithThumbnails, state.articlesWithoutThumbnails store data correctly', async () => {
-    const result = await fetchPromise(); 
-
+  it('all article arrays store data correctly', async () => {
     result.forEach(article => {
-      mockInitialState.articles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created, numComments: article.data.num_comments });
+      mockInitialState.popularArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url, thumbnail: {
+        url: article.data.thumbnail,
+        height: article.data.thumbnail_height, 
+        width: article.data.thumbnail_width, 
+      }
+      });
 
-      article.data.thumbnail && article.data.thumbnail.includes('https') ? mockInitialState.articlesWithThumbnails.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created, numComments: article.data.num_comments, thumbnail: article.data.thumbnail, thumbnailHeight: article.data.thumbnail_height, thumbnailWidth: article.data.thumbnail_width }) : mockInitialState.articlesWithoutThumbnails.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created, numComments: article.data.num_comments });
+      mockInitialState.trendingArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url
+      });
+
+      mockInitialState.sportArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url, thumbnail: {
+        url: article.data.thumbnail,
+        height: article.data.thumbnail_height, 
+        width: article.data.thumbnail_width, 
+      },
+      media: article.data.media, mediaEmbed: article.data.media_embed
+      });
+
+      mockInitialState.newsArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url, thumbnail: {
+        url: article.data.thumbnail,
+        height: article.data.thumbnail_height, 
+        width: article.data.thumbnail_width, 
+      }
+      });
     });
 
-    expect(mockInitialState.articles).toEqual([
+    expect(mockInitialState.popularArticles).toEqual([
       {
         id: 'pnrdxu',
         author: '2old-you',
@@ -160,70 +137,13 @@ describe('articleSlice tests', () => {
         score: 81480,
         created: 1631577125,
         numComments: 13551,
+        url: "https://www.reddit.com/r/pics/comments/pnrdxu/aoc_is_at_the_met_gala_the_back_of_her_dress/", 
+        thumbnail: {
+          url: "https://b.thumbs.redditmedia.com/tJfASDgoMM3bJVCZX-Qi73w3LEOG2s5vrMsrdrV9SPc.jpg",
+          height: 140,
+          width: 140,
+        },
       }, 
-      {
-        id: 'pnu0lx',
-        author: 'purple-circle',
-        title: '🔥 A hunter wakes up two sleeping caribou after a snowfall',
-        score: 20490,
-        created: 1631586720,
-        numComments: 654,
-      },
-      {
-        id: 'pnup99',
-        author: 'Jonathan_408',
-        title: 'This kitty\'s classical pose',
-        score: 11732,
-        created: 1631589316,
-        numComments: 45,
-      },
-      {
-        id: "pnijr8",
-          author: "FF-coolbeans",
-          title: "What are you glad isn’t “cool” anymore?",
-          score: 17294,
-          created: 1631549387,
-          numComments: 11087,
-      }
-    ]);
-
-    expect(mockInitialState.articlesWithThumbnails).toEqual([
-      {
-        id: 'pnrdxu',
-        author: '2old-you',
-        title: 'AOC is at the Met Gala. The back of her dress reads "TAX THE RICH."',
-        score: 81480,
-        created: 1631577125,
-        numComments: 13551,
-        thumbnail: "https://b.thumbs.redditmedia.com/tJfASDgoMM3bJVCZX-Qi73w3LEOG2s5vrMsrdrV9SPc.jpg",
-        thumbnailHeight: 140,
-        thumbnailWidth: 140, 
-      }, 
-      {
-        id: 'pnu0lx',
-        author: 'purple-circle',
-        title: '🔥 A hunter wakes up two sleeping caribou after a snowfall',
-        score: 20490,
-        created: 1631586720,
-        numComments: 654,
-        thumbnail: "https://a.thumbs.redditmedia.com/UOQRrKmzQbxQjmKfzVSrK9AG3JtrycrA4C205EF9E-8.jpg",
-        thumbnailHeight: 140,
-        thumbnailWidth: 140, 
-      },
-      {
-        id: 'pnup99',
-        author: 'Jonathan_408',
-        title: 'This kitty\'s classical pose',
-        score: 11732,
-        created: 1631589316,
-        numComments: 45,
-        thumbnail: "https://b.thumbs.redditmedia.com/4ywvJovD_JpbXIQCdU1j6BiM3L9WtCjR14_w9qBsbtI.jpg",
-        thumbnailHeight: 140,
-        thumbnailWidth: 140, 
-      },
-    ]);
-
-    expect(mockInitialState.articlesWithoutThumbnails).toEqual([
       {
         id: "pnijr8",
         author: "FF-coolbeans",
@@ -231,19 +151,116 @@ describe('articleSlice tests', () => {
         score: 17294,
         created: 1631549387,
         numComments: 11087,
-      }
+        url: "https://www.reddit.com/r/AskReddit/comments/pnijr8/what_are_you_glad_isnt_cool_anymore/",
+        thumbnail: {
+          url: "self",
+          height: null,
+          width: undefined,
+        },
+      },
+    ]);
+
+    expect(mockInitialState.trendingArticles).toEqual([
+      {
+        id: 'pnrdxu',
+        author: '2old-you',
+        title: 'AOC is at the Met Gala. The back of her dress reads "TAX THE RICH."',
+        score: 81480,
+        created: 1631577125,
+        numComments: 13551,
+        url: "https://www.reddit.com/r/pics/comments/pnrdxu/aoc_is_at_the_met_gala_the_back_of_her_dress/", 
+      }, 
+      {
+        id: "pnijr8",
+        author: "FF-coolbeans",
+        title: "What are you glad isn’t “cool” anymore?",
+        score: 17294,
+        created: 1631549387,
+        numComments: 11087,
+        url: "https://www.reddit.com/r/AskReddit/comments/pnijr8/what_are_you_glad_isnt_cool_anymore/",
+      },
+    ]);
+
+    expect(mockInitialState.sportArticles).toEqual([
+      {
+        id: 'pnrdxu',
+        author: '2old-you',
+        title: 'AOC is at the Met Gala. The back of her dress reads "TAX THE RICH."',
+        score: 81480,
+        created: 1631577125,
+        numComments: 13551,
+        url: "https://www.reddit.com/r/pics/comments/pnrdxu/aoc_is_at_the_met_gala_the_back_of_her_dress/", 
+        thumbnail: {
+          url: "https://b.thumbs.redditmedia.com/tJfASDgoMM3bJVCZX-Qi73w3LEOG2s5vrMsrdrV9SPc.jpg",
+          height: 140,
+          width: 140,
+        },
+        media: {
+          "reddit_video": {
+            "bitrate_kbbs": 2400,
+            "dash_url": "https://url",
+          }
+        },
+        mediaEmbed: {}, 
+      },
+      {
+        id: "pnijr8",
+        author: "FF-coolbeans",
+        title: "What are you glad isn’t “cool” anymore?",
+        score: 17294,
+        created: 1631549387,
+        numComments: 11087,
+        url: "https://www.reddit.com/r/AskReddit/comments/pnijr8/what_are_you_glad_isnt_cool_anymore/",
+        thumbnail: {
+          url: "self",
+          height: null,
+          width: undefined,
+        },
+        media: null,
+        mediaEmbed: {},
+      },
+    ]);
+
+    expect(mockInitialState.newsArticles).toEqual([
+      {
+        id: 'pnrdxu',
+        author: '2old-you',
+        title: 'AOC is at the Met Gala. The back of her dress reads "TAX THE RICH."',
+        score: 81480,
+        created: 1631577125,
+        numComments: 13551,
+        url: "https://www.reddit.com/r/pics/comments/pnrdxu/aoc_is_at_the_met_gala_the_back_of_her_dress/", 
+        thumbnail: {
+          url: "https://b.thumbs.redditmedia.com/tJfASDgoMM3bJVCZX-Qi73w3LEOG2s5vrMsrdrV9SPc.jpg",
+          height: 140,
+          width: 140,
+        },
+      },
+      {
+        id: "pnijr8",
+        author: "FF-coolbeans",
+        title: "What are you glad isn’t “cool” anymore?",
+        score: 17294,
+        created: 1631549387,
+        numComments: 11087,
+        url: "https://www.reddit.com/r/AskReddit/comments/pnijr8/what_are_you_glad_isnt_cool_anymore/",
+        thumbnail: {
+          url: "self",
+          height: null,
+          width: undefined,
+        },
+      },
     ]);
 
     expect(fetchPromise).toHaveBeenCalledTimes(1); 
-    expect.assertions(4); 
+    expect.assertions(5); 
   });
 
   it('works with async/await and resolves', async () => {
-    const promise = await fetchPromise();
 
-    expect(promise).toBeTruthy();
-    expect(promise[0].data.id).toEqual('pnrdxu');
-    expect(promise[1].data.id).toEqual('pnu0lx');
+    expect(result).toBeTruthy();
+    expect(result[0].data.id).toEqual('pnrdxu');
+    expect(result[1].data.id).toEqual('pnijr8');
 
     expect(fetchPromise).toHaveBeenCalledTimes(1); 
     expect.assertions(4)

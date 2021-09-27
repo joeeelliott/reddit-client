@@ -10,7 +10,7 @@ function App() {
   return (
     <div data-test="App">
       <div className="App_loading-wrapper">
-        <span class="loader"><span class="loader-inner"></span></span>
+        <span className="loader"><span className="loader-inner"></span></span>
       </div>
       
       <Header />
