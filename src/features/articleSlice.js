@@ -10,7 +10,7 @@ export const fetchPopularArticles = createAsyncThunk(
       const json = await response.json();
       // console.log(json.data.children)
       // console.log(json.data.children[4].data.thumbnail_height)
-      // console.log(json.data.children[4].data.width)
+      // console.log(json.data.children[4].data)
       // console.log('fetching popular data complete);
       return json.data.children;
     } catch (error) {
@@ -255,7 +255,7 @@ export const initialState = state => state;
 export const selectPopularArticle = state => state.articles.popularArticles;
 export const selectTrendingArticle = state => state.articles.trendingArticles;
 export const selectSportArticle = state => state.articles.sportArticles;
-export const selectnewsArticle = state => state.articles.newsArticles;
+export const selectNewsArticle = state => state.articles.newsArticles;
 
 // export const selectPopularArticleWithThumbnails = state => state.articles.articlesWithThumbnails;
 // export const selectPopularArticleWithoutThumbnails = state => state.articles.articlesWithoutThumbnails;
