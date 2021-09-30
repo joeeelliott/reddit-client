@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { abbrNum, convertUnixTimeStamp } from '../utils';
 
-import { fetchPopularArticles, fetchTrendingArticles, fetchSportArticles, fetchNewsArticles, selectPopularArticle, selectTrendingArticle, selectSportArticle, selectnewsArticle,  selectPopularArticleWithThumbnails, selectPopularArticleWithoutThumbnails, selectPopularArticleIsLoading, selectTrendingArticleIsLoading, selectSportArticleIsLoading, selectNewsArticleIsLoading, selectDataIsLoading } from '../features/articleSlice'; 
+import { fetchPopularArticles, fetchTrendingArticles, fetchSportArticles, fetchNewsArticles, selectPopularArticle, selectTrendingArticle, selectSportArticle, selectNewsArticle,  selectPopularArticleWithThumbnails, selectPopularArticleWithoutThumbnails, selectPopularArticleIsLoading, selectTrendingArticleIsLoading, selectSportArticleIsLoading, selectNewsArticleIsLoading, selectDataIsLoading } from '../features/articleSlice'; 
 
 
-const Article = () => {
+const PopularArticles = () => {
   const popularArticles = useSelector(selectPopularArticle);
   // const trendingArticles = useSelector(selectTrendingArticle);
   // const sportArticles = useSelector(selectSportArticle);
@@ -90,4 +90,4 @@ const Article = () => {
   )
 }
 
-export default Article;
+export default PopularArticles;
