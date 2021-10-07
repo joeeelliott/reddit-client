@@ -11,14 +11,17 @@ import { store } from './app/store';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 
 // any icons need to be imported 
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
+// import { faBars, faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
+// import { faSearch } from '@fortawesome/free-solid-svg-icons';
+// import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
 // add all icon types and icons to global library to prevent having to import the icons to each individual file
-library.add(fas, fab, faBars, faSearch, faFilter)
+library.add(fas, fab, far)
+
+// faBars, faSearch, faFilter
 
 ReactDOM.render(
   <React.StrictMode>

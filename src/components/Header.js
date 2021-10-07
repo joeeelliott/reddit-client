@@ -25,7 +25,7 @@ const Header = () => {
       <div className="header_toggle-and-title-container">
 
         <div className="header_logo-title-container">
-          <FontAwesomeIcon data-testid="reddit-icon" icon={['fab', 'reddit']} className="header_font-awesome-icon" />
+          <FontAwesomeIcon data-testid="reddit-icon" icon={['fab', 'reddit']} className="header_reddit-icon header_font-awesome-icon" />
 
           <h1 className="header_title">Reddit<span className="header_title-span">Sample</span></h1>
         </div>

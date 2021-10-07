@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
 // import mockImg from '../images/mockpic.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { abbrNum, convertUnixTimeStamp } from '../utils';
 
@@ -34,47 +35,55 @@ const PopularArticles = () => {
 
   return (
     <div>
-      
-      {!dataLoading && popularArticles.map(article => ( 
-        <div className="article_article-div" key={article.id}>
-        <div className="article_score-column">
-          <p className="article_score">{abbrNum(article.score)}</p>
-        </div>
-        <div className="article_main-content-div">
-          <h1 className="article_title">{article.title}</h1>
-
-          {article.thumbnail.url.includes('https') && <div className="article_article-img-div">
-            <img src={article.thumbnail.url} height="100%" width="100%" alt="Data loading..." className="article_article-img"></img>
-          </div>}
-
-          <div className="article_article-details-div">
-            <p className="article_article-detail">Posted By: <strong>{article.author}</strong></p>
-            <p className="article_article-detail">{convertUnixTimeStamp(article.created)}</p>
-            <p className="article_article-detail">{`${abbrNum(article.numComments)} comments`}</p>
+      {/* {console.log(`dataLoading = ${dataLoading}`)} */}
+      {dataLoading ? 
+        <div className="App_loading-wrapper">
+          <span className="loader"><span className="loader-inner"></span></span>
+        </div> : 
+        popularArticles.map(article => ( 
+        <div className="article_outer-container" key={article.id}>
+          <div className="article_score-container">
+            <FontAwesomeIcon className="article_score-icon" icon="arrow-up" /> 
+            <p className="article_score">{abbrNum(article.score)}</p>
+            <FontAwesomeIcon className="article_score-icon" icon="arrow-down" /> 
           </div>
-        </div>
-      </div>
-      )
-      )}        
 
-        {/* <div className="article_article-div">
-          <div className="article_comments-column">
-            <p className="article_total-comments">{popularArticlesLoading ? 'Data loading...' : abbrNum(popularArticles[0].score)}</p>
-          </div>
-          <div className="article_main-content-div">
-            <h1 className="article_title">{popularArticlesLoading ? 'Data loading...' : popularArticles[0].title}</h1>
-            <div className="article_article">
-              <img src={popularArticlesLoading ? mockImg : popularArticles[0].thumbnail.url} height="100%" width="100%" alt="Data loading..." className="article_article-img"></img>
+          <div className="article_main-content-container">
+            <div className="article_details-top-container">
+              <div className="article_post-details">
+                <p className="article_api-data">Posted by <span className="strong">{article.author}</span></p>
+                <p className="article_api-data">{convertUnixTimeStamp(article.created)}</p>
+              </div>
+              <div className="article_join-btn">
+                <FontAwesomeIcon className="article_join-icon" icon="plus" />
+                <p className="article_join-btn-text"><strong>Join</strong></p>
+              </div>
             </div>
 
-            <div className="article_article-details-div">
-              <p className="article_article-detail">Posted By: <strong>{popularArticlesLoading ? 'Data loading...' : popularArticles[0].author}</strong></p>
-              <p className="article_article-detail">{popularArticlesLoading ? 'Data loading...' : convertUnixTimeStamp(popularArticles[0].created)}</p>
-              <p className="article_article-detail">{popularArticlesLoading ? 'Data loading...' : `${abbrNum(popularArticles[0].numComments)} comments`}</p>
+            <div className="article_title-bottom-details-img-container">
+              <div className="article_title-bottom-details-container">
+                <div className="article_title-container">
+                  <h1 className="article_title">{article.title}</h1>
+                </div>
+                
+                <div className="article_bottom-details-container">
+                  <FontAwesomeIcon className="article_comments-icon" icon={['far', 'comment-alt']} />
+                  <p className="article_api-data"><strong>{`${abbrNum(article.numComments)} `} Comments</strong></p>
+
+                  <FontAwesomeIcon className="article_share-icon" icon="share" />
+                  <p className="article_api-data"><strong>Share</strong></p>
+
+                  <FontAwesomeIcon className="article_ellipsis-icon" icon="ellipsis-h" />
+                </div>
+              </div> 
+
+              {article.thumbnail.url.includes('https') && <div className="article_img-container">
+                <img src={article.thumbnail.url} height={article.thumbnail.height} width={article.thumbnail.width} alt="Img..." className="article_article-img"></img>
+              </div>}
             </div>
           </div>
-        </div> */}
-        
+        </div>))
+      }
     </div>
   )
 }
