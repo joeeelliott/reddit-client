@@ -14,11 +14,12 @@ function App() {
   return (
     <Router>
       <div data-test="App">
-        <div className="App_loading-wrapper">
+        {/* <div className="App_loading-wrapper">
           <span className="loader"><span className="loader-inner"></span></span>
-        </div>
-        
-        <Header />
+        </div> */}
+        {/* <div className="App_header-container"> */}
+          <Header />
+        {/* </div> */}
         <div className="article_container">
           <Switch>
             <Route path="/" exact component={PopularArticles} />
@@ -29,11 +30,11 @@ function App() {
         </div>
         <Footer />
 
-        {/* <script>
+        {/* {<script>
           $(window).on('load', function() {
             $('.loader-wrapper').fadeOut('slow')
           });
-        </script> */}  
+        </script>} */}
         
         {/* {need to find a way to load this in on window load - maybe in article slice will pop as no display for now but thats not currently pushed and merged to master yet so will do that later} */}
       </div>

@@ -6,11 +6,11 @@ export const abbrNum = num => {
     return num;
   } else if(numLength > 3) {
     if(numLength === 4) {
-      return `${string.substring(0, 1)}.${string.substring(1, 2)}K`;
+      return `${string.substring(0, 1)}.${string.substring(1, 2)}k`;
     } else if(numLength === 5) {
-      return `${string.substring(0, 2)}.${string.substring(2, 3)}K`; 
+      return `${string.substring(0, 2)}.${string.substring(2, 3)}k`; 
     } else if(numLength === 6){
-      return `${string.substring(0, 3)}K`; 
+      return `${string.substring(0, 3)}k`; 
     }
   }
 }
