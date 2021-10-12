@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
-  const links = ["Popular", "Trending", "Sport", "News"];
+  const links = ["Popular", "Trending", "Sport", "News", "Saved"];
 
 
   return (
@@ -12,7 +12,7 @@ const Nav = () => {
           <Link key={link} className="nav_link" to={() => {
             return link === 'Popular' ? '/' : `${link.charAt(0).toLowerCase()}${link.slice(1)}`;  // .slice(1) = from index 1 to end
           }}>
-            <li>{link}</li>
+            <li className="nav_link-text">{link}</li>
           </Link>
         )}
       </ul>

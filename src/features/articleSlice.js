@@ -90,7 +90,10 @@ const articleSlice = createSlice({
     trendingArticles: [],
     sportArticles: [],
     newsArticles: [],
+    savedArticles: [], 
     dataLoading: true, 
+    ellipsisClick: false,   // not in use atm
+    allArticlesShown: true,
 
     // fetchPopularIsLoading: true,
     // fetchTrendingIsLoading: true,
@@ -102,7 +105,55 @@ const articleSlice = createSlice({
     sportHasError: false,
     newsHasError: false,
   },
-  reducers: {},
+  reducers: {
+    ellipsisToggle: (state, action) => {  // had no use atm
+      state.ellipsisClick = !state.ellipsisClick; 
+    },
+    addSavedArticle: (state, action) => {
+      const {id} = action.payload;
+
+      state.popularArticles.forEach(article => {
+        if(article.id === id){    // if id of clicked article matches
+          state.savedArticles.push(article); 
+          article.saved = true; 
+        }
+      });
+      // console.log(current(state.savedArticles));
+    },
+    removeSavedArticle: (state, action) => {
+      const {id} = action.payload;
+      state.popularArticles.forEach(article => {
+        if(article.id === id){   // if id of click article matches
+          state.savedArticles = state.savedArticles.filter(article => article.id !== id);  // savedArticles = savedArticles minus the article with matching id 
+          article.saved = false; 
+        }
+      });
+      // console.log(state.savedArticles);
+    }, 
+    hideArticle: (state, action) => {
+      const { id } = action.payload; 
+      state.popularArticles.forEach(article => {
+        if(article.id === id){
+          article.hidden = true; 
+        }
+      });
+
+      state.allArticlesShown = false;
+    }, 
+    showArticles: (state, action) => {
+      const {id} = action.payload; 
+
+      state.popularArticles.forEach(article => {
+        id.forEach(item => {
+          if(item === article.id){
+            article.hidden = false; 
+          }
+        });
+      });
+
+      state.allArticlesShown = true;
+    }
+  },
   extraReducers: {
     [fetchPopularArticles.pending]: (state, action) => {
       // console.log('fetchPopularArticles.pending')
@@ -125,7 +176,10 @@ const articleSlice = createSlice({
             url: article.data.thumbnail,
             height: article.data.thumbnail_height, 
             width: article.data.thumbnail_width, 
-          }
+          },
+        save: false,
+        hidden: false,
+        reported: false,
         });
       })
       // console.log(current(state))
@@ -160,7 +214,7 @@ const articleSlice = createSlice({
       state.trendingHasError = false;
 
       action.payload.forEach(article => {
-        state.trendingArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url
+        state.trendingArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url, saved: false, hidden: false, reported: false,
         });
       })
       // console.log(current(state))
@@ -196,7 +250,7 @@ const articleSlice = createSlice({
             height: article.data.thumbnail_height, 
             width: article.data.thumbnail_width, 
           },
-        media: article.data.media, mediaEmbed: article.data.media_embed
+        media: article.data.media, mediaEmbed: article.data.media_embed, saved: false, hidden: false, reported: false,
         });
       })
       // console.log(current(state))
@@ -231,7 +285,8 @@ const articleSlice = createSlice({
             url: article.data.thumbnail,
             height: article.data.thumbnail_height, 
             width: article.data.thumbnail_width, 
-          }
+          },
+        saved: false,
         });
       })
       // console.log(current(state))
@@ -248,14 +303,15 @@ const articleSlice = createSlice({
   }
 });
 
-export const { } = articleSlice.actions;
+export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles } = articleSlice.actions;
 
-export const initialState = state => state; 
+export const selectInitialState = state => state; 
 
 export const selectPopularArticle = state => state.articles.popularArticles;
 export const selectTrendingArticle = state => state.articles.trendingArticles;
 export const selectSportArticle = state => state.articles.sportArticles;
 export const selectNewsArticle = state => state.articles.newsArticles;
+export const selectSavedArticle = state => state.articles.savedArticles;
 
 // export const selectPopularArticleWithThumbnails = state => state.articles.articlesWithThumbnails;
 // export const selectPopularArticleWithoutThumbnails = state => state.articles.articlesWithoutThumbnails;
