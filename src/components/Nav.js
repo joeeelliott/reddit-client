@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
-  const links = ["Popular", "Trending", "Sport", "News", "Saved"];
+  const links = ["Popular", "Sport", "News", "Saved"];
 
 
   return (

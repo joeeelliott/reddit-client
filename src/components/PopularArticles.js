@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { abbrNum, convertUnixTimeStamp } from '../utils';
-import { fetchPopularArticles, fetchTrendingArticles, fetchSportArticles, fetchNewsArticles, selectPopularArticle, selectDataIsLoading, selectInitialState, toggleEllipsis, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, scoreArticle } from '../features/articleSlice'; 
+import { fetchPopularArticles, fetchSportArticles, fetchNewsArticles, selectPopularArticle, selectDataIsLoading, selectInitialState, toggleEllipsis, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, scoreArticle } from '../features/articleSlice'; 
 import { selectShowSideNav } from '../features/sideNavSlice'; 
 
 
@@ -19,7 +19,6 @@ const PopularArticles = () => {
     popularArticles.length === 0 &&  // prevents from fetching 10 more articles each re-render, only runs if no data is stored
     (async () => {
       await dispatch(fetchPopularArticles());
-      await dispatch(fetchTrendingArticles());
       await dispatch(fetchSportArticles());
       await dispatch(fetchNewsArticles());
     })()
