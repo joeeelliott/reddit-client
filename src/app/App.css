@@ -144,6 +144,13 @@
   /* margin-right: 20%;  so the logo and title are in the middle of the header, counters the toggle icon 20% width, didn't want toggle icon in absolute positioning  */
 }
 
+.header_logo-title-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .header_search-icon {
   cursor: pointer;
   /* font-size: 1.5rem !important; */
@@ -171,6 +178,7 @@
 
 .header_title {
   font-size: 1.5rem;
+  color: black;
 }
 
 .header_title-span {
@@ -437,6 +445,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .article_join-btn-text {
