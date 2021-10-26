@@ -391,6 +391,7 @@
 
 .article_score-icon, .article_comments-icon, .article_share-icon, .article_ellipsis-icon {
   color:rgb(150, 150, 150);
+  cursor: pointer; 
 }
 
 .article_main-content-container {

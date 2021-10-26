@@ -162,6 +162,24 @@ const articleSlice = createSlice({
     toggleEllipsis: (state, action) => {
       state.ellipsisClicked = !state.ellipsisClicked;
     },
+    scoreArticle: (state, action) => {
+      const {id, scored} = action.payload; 
+      state.popularArticles.forEach(article => {
+        if(article.id === id){
+          // console.log(`articleScore: ${article.score} articleScoredUp = ${article.scoredUp} articleScoredDown = ${article.scoredDown}`);
+
+          if(!article.scoredUp && !article.scoredDown){
+            scored === 'up' ? (article.score = article.score + 1) && (article.scoredUp = true) : (article.score = article.score - 1) && (article.scoredDown = true);
+          }  // if article not yet scored, and scored up, + 1 to score, scoredUp = true. if not yet scored and scored down, - 1 to score, scoredDown = true  
+
+          article.scoredUp && scored === 'down' && (article.score = article.score - 2) && (article.scoredDown = true) && (article.scoredUp = false);   // if article already been scored up, and scored is down, minus two from score to take it one below its original score. scoredDown = true, scoredUp = false
+
+          article.scoredDown && scored === 'up' && (article.score = article.score + 2) && (article.scoredUp = true) && (article.scoredDown = false);   // if article already been scored down, and scored is up, add two to score to take it one above its original score. scoredUp = true, scoredDown = false
+
+          // console.log(`articleScore: ${article.score} articleScoredUp = ${article.scoredUp} articleScoredDown = ${article.scoredDown}`)
+        }
+      });
+    },
   },
   extraReducers: {
     [fetchPopularArticles.pending]: (state, action) => {
@@ -189,6 +207,8 @@ const articleSlice = createSlice({
         saved: false,
         hidden: false,
         reported: false,
+        scoredUp: false,
+        scoredDown: false,
         });
       })
       // console.log(current(state))
@@ -223,7 +243,7 @@ const articleSlice = createSlice({
       state.trendingHasError = false;
 
       // action.payload.forEach(article => {
-      //   state.trendingArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url, saved: false, hidden: false, reported: false,
+      //   state.trendingArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url, saved: false, hidden: false, reported: false, scoredUp: false, scoredDown: false,
       //   });
       // })
       // console.log(current(state))
@@ -259,7 +279,7 @@ const articleSlice = createSlice({
       //       height: article.data.thumbnail_height, 
       //       width: article.data.thumbnail_width, 
       //     },
-      //   media: article.data.media, mediaEmbed: article.data.media_embed, saved: false, hidden: false, reported: false,
+      //   media: article.data.media, mediaEmbed: article.data.media_embed, saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false,
       //   });
       // });
       // console.log(current(state))
@@ -295,7 +315,7 @@ const articleSlice = createSlice({
             height: article.data.thumbnail_height, 
             width: article.data.thumbnail_width, 
           },
-        saved: false, hidden: false, reported: false,
+        saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false,
         });
       })
       // console.log(current(state))
@@ -312,7 +332,7 @@ const articleSlice = createSlice({
   }
 });
 
-export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, toggleEllipsis } = articleSlice.actions;
+export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, toggleEllipsis, scoreArticle } = articleSlice.actions;
 
 export const selectInitialState = state => state; 
 export const selectInitialArticleState = state => state.articles; 
