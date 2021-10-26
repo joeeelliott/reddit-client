@@ -4,7 +4,7 @@ import React from 'react';
 
 import Header from '../components/Header'; 
 import PopularArticles from '../components/PopularArticles';
-import TrendingArticles from '../components/TrendingArticles';
+// import TrendingArticles from '../components/TrendingArticles';
 import SportArticles from '../components/SportArticles';
 import NewsArticles from '../components/NewsArticles';
 import Footer from '../components/Footer'; 
@@ -24,7 +24,6 @@ function App() {
         <div className="article_container">
           <Switch>
             <Route path="/" exact component={PopularArticles} />
-            <Route path="/trending" exact component={TrendingArticles} />
             <Route path="/sport" exact component={SportArticles} />
             <Route path="/news" exact component={NewsArticles} />
           </Switch>

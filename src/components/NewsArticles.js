@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { abbrNum, convertUnixTimeStamp } from '../utils';
 
-import { fetchPopularArticles, fetchTrendingArticles, fetchSportArticles, fetchNewsArticles, selectNewsArticle, selectDataIsLoading } from '../features/articleSlice'; 
+import { fetchPopularArticles, fetchSportArticles, fetchNewsArticles, selectNewsArticle, selectDataIsLoading } from '../features/articleSlice'; 
 
 const NewsArticles = () => {
   const newsArticles = useSelector(selectNewsArticle);
@@ -16,7 +16,6 @@ const NewsArticles = () => {
     newsArticles.length === 0 &&  // prevents from fetching 10 more articles each re-render, only runs if no data is stored
     (async () => {
       await dispatch(fetchPopularArticles());
-      await dispatch(fetchTrendingArticles());
       await dispatch(fetchSportArticles());
       await dispatch(fetchNewsArticles());
     })()
