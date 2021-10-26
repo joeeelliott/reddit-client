@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { abbrNum, convertUnixTimeStamp } from '../utils';
-import { fetchPopularArticles, fetchTrendingArticles, fetchSportArticles, fetchNewsArticles, selectPopularArticle, selectDataIsLoading, selectInitialState, toggleEllipsis, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle } from '../features/articleSlice'; 
+import { fetchPopularArticles, fetchTrendingArticles, fetchSportArticles, fetchNewsArticles, selectPopularArticle, selectDataIsLoading, selectInitialState, toggleEllipsis, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, scoreArticle } from '../features/articleSlice'; 
 import { selectShowSideNav } from '../features/sideNavSlice'; 
 
 
@@ -135,6 +135,26 @@ const PopularArticles = () => {
     reportModal[0].style.visibility = 'hidden';    
   }
 
+  const handleScoreClick = (e) => {
+    let currentArticle = e.currentTarget.parentNode.parentNode;  // article outer with id
+    let scored; 
+    e.currentTarget.classList.contains('fa-arrow-up') ? scored = 'up' : scored = 'down';
+
+    popularArticles.forEach(article => {
+      if(article.id === currentArticle.id){
+          dispatch(scoreArticle({id: currentArticle.id, scored: scored}));
+      }
+    });
+
+    if(e.currentTarget.classList.contains('fa-arrow-up')){
+      e.currentTarget.style.color = 'green';
+      e.currentTarget.parentNode.children[2].style.color = 'rgb(150, 150, 150)';  // down arrow to grey
+    } else {
+      e.currentTarget.style.color = 'red';
+      e.currentTarget.parentNode.children[0].style.color = 'rgb(150, 150, 150)';  // up arrow to grey
+    }
+  }
+
   return (
     <div>
       {/* {console.log(`dataLoading = ${dataLoading}`)} */}
@@ -145,9 +165,9 @@ const PopularArticles = () => {
         popularArticles.map(article => ( 
         <div className="article_outer-container" key={article.id} id={article.id}>
           <div className="article_score-container">
-            <FontAwesomeIcon className="article_score-icon" icon="arrow-up" /> 
+            <FontAwesomeIcon className="article_score-icon" icon="arrow-up" onClick={handleScoreClick} /> 
             <p className="article_score">{abbrNum(article.score)}</p>
-            <FontAwesomeIcon className="article_score-icon" icon="arrow-down" /> 
+            <FontAwesomeIcon className="article_score-icon" icon="arrow-down" onClick={handleScoreClick} /> 
           </div>
 
           <div className="article_main-content-container">
