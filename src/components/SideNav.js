@@ -13,11 +13,12 @@ const SideNav = () => {
   // console.log(sideNavState.sideNavHidden); 
   const dispatch = useDispatch();
 
+  // useEffect is effective when an action/state change in this component is required via another components state change. Redux store allows all Components' state to be shared, and we access it via export/import of state and reducers, and useSelector() to save these to variables. Here we access a specific state from articleSlice and depending on what that state is, useEffect() will perform an action automatically when a state changes (in this case the allArticlesShown state in articleSlice). We can then dispatch an action related to this components state to alter something in this component. useEffect makes it easy to perform actions on current component using the state of any slice. 
   useEffect(() => {  
     if(articleState.articles.allArticlesShown) {  // if all articles are shown (the eye is clicked)... 
       dispatch(resetEyeClicked());  // ... reset eyeClicked back to false
     }
-  }, [articleState.articles.allArticlesShown])  // only execute if allArticlesShown changes, but the if only allows it if allArticlesShown is true. 
+  }, [articleState.articles.allArticlesShown])  // only execute if allArticlesShown changes, - note our if() only allows execution if allArticlesShown is true. 
 
   const handleEyeMouseOver = (e) => {
     e.currentTarget.parentNode.parentNode.children[0].children[0].classList.add('sideNav_eye-icon-hover-text-show');   // executes animation of text
@@ -47,8 +48,9 @@ const SideNav = () => {
   }
 
   return (
-    // <div role="sideNav-outer-div">
-      <div data-testid="sideNav" className={sideNavState.toggleSideNav ? "sideNav_show-nav" : "sideNav_hide-nav"}>
+    // <div role="sideNav-outer-div"> 
+    // className={sideNavState.toggleSideNav ? "sideNav_show-nav" : "sideNav_hide-nav"}  ---> was inside below div with id sideNav
+      <div id="sideNav" className="sideNav_sideNav" > 
         <form>
           <label>Search: </label>
           <input type="text" placeholder="Search term here..." />
@@ -64,7 +66,7 @@ const SideNav = () => {
 
           <div className="sideNav_btn-container">
             <button className="sideNav_btn" >Confirm</button>
-            {/* onClick={showSideNav} */}
+            {/* onClick={showSideNav} will need to close sideNav when button clicked */}
           </div>
         </form>
 

@@ -28,7 +28,7 @@ export const fetchTrendingArticles = createAsyncThunk(
       const response = await fetch('https://www.reddit.com/r/trending.json?limit=10');
 
       const json = await response.json();
-      // console.log(json);
+      console.log(json);
       // console.log(json.data.children)
       // console.log(json.data.children[1].data) 
 
@@ -92,9 +92,9 @@ const articleSlice = createSlice({
     newsArticles: [],
     savedArticles: [], 
     dataLoading: true, 
-    ellipsisClick: false,   // not in use atm
     allArticlesShown: true,
-
+    ellipsisClicked: false, 
+    reportModal: false,
     // fetchPopularIsLoading: true,
     // fetchTrendingIsLoading: true,
     // fetchSportIsLoading: true,
@@ -106,9 +106,6 @@ const articleSlice = createSlice({
     newsHasError: false,
   },
   reducers: {
-    ellipsisToggle: (state, action) => {  // had no use atm
-      state.ellipsisClick = !state.ellipsisClick; 
-    },
     addSavedArticle: (state, action) => {
       const {id} = action.payload;
 
@@ -152,7 +149,19 @@ const articleSlice = createSlice({
       });
 
       state.allArticlesShown = true;
-    }
+    },
+    reportArticle: (state, action) => {
+      const {id} = action.payload; 
+
+      state.popularArticles.forEach(article => {
+        if(article.id === id) {
+          article.reported = !article.reported; 
+        }
+      });
+    },
+    toggleEllipsis: (state, action) => {
+      state.ellipsisClicked = !state.ellipsisClicked;
+    },
   },
   extraReducers: {
     [fetchPopularArticles.pending]: (state, action) => {
@@ -177,7 +186,7 @@ const articleSlice = createSlice({
             height: article.data.thumbnail_height, 
             width: article.data.thumbnail_width, 
           },
-        save: false,
+        saved: false,
         hidden: false,
         reported: false,
         });
@@ -213,10 +222,10 @@ const articleSlice = createSlice({
 
       state.trendingHasError = false;
 
-      action.payload.forEach(article => {
-        state.trendingArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url, saved: false, hidden: false, reported: false,
-        });
-      })
+      // action.payload.forEach(article => {
+      //   state.trendingArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url, saved: false, hidden: false, reported: false,
+      //   });
+      // })
       // console.log(current(state))
       // console.log(action.payload)
     },
@@ -244,15 +253,15 @@ const articleSlice = createSlice({
 
       state.sportHasError = false;
 
-      action.payload.forEach(article => {
-        state.sportArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url, thumbnail: {
-            url: article.data.thumbnail,
-            height: article.data.thumbnail_height, 
-            width: article.data.thumbnail_width, 
-          },
-        media: article.data.media, mediaEmbed: article.data.media_embed, saved: false, hidden: false, reported: false,
-        });
-      })
+      // action.payload.forEach(article => {
+      //   state.sportArticles.push({ id: article.data.id, author: article.data.author, title: article.data.title, score: article.data.score, created: article.data.created_utc, numComments: article.data.num_comments, url: article.data.url, thumbnail: {
+      //       url: article.data.thumbnail,
+      //       height: article.data.thumbnail_height, 
+      //       width: article.data.thumbnail_width, 
+      //     },
+      //   media: article.data.media, mediaEmbed: article.data.media_embed, saved: false, hidden: false, reported: false,
+      //   });
+      // });
       // console.log(current(state))
       // console.log(action.payload)
     },
@@ -286,7 +295,7 @@ const articleSlice = createSlice({
             height: article.data.thumbnail_height, 
             width: article.data.thumbnail_width, 
           },
-        saved: false,
+        saved: false, hidden: false, reported: false,
         });
       })
       // console.log(current(state))
@@ -303,9 +312,10 @@ const articleSlice = createSlice({
   }
 });
 
-export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles } = articleSlice.actions;
+export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, toggleEllipsis } = articleSlice.actions;
 
 export const selectInitialState = state => state; 
+export const selectInitialArticleState = state => state.articles; 
 
 export const selectPopularArticle = state => state.articles.popularArticles;
 export const selectTrendingArticle = state => state.articles.trendingArticles;

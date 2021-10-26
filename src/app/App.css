@@ -229,13 +229,11 @@
 
 /* SIDENAV COMPONENT */
 
-
-.sideNav_hide-nav {
-  /* border: 1px solid red; */
+.sideNav_sideNav {
   position: absolute; 
   left: 0;
   top: 0; 
-  height: 100vh; 
+  height: calc(100vh - 80px);
   margin-top: 80px;
   z-index: -10; 
   font-size: 0.7rem;
@@ -243,25 +241,40 @@
   width: 0px;
   overflow: hidden;
   background-color: #ddd;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.sideNav_hide-nav {
+  /* border: 1px solid red; */
+  /* position: absolute; 
+  left: 0;
+  top: 0;  */
+  /* height: 100vh;  */
+  /* margin-top: 80px;
+  z-index: -10; 
+  font-size: 0.7rem; */
+  width: 0px;
+  /* overflow: hidden;
+  background-color: #ddd; */
   transition: width 0.4s;
 }
 
 .sideNav_show-nav {
   /* border: 1px solid red; */
-  position: absolute; 
+  /* position: absolute; 
   left: 0;
-  top: 0; 
-  /* height: 100vh;  */
-  height: calc(100vh - 80px);
-  margin-top: 80px;
+  top: 0;  */
+  /* height: calc(100vh - 80px); */
+  /* margin-top: 80px;
   z-index: -10; 
-  font-size: 0.7rem;
+  font-size: 0.7rem; */
   width: 170px;
-  overflow: hidden; 
-  background-color: #ddd;
+  /* overflow: hidden; 
+  background-color: #ddd; */
   transition: width 0.5s;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  /* border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px; */
 }
 
 .sideNav_hide-nav label, .sideNav_show-nav label {
@@ -336,6 +349,10 @@
   /* border: black 1px solid; */
   border-radius: 15px;
   margin: 100px 13%;  /* make % smaller the wider you want the container. 100px top to fall below the header, 100 from bottom to be able to see the ellipsis dropdown on bottom article */
+}
+
+.article_outer-div {
+  position: relative;
 }
 
 .article_outer-container {
@@ -613,6 +630,50 @@
 
 .article_article-img {
   /* border: 1px solid rgb(0, 121, 211); */
+}
+
+.article_report-modal {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100; 
+  background-color:rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* display: none; */
+  visibility: hidden; 
+}
+
+.article_report-modal-content {
+  height: 50%;
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.9); 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  border-radius: 2%;
+  padding: 20px 0px;
+}
+
+.article_report-modal-report-icon {
+  font-size: 2rem;
+  color: red;
+}
+
+.article_report-modal-btn-container button {
+  padding: 2px;
+  background-color: rgba(230, 230, 230);
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.article_report-modal-btn-container button:hover {
+  background-color: rgba(0, 0, 0);
+  color: #fff;
 }
 
 
