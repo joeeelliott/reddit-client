@@ -44,6 +44,10 @@ const PopularArticles = () => {
     } else if(!initialState.articles.ellipsisClicked){
       document.removeEventListener('mouseup', ellipsisClickedDocumentEventListener);
     }
+
+    return () => {
+      document.removeEventListener('mouseup', ellipsisClickedDocumentEventListener); 
+    }
   }, [initialState.articles.ellipsisClicked]); 
 
   const ellipsisClickedDocumentEventListener = (e) => {
@@ -80,7 +84,7 @@ const PopularArticles = () => {
 
   const handleSaveClick = (e) => {
     let article = e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode; 
-    const link = document.getElementsByClassName('nav_link')[4].children[0];
+    const link = document.getElementsByClassName('nav_link')[3].children[0];
     popularArticles.forEach(item => {
       if(item.id === article.id) {
         if(!item.saved){  // if article not saved
@@ -193,12 +197,12 @@ const PopularArticles = () => {
                     <p className="article_api-data">{`${abbrNum(article.numComments)} `} Comments</p>
                   </div>
 
-                 <div className="article_share-icon-container">
+                  <div className="article_share-icon-container">
                     <FontAwesomeIcon className="article_share-icon" icon="share" />
                     <p className="article_api-data">Share</p>
                   </div>
 
-                 <div className="article_ellipsis-container" onClick={handleEllipsisClick}>
+                  <div className="article_ellipsis-container" onClick={handleEllipsisClick}>
                     <FontAwesomeIcon className="article_ellipsis-icon" icon="ellipsis-h" />
                     <div className="article_ellipsis-dropdown">
                       <div className="article_save-container" onClick={handleSaveClick}>

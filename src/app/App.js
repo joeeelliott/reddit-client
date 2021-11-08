@@ -3,15 +3,16 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React from 'react';
 
 import Header from '../components/Header'; 
-import PopularArticles from '../components/PopularArticles';
-// import TrendingArticles from '../components/TrendingArticles';
-import SportArticles from '../components/SportArticles';
-import NewsArticles from '../components/NewsArticles';
+// import PopularArticles from '../components/PopularArticles';
+// import SportArticles from '../components/SportArticles';
+// import NewsArticles from '../components/NewsArticles';
+// import SavedArticles from '../components/SavedArticles';
 import Footer from '../components/Footer'; 
+
+import Articles from '../components/Articles'; 
 
 function App() {
   // <script src="jquery-2.1.4.js"></script>
-
   return (
     <Router>
       <div data-test="App">
@@ -23,9 +24,10 @@ function App() {
         {/* </div> */}
         <div className="article_container">
           <Switch>
-            <Route path="/" exact component={PopularArticles} />
-            <Route path="/sport" exact component={SportArticles} />
-            <Route path="/news" exact component={NewsArticles} />
+            <Route path="/" exact component={Articles} />
+            <Route path="/sport" exact component={Articles} />
+            <Route path="/news" exact component={Articles} />
+            <Route path="/saved" exact component={Articles} />
           </Switch>
         </div>
         <Footer />

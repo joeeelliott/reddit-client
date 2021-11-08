@@ -11,6 +11,7 @@ const SideNav = () => {
   const sideNavState = useSelector(selectShowSideNav);
   const articleState = useSelector(selectInitialState); 
   // console.log(sideNavState.sideNavHidden); 
+  // console.log(articleState.articles.liveArticles); 
   const dispatch = useDispatch();
 
   // useEffect is effective when an action/state change in this component is required via another components state change. Redux store allows all Components' state to be shared, and we access it via export/import of state and reducers, and useSelector() to save these to variables. Here we access a specific state from articleSlice and depending on what that state is, useEffect() will perform an action automatically when a state changes (in this case the allArticlesShown state in articleSlice). We can then dispatch an action related to this components state to alter something in this component. useEffect makes it easy to perform actions on current component using the state of any slice. 

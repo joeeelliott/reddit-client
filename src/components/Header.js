@@ -32,7 +32,11 @@ const Header = () => {
       // console.log('listener removed'); 
       sidenav.classList.remove('sideNav_show-nav'); 
       sidenav.classList.add('sideNav_hide-nav'); 
-    }    
+    }   
+    
+    return () => {
+      document.removeEventListener('mouseup', sideNavDocumentEventListener); 
+    }
   }, [sideNavState.toggleSideNav]);
 
   // when sidenav is open, hide sidenav and change state accordingly when anywhere other than sidenav and search icon clicked. Dont 
@@ -72,10 +76,6 @@ const Header = () => {
     // for whatever reason, i seem to be only able to change the state in here, but changes aren't seen in here, but are in slice, devtools, and useEFfect. So changes to UI depending on state i have executed in useEffect. 
   }
 
-  const handleLogoClick = (e) => {
-
-  }
-
   return (
 
     <div className="header_header">
@@ -86,9 +86,9 @@ const Header = () => {
       <div className="header_toggle-and-title-container">
 
         <div className="header_logo-title-container">
-          <Link to="/" className="header_logo-title-link"><FontAwesomeIcon data-testid="reddit-icon" icon={['fab', 'reddit']} className="header_reddit-icon header_font-awesome-icon" onClick={handleLogoClick} />
+          <Link to="/" className="header_logo-title-link"><FontAwesomeIcon data-testid="reddit-icon" icon={['fab', 'reddit']} className="header_reddit-icon header_font-awesome-icon" />
 
-          <h1 className="header_title" onClick={handleLogoClick}>Reddit<span className="header_title-span" onClick={handleLogoClick}>Sample</span></h1></Link>
+          <h1 className="header_title">Reddit<span className="header_title-span">Sample</span></h1></Link>
         </div>
       </div>
       
