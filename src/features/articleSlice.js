@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
+import { scoreFunc, setArticlesArr } from '../utils';
 
 export const fetchPopularArticles = createAsyncThunk( 
   'articles/fetchPopularArticles', // must be same as in extraReducers 
@@ -73,87 +74,138 @@ const articleSlice = createSlice({
     allArticlesShown: true,
     ellipsisClicked: false, 
     reportModal: false,
+    modalClosed: true, 
     // fetchPopularIsLoading: true,
     // fetchSportIsLoading: true,
     // fetchNewsIsLoading: true,
 
     popularHasError: false,
-    trendingHasError: false,
     sportHasError: false,
     newsHasError: false,
   },
   reducers: {
     addSavedArticle: (state, action) => {
-      const {id} = action.payload;
+      const {id, articleType } = action.payload;
+      // console.log(action.payload); // gives us type popular/sport/news from each articles state rather than from Route pathname 
+      // let articles; 
+      // if(articleType === 'popular'){
+      //   articles = state.popularArticles; 
+      // } else if(articleType === 'sport'){
+      //   articles = state.sportArticles; 
+      // } else if(articleType === 'news'){
+      //   articles = state.newsArticles; 
+      // } 
 
-      state.popularArticles.forEach(article => {
+      // console.log(current(setArticlesArr(articleType, state)));
+      const articlesArr = setArticlesArr(articleType, state);      
+
+      articlesArr.forEach(article => {
         if(article.id === id){    // if id of clicked article matches
           state.savedArticles.push(article); 
           article.saved = true; 
         }
       });
-      // console.log(current(state.savedArticles));
     },
     removeSavedArticle: (state, action) => {
-      const {id} = action.payload;
-      state.popularArticles.forEach(article => {
-        if(article.id === id){   // if id of click article matches
-          state.savedArticles = state.savedArticles.filter(article => article.id !== id);  // savedArticles = savedArticles minus the article with matching id 
-          article.saved = false; 
+      const {id, articleType } = action.payload;
+      const articlesArr = setArticlesArr(articleType, state); // access correct article state required to iterate through
+
+      articlesArr.forEach(article => { 
+        if(article.id === id){
+          article.saved = false;
         }
       });
-      // console.log(state.savedArticles);
+
+      state.savedArticles.forEach(article => {
+        if(article.id === id){   // if id of click article matches
+          state.savedArticles = state.savedArticles.filter(article => article.id !== id);  // savedArticles = savedArticles minus the article with matching id - removes it from saved
+        }
+      });
     }, 
     hideArticle: (state, action) => {
-      const { id } = action.payload; 
-      state.popularArticles.forEach(article => {
-        if(article.id === id){
-          article.hidden = true; 
-        }
-      });
+      const { id, articleType } = action.payload; 
+
+      const articlesArr = setArticlesArr(articleType, state); 
+      const articles = [articlesArr, state.savedArticles]; 
+
+      for(let i = 0; i < articles.length; i++){
+        articles[i].forEach(article => {
+          if(article.id === id){
+            article.hidden = true; 
+          }
+        });
+      }
 
       state.allArticlesShown = false;
     }, 
     showArticles: (state, action) => {
-      const {id} = action.payload; 
+      console.log('working'); 
+      // const {id, articleType} = action.payload; 
+      // const articlesArr = setArticlesArr(articleType, state);
+      // console.log(articleType);   
+      // no longer require above as need to run through each article state to bring all back if theres mixed hidden from different article states. 
 
-      state.popularArticles.forEach(article => {
-        id.forEach(item => {
-          if(item === article.id){
-            article.hidden = false; 
+      const articles = [state.popularArticles, state.sportArticles, state.newsArticles, state.savedArticles]; 
+      for(let i = 0; i < articles.length; i++){
+        articles[i].forEach(article => {
+          if(article.hidden){
+            article.hidden = false;
           }
         });
-      });
+      }
+
+      // UPTO HERE MON 8TH. 
+      // UNHIDING ARTICLES WITH EYE WORKS FINE NOW ON BOTH 3 ARTICLE STATE PAGES AND SAVED PAGE. 
+      // ONCE SAVED, IF I HIDE ON SAVED PAGE THEY HIDE ON THERE AS WELL AS OTHER 3. 
+      // THEN WHEN USING EYE AGAIN ON ANY PAGE THEY COME BACK AS USUAL ON ALL PAGES WITH CORRECT CLASSES. 
+
+    
+      // MOVE ONTO REPORT ARTICLE STATE BELOW TO AMEND FOR ALL ARTICLES. 
+      // REMOVE LIVE ARTICLE REDUCER IF NOT USED - DONT THINK IT IS - CHECK SIDENAV AND OTHER PAGES TO SEE IF IMPORTED ANYWHERE . REMOVE FROM REDUCERS AND FROM REDUCER.ACTIONS AT BOTTOM. 
+      
 
       state.allArticlesShown = true;
     },
     reportArticle: (state, action) => {
-      const {id} = action.payload; 
+      const { id, articleType } = action.payload; 
+      const articlesArr = setArticlesArr(articleType, state); 
+      const articles = [articlesArr, state.savedArticles]; 
 
-      state.popularArticles.forEach(article => {
-        if(article.id === id) {
-          article.reported = !article.reported; 
-        }
-      });
+      for(let i = 0; i < articles.length; i++){
+        articles[i].forEach(article => {
+          if(article.id === id) {
+            article.reported = !article.reported; 
+          }
+        });
+      }
+    },
+    toggleReportModal: (state, action) => {
+      state.modalClosed = !state.modalClosed; 
     },
     toggleEllipsis: (state, action) => {
       state.ellipsisClicked = !state.ellipsisClicked;
     },
     scoreArticle: (state, action) => {
-      const {id, scored} = action.payload; 
-      state.popularArticles.forEach(article => {
+      const {articles, id, scored} = action.payload; 
+      let articlesArr;
+
+      if(articles === 'popular'){
+        articlesArr = state.popularArticles; 
+      } else if(articles === 'sport'){
+        articlesArr = state.sportArticles; 
+      } else if(articles === 'news'){
+        articlesArr = state.newsArticles; 
+      }
+
+      // alter state in that article's article array
+      articlesArr.forEach(article => {
+        scoreFunc(article, id, scored); 
+      });
+
+      // alter state in saved articles too so changes can be made and seen in there also 
+      state.savedArticles.forEach(article => {
         if(article.id === id){
-          // console.log(`articleScore: ${article.score} articleScoredUp = ${article.scoredUp} articleScoredDown = ${article.scoredDown}`);
-
-          if(!article.scoredUp && !article.scoredDown){
-            scored === 'up' ? (article.score = article.score + 1) && (article.scoredUp = true) : (article.score = article.score - 1) && (article.scoredDown = true);
-          }  // if article not yet scored, and scored up, + 1 to score, scoredUp = true. if not yet scored and scored down, - 1 to score, scoredDown = true  
-
-          article.scoredUp && scored === 'down' && (article.score = article.score - 2) && (article.scoredDown = true) && (article.scoredUp = false);   // if article already been scored up, and scored is down, minus two from score to take it one below its original score. scoredDown = true, scoredUp = false
-
-          article.scoredDown && scored === 'up' && (article.score = article.score + 2) && (article.scoredUp = true) && (article.scoredDown = false);   // if article already been scored down, and scored is up, add two to score to take it one above its original score. scoredUp = true, scoredDown = false
-
-          // console.log(`articleScore: ${article.score} articleScoredUp = ${article.scoredUp} articleScoredDown = ${article.scoredDown}`)
+          scoreFunc(article, id, scored); 
         }
       });
     },
@@ -186,6 +238,7 @@ const articleSlice = createSlice({
         reported: false,
         scoredUp: false,
         scoredDown: false,
+        articleType: 'popular',
         });
       })
       // console.log(current(state))
@@ -221,7 +274,7 @@ const articleSlice = createSlice({
             height: article.data.thumbnail_height, 
             width: article.data.thumbnail_width, 
           },
-        media: article.data.media, mediaEmbed: article.data.media_embed, saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false,
+        media: article.data.media, mediaEmbed: article.data.media_embed, saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false, articleType: 'sport',
         });
       });
       // console.log(current(state))
@@ -257,7 +310,7 @@ const articleSlice = createSlice({
             height: article.data.thumbnail_height, 
             width: article.data.thumbnail_width, 
           },
-        saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false,
+        saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false, articleType: 'news',
         });
       })
       // console.log(current(state))
@@ -274,7 +327,7 @@ const articleSlice = createSlice({
   }
 });
 
-export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, toggleEllipsis, scoreArticle } = articleSlice.actions;
+export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, toggleEllipsis, scoreArticle, toggleReportModal } = articleSlice.actions;
 
 export const selectInitialState = state => state; 
 export const selectInitialArticleState = state => state.articles; 
