@@ -31,24 +31,34 @@ export const setArticlesArr = (articles, state) => {
 
 export const scoreFunc = (article, id, scored) => {
   if(article.id === id){
-    // console.log(`articleScore: ${article.score} articleScoredUp = ${article.scoredUp} articleScoredDown = ${article.scoredDown}`);
-    
     if(!article.scoredUp && !article.scoredDown){
-      scored === 'up' ? (article.score = article.score + 1) && (article.scoredUp = true) : (article.score = article.score - 1) && (article.scoredDown = true);
+      if(scored === 'up'){
+        article.score = article.score + 1;
+        article.scoredUp = true;
+      } else if(scored === 'down'){
+        article.score = article.score - 1;
+        article.scoredDown = true;
+      }
     }  // if article not yet scored, and scored up, + 1 to score, scoredUp = true. if not yet scored and scored down, - 1 to score, scoredDown = true  
 
-    article.scoredUp && scored === 'down' && (article.score = article.score - 2) && (article.scoredDown = true) && (article.scoredUp = false);   // if article already been scored up, and scored is down, minus two from score to take it one below its original score. scoredDown = true, scoredUp = false
+    else if(article.scoredUp && scored === 'down'){
+      article.score = article.score - 2;
+      article.scoredDown = true;
+      article.scoredUp = false;
+    }   // if article already been scored up, and scored is down, minus two from score to take it one below its original score. scoredDown = true, scoredUp = false
 
-    article.scoredDown && scored === 'up' && (article.score = article.score + 2) && (article.scoredUp = true) && (article.scoredDown = false);   // if article already been scored down, and scored is up, add two to score to take it one above its original score. scoredUp = true, scoredDown = false
-
-    if(article.scoredDown && scored === 'down'){
-      if(article.score <= 0){
-        article.score = 0; 
-      } 
-    }  // if article already scored down and scored down again, if the first down made score less than or equal to 0, remains the same, score = 0. This condition doesn't allow a score of 0 to be set to -1. 
-
-    // console.log(`articleScore: ${article.score} articleScoredUp = ${article.scoredUp} articleScoredDown = ${article.scoredDown}`)
+    else if(article.scoredDown && scored === 'up'){
+      article.score = article.score + 2;
+      article.scoredUp = true;
+      article.scoredDown = false;
+    }   // if article already been scored down, and scored is up, add two to score to take it one above its original score. scoredUp = true, scoredDown = false
   }
+
+  else if(article.scoredDown && scored === 'down'){
+    if(article.score <= 0){
+      article.score = 0; 
+    } 
+  }  // if article already scored down and scored down again, if the first down made score less than or equal to 0, remains the same, score = 0. This condition doesn't allow a score of 0 to be set to -1. 
 }
 
 export const convertUnixTimeStamp = (timeStamp) => {

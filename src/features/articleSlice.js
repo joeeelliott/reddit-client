@@ -154,16 +154,6 @@ const articleSlice = createSlice({
         });
       }
 
-      // UPTO HERE MON 8TH. 
-      // UNHIDING ARTICLES WITH EYE WORKS FINE NOW ON BOTH 3 ARTICLE STATE PAGES AND SAVED PAGE. 
-      // ONCE SAVED, IF I HIDE ON SAVED PAGE THEY HIDE ON THERE AS WELL AS OTHER 3. 
-      // THEN WHEN USING EYE AGAIN ON ANY PAGE THEY COME BACK AS USUAL ON ALL PAGES WITH CORRECT CLASSES. 
-
-    
-      // MOVE ONTO REPORT ARTICLE STATE BELOW TO AMEND FOR ALL ARTICLES. 
-      // REMOVE LIVE ARTICLE REDUCER IF NOT USED - DONT THINK IT IS - CHECK SIDENAV AND OTHER PAGES TO SEE IF IMPORTED ANYWHERE . REMOVE FROM REDUCERS AND FROM REDUCER.ACTIONS AT BOTTOM. 
-      
-
       state.allArticlesShown = true;
     },
     reportArticle: (state, action) => {
@@ -186,16 +176,8 @@ const articleSlice = createSlice({
       state.ellipsisClicked = !state.ellipsisClicked;
     },
     scoreArticle: (state, action) => {
-      const {articles, id, scored} = action.payload; 
-      let articlesArr;
-
-      if(articles === 'popular'){
-        articlesArr = state.popularArticles; 
-      } else if(articles === 'sport'){
-        articlesArr = state.sportArticles; 
-      } else if(articles === 'news'){
-        articlesArr = state.newsArticles; 
-      }
+      const {articleType, id, scored} = action.payload; 
+      const articlesArr = setArticlesArr(articleType, state); 
 
       // alter state in that article's article array
       articlesArr.forEach(article => {
