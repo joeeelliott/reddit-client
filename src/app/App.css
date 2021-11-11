@@ -1,7 +1,7 @@
 /* APP COMPONENT */
 
 
-[data-test="App"] {
+.App {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -359,6 +359,31 @@
   margin: 100px 13%;  /* make % smaller the wider you want the container. 100px top to fall below the header, 100 from bottom to be able to see the ellipsis dropdown on bottom article */
 }
 
+.article_saved-articles-none-saved {
+  /* border: 1px solid black; */
+  width: 100%; 
+  height: calc(100vh - 220px);  /* 100vh take the footer, header, and margins/padding inbetween - didnt actually work out just kept doing trial and error and saw how it changed on the page */ 
+  display: flex;
+  flex-direction: column; 
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.article_saved-articles-none-saved * {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.article_saved-articles {
+  width: 100%; 
+  height: calc(100vh - 220px);  /* 100vh take the footer, header, and margins/padding inbetween - didnt actually work out just kept doing trial and error and saw how it changed on the page */ 
+}
+
+.article_saved-articles-2plus {
+  width: 100%;
+  height: 100%;
+}
+
 .article_outer-div {
   position: relative;
 }
@@ -366,6 +391,18 @@
 .article_outer-container {
   /* border: red 1px solid !important; */
   width: 100%;
+  display: flex;
+  padding: 5px 0px;
+  margin-bottom: 20px;
+  background-color: #FFFFFF;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.article_outer-container-saved-on-render {
+  /* border: red 1px solid !important; */
+  width: 100%;
+  height: 100%;
   display: flex;
   padding: 5px 0px;
   margin-bottom: 20px;

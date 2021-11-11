@@ -98,9 +98,13 @@ const Articles = () => {
       {dataLoading ? 
         <div className="App_loading-wrapper">
           <span className="loader"><span className="loader-inner"></span></span>
-        </div> : !dataLoading && articles !== savedArticles ? articles.map(article => ( 
-        <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} /> 
-      )) : <SavedArticles />}
+        </div> : !dataLoading && articles !== savedArticles ? 
+          articles.map(article => ( 
+            // <div className="article_container">
+              <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} /> 
+            // </div>
+          )) 
+      : <SavedArticles />}
     </div>
   )
 }

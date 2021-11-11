@@ -13,9 +13,10 @@ import Articles from '../components/Articles';
 
 function App() {
   // <script src="jquery-2.1.4.js"></script>
+  
   return (
     <Router>
-      <div data-test="App">
+      <div className="App">
         {/* <div className="App_loading-wrapper">
           <span className="loader"><span className="loader-inner"></span></span>
         </div> */}
@@ -40,7 +41,7 @@ function App() {
         
         {/* {need to find a way to load this in on window load - maybe in article slice will pop as no display for now but thats not currently pushed and merged to master yet so will do that later} */}
       </div>
-    </Router>
+    </Router> 
   );
 }
 

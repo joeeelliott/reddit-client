@@ -11,7 +11,7 @@ const SavedArticles = () => {
   const initialState = useSelector(selectInitialState); 
   const savedArticles = useSelector(selectSavedArticle);
 
-  console.log(initialState);
+  // console.log(initialState);
 
 
   useEffect(() => {
@@ -33,13 +33,17 @@ const SavedArticles = () => {
   }, [sideNavState.eyeClicked]); // only executes on eyeClick state change (clicking the eye)
 
   return (
-    <div>
-      {savedArticles.length > 0 ? savedArticles.map(article => ( 
-        <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} articles={savedArticles} hidden={article.hidden} reported={article.reported} /> 
-      )) : 
-      <div>
+    <div className={savedArticles.length < 3 ? "article_saved-articles" : "article_saved-articles-2plus"}> 
+      {savedArticles.length > 0 ? savedArticles.map(article => (
+        
+          <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} articles={savedArticles} hidden={article.hidden} reported={article.reported} /> 
+      ))
+      : 
+
+      // THIS IS WHERE TO CHANGE STYLE WHEN NO POSTS SAVED IN SAVEDARTICLES (BELOW)
+      <div className="article_saved-articles-none-saved">
         <h1>You currently have no saved posts.</h1>
-        <p>Click save on your favorite posts and see them all together here.</p>
+        <p>Click <strong>save</strong> on your favorite posts and see them all together here.</p>
       </div>}        
     </div>
   )
