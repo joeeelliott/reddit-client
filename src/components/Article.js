@@ -8,11 +8,6 @@ import ShareIcon from './ShareIcon';
 import Ellipsis from './Ellipsis';
 import ReportModal from './ReportModal';
 
-
-// IN PROCESS OF TRYING TO HIDE ARTICLE (WITH CLASS) BASED ON IT'S HIDDEN PROPERTY STATE. NEEDS TO BE PASSED DOWN AS PROPS FROM ARTICLES THEN RENDERED BASED ON THAT. THEN CAN REMOVE THE CLASSLIST CHANGE FROM HIDE BECAUSE ITS NO LONGER REQUIRED. - AT MOMENT AGAIN BCOS THE CLASSLIST CHANGE IS INSIDE AN EVENT HANDLER, THE CLASS CHANGE DOESNT SAVE FROM THE STATE AND THEREFORE DOESNT KEEP WHEN WE CHANGE ROUTE PATHS - EVEN THO STATE STAYS AS IT SHOULD. SO NEED TO SET THE CSS BASED ON STATE OUTSIDE THE EVENT HANDLER. 
-
-
-
 const Article = ({ id, score, author, created, title, numComments, saved, thumbnail, articles, articleType, scoredUp, scoredDown, hidden, reported }) => {
   return (
     <div className={hidden ? "article_outer-container-hide" : "article_outer-container"} id={id}>

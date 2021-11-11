@@ -13,7 +13,7 @@ const Score = ({ id, articleType, score, scoredUp, scoredDown, currentArticles }
 
     // classes again set colors based on state, as if class changes executed in here, they only activate on click - they dont stay based on state when clicking between Route paths. 
 
-    dispatch(scoreArticle({ articles: articleType, id, scored }));
+    dispatch(scoreArticle({ articleType, id, scored }));
   }
 
   return (
