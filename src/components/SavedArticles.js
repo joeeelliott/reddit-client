@@ -8,11 +8,7 @@ import { selectShowSideNav } from '../features/sideNavSlice';
 const SavedArticles = () => {
   const dispatch = useDispatch(); 
   const sideNavState = useSelector(selectShowSideNav); 
-  const initialState = useSelector(selectInitialState); 
   const savedArticles = useSelector(selectSavedArticle);
-
-  // console.log(initialState);
-
 
   useEffect(() => {
     if(sideNavState.eyeClicked) {
@@ -39,8 +35,6 @@ const SavedArticles = () => {
           <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} articles={savedArticles} hidden={article.hidden} reported={article.reported} /> 
       ))
       : 
-
-      // THIS IS WHERE TO CHANGE STYLE WHEN NO POSTS SAVED IN SAVEDARTICLES (BELOW)
       <div className="article_saved-articles-none-saved">
         <h1>You currently have no saved posts.</h1>
         <p>Click <strong>save</strong> on your favorite posts and see them all together here.</p>
