@@ -9,6 +9,7 @@ import Ellipsis from './Ellipsis';
 import ReportModal from './ReportModal';
 
 const Article = ({ id, score, author, created, title, numComments, saved, thumbnail, articles, articleType, scoredUp, scoredDown, hidden, reported }) => {
+
   return (
     <div className={hidden ? "article_outer-container-hide" : "article_outer-container"} id={id}>
       <Score id={id} articleType={articleType} score={score} currentArticles={articles} scoredUp={scoredUp} scoredDown={scoredDown} />
