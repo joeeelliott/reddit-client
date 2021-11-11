@@ -22,29 +22,29 @@ const SideNav = () => {
   }, [articleState.articles.allArticlesShown])  // only execute if allArticlesShown changes, - note our if() only allows execution if allArticlesShown is true. 
 
   const handleEyeMouseOver = (e) => {
-    e.currentTarget.parentNode.parentNode.children[0].children[0].classList.add('sideNav_eye-icon-hover-text-show');   // executes animation of text
+    document.getElementsByClassName('sideNav_eye-icon-hover-text')[0].classList.add('sideNav_eye-icon-hover-text-show');    // executes animation 
 
-    e.currentTarget.parentNode.parentNode.children[0].children[0].style.opacity = '1.0';   // keeps text visible on mouseover
+    document.getElementsByClassName('sideNav_eye-icon-hover-text')[0].style.opacity = '1.0';   // keeps text visible whilst mouseover
 
-    if(!articleState.articles.allArticlesShown) {
-      e.currentTarget.parentNode.parentNode.children[0].children[0].innerHTML = 'Show hidden articles';   // text if all articles aren't shown
+    if(!articleState.articles.allArticlesShown) {   // if there are hidden articles...
+      document.getElementsByClassName('sideNav_eye-icon-hover-text')[0].innerHTML = 'Show hidden articles';   // ... change text
     }
   }
 
   const handleEyeMouseOut = (e) => {
-    e.currentTarget.parentNode.parentNode.children[0].children[0].classList.remove('sideNav_eye-icon-hover-text-show');  // removes text on mouseout
+    document.getElementsByClassName('sideNav_eye-icon-hover-text')[0].classList.remove('sideNav_eye-icon-hover-text-show');  // removes text
 
-    e.currentTarget.parentNode.parentNode.children[0].children[0].style.opacity = '0';   // resets opacity back to 0 after changing it on mouseover. 
+    document.getElementsByClassName('sideNav_eye-icon-hover-text')[0].style.opacity = '0';     // 0 opacity
 
-    e.currentTarget.parentNode.parentNode.children[0].children[0].innerHTML = 'Show hidden articles';  // resets text on mouseout
+    document.getElementsByClassName('sideNav_eye-icon-hover-text')[0].innerHTML = 'Show hidden articles';    // resets original text
   }
 
   const handleEyeClick = (e) => {
-    if(articleState.articles.allArticlesShown) {
-      e.currentTarget.parentNode.parentNode.children[0].children[0].innerHTML = 'No articles hidden';   // text if no hidden articles
-    } else {
+    if(articleState.articles.allArticlesShown) {  // if no hidden articles
+      document.getElementsByClassName('sideNav_eye-icon-hover-text')[0].innerHTML = 'No articles hidden';
+    } else {  // if there are hidden articles
       dispatch(eyeClicked());
-      e.currentTarget.parentNode.parentNode.children[0].children[0].innerHTML = 'Articles unhidden';   // text if allArticlesShown = true 
+      document.getElementsByClassName('sideNav_eye-icon-hover-text')[0].innerHTML = 'Articles unhidden';
     }
   }
 

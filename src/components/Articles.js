@@ -6,7 +6,6 @@ import { selectShowSideNav } from '../features/sideNavSlice';
 import Article from './Article'; 
 import SavedArticles from './SavedArticles'; 
 
-
 const Articles = () => {
   const dispatch = useDispatch(); 
   const dataLoading = useSelector(selectDataIsLoading); 
