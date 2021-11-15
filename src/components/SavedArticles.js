@@ -32,7 +32,7 @@ const SavedArticles = () => {
     <div className={savedArticles.length < 3 ? "article_saved-articles" : "article_saved-articles-2plus"}> 
       {savedArticles.length > 0 ? savedArticles.map(article => (
         
-          <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} articles={savedArticles} hidden={article.hidden} reported={article.reported} /> 
+          <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} articles={savedArticles} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
       ))
       : 
       <div className="article_saved-articles-none-saved">
