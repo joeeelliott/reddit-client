@@ -7,6 +7,7 @@ import CommentsIcon from './CommentsIcon';
 import ShareIcon from './ShareIcon';
 import Ellipsis from './Ellipsis';
 import Image from './Image'; 
+import Media from './Media';
 import ReportModal from './ReportModal';
 
 const Article = ({ id, score, author, created, title, numComments, saved, thumbnail, articles, articleType, scoredUp, scoredDown, hidden, reported, imgClicked }) => {

@@ -202,10 +202,16 @@ const articleSlice = createSlice({
         }
       });
 
+      state.savedArticles.forEach(article => {
+        if(article.id === id){
+          article.imgClicked = !article.imgClicked; 
+        }
+      });
+
       state.imgClicked = !state.imgClicked; 
     },
     closeAllImgModals: (state, action) => {
-      const allArticles = [state.popularArticles, state.sportArticles, state.newsArticles];
+      const allArticles = [state.popularArticles, state.sportArticles, state.newsArticles, state.savedArticles];
 
       allArticles.forEach(articleArr => {
         articleArr.forEach(article => {
