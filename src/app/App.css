@@ -105,7 +105,7 @@
   box-shadow: 5px 5px 5px #ddd;
 
   position: relative; 
-  z-index: 10; 
+  z-index: 100; 
 
   position: fixed;
   width: 100%;
@@ -584,6 +584,7 @@
   background-color: rgb(248, 248, 240); 
   /* background-color: red; */
   display: none;
+  z-index: 55;
 }
 
 .article_ellipsis-dropdown-show {
@@ -602,7 +603,7 @@
   background-color: rgb(248, 248, 240); 
 }
 
-.article_save-container-clicked, .article_hide-container-clicked {
+.article_save-container-clicked, .article_hide-container-clicked, .article_report-container-clicked {
   width: 100px;
   height: 25px;
   display: flex;
@@ -614,14 +615,7 @@
 }
 
 .article_report-container-clicked {
-  width: 100px;
-  height: 25px;
-  display: flex;
-  flex-direction: row;
-  /* justify-content: space-between; */
-  cursor: pointer; 
-  color: rgba(0, 0, 0, 0.5);
-  background-color: rgba(255, 0, 0, 0.8); 
+  background-color: rgba(255, 0, 0, 0.8) !important; 
 }
 
 .article_save-container:hover, .article_hide-container:hover, .article_report-container:hover {
@@ -674,6 +668,11 @@
   width: 50px;
 }
 
+.article_report-text:hover {
+  /* background-color: rgb(230, 230, 230); 
+  color: #000;  */
+}
+
 .article_save-icon-container {
   /* border: 1px solid red; */
 }
@@ -705,10 +704,45 @@
   padding: 5px;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .article_article-img {
   /* border: 1px solid rgb(0, 121, 211); */
+  cursor: pointer;
+}
+
+.article_article-img-clicked {
+  /* border: 1px solid rgb(0, 121, 211); */
+  border-radius: 5px;
+}
+
+.article_img-modal {
+  position: absolute; 
+  border: 1px solid rgba(150, 150, 150);
+  border-radius: 5px;
+  height: auto;
+  width: auto;
+  top: 0px;
+  right: 0px;
+  padding: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(233, 233, 233, 0.9);
+  z-index: 50;
+}
+
+.article_img-modal-close-icon {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  color: rgba(150, 150, 150);
+  cursor: pointer;
+}
+
+.article_img-modal-close-icon:hover {
+  color: red;
 }
 
 .article_report-modal-hidden {

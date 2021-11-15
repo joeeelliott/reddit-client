@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; 
-import { selectPopularArticle,selectSportArticle, selectNewsArticle, selectSavedArticle, fetchPopularArticles, fetchSportArticles, fetchNewsArticles, selectDataIsLoading, showArticles, selectInitialState, toggleEllipsis } from '../features/articleSlice'; 
+import { selectPopularArticle,selectSportArticle, selectNewsArticle, selectSavedArticle, fetchPopularArticles, fetchSportArticles, fetchNewsArticles, selectDataIsLoading, showArticles, selectInitialState, toggleEllipsis, closeAllImgModals } from '../features/articleSlice'; 
 import { selectShowSideNav } from '../features/sideNavSlice'; 
 import Article from './Article'; 
 import SavedArticles from './SavedArticles'; 
@@ -21,7 +21,7 @@ const Articles = () => {
 
   let articles; 
 
-  // Determines which articles state to render
+  // Determines which articles state to render dependant on which nav is open
   if(location.pathname === '/'){   
     articles = popularArticles; 
     // articleType = 'popular';
@@ -92,6 +92,25 @@ const Articles = () => {
     }
   }
 
+  useEffect(() => {   // only executed on change of imgClicked
+    if(initialState.articles.imgClicked){  // if any img has been clicked 
+      document.addEventListener('mouseup', imgClickedDocumentEventListener);
+    } else if(!initialState.articles.imgClicked){
+      document.removeEventListener('mouseup', imgClickedDocumentEventListener);
+    }
+
+    return () => {
+      document.removeEventListener('mouseup', imgClickedDocumentEventListener); 
+    }
+  }, [initialState.articles.imgClicked]); 
+
+  const imgClickedDocumentEventListener = (e) => {
+    const target = document.getElementsByClassName('article_img-modal');  // access the open modal
+    if(!target[0].contains(e.target)){   // if user clicks outside of the open modal...
+      dispatch(closeAllImgModals());   // close all modals
+    }
+  }
+
   return (
     <div>
       {dataLoading ? 
@@ -100,7 +119,7 @@ const Articles = () => {
         </div> : !dataLoading && articles !== savedArticles ? 
           articles.map(article => ( 
             // <div className="article_container">
-              <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} /> 
+              <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
             // </div>
           )) 
       : <SavedArticles />}
