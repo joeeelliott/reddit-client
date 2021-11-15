@@ -10,7 +10,7 @@ export const fetchPopularArticles = createAsyncThunk(
 
       const json = await response.json();
       // console.log(json.data.children)
-      // console.log(json.data.children[4].data.thumbnail_height)
+      // console.log(json.data.children[4].data)
       // console.log(json.data.children[4].data)
       // console.log('fetching popular data complete);
       return json.data.children;
@@ -74,7 +74,9 @@ const articleSlice = createSlice({
     allArticlesShown: true,
     ellipsisClicked: false, 
     reportModal: false,
-    modalClosed: true, 
+    modalClosed: true,
+    imgClicked: false,
+
     // fetchPopularIsLoading: true,
     // fetchSportIsLoading: true,
     // fetchNewsIsLoading: true,
@@ -191,6 +193,28 @@ const articleSlice = createSlice({
         }
       });
     },
+    imgToggle: (state, action) => {
+      const { id, articleType } = action.payload; 
+      const articlesArr = setArticlesArr(articleType, state); 
+      articlesArr.forEach(article => {
+        if(article.id === id){
+          article.imgClicked = !article.imgClicked; 
+        }
+      });
+
+      state.imgClicked = !state.imgClicked; 
+    },
+    closeAllImgModals: (state, action) => {
+      const allArticles = [state.popularArticles, state.sportArticles, state.newsArticles];
+
+      allArticles.forEach(articleArr => {
+        articleArr.forEach(article => {
+          article.imgClicked = false; 
+        });
+      });
+
+      state.imgClicked = false;
+    }
   },
   extraReducers: {
     [fetchPopularArticles.pending]: (state, action) => {
@@ -221,6 +245,7 @@ const articleSlice = createSlice({
         scoredUp: false,
         scoredDown: false,
         articleType: 'popular',
+        imgClicked: false, 
         });
       })
       // console.log(current(state))
@@ -309,7 +334,7 @@ const articleSlice = createSlice({
   }
 });
 
-export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, toggleEllipsis, scoreArticle, toggleReportModal } = articleSlice.actions;
+export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, toggleEllipsis, scoreArticle, toggleReportModal, imgToggle, closeAllImgModals } = articleSlice.actions;
 
 export const selectInitialState = state => state; 
 export const selectInitialArticleState = state => state.articles; 

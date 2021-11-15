@@ -6,9 +6,10 @@ import Title from './Title';
 import CommentsIcon from './CommentsIcon';
 import ShareIcon from './ShareIcon';
 import Ellipsis from './Ellipsis';
+import Image from './Image'; 
 import ReportModal from './ReportModal';
 
-const Article = ({ id, score, author, created, title, numComments, saved, thumbnail, articles, articleType, scoredUp, scoredDown, hidden, reported }) => {
+const Article = ({ id, score, author, created, title, numComments, saved, thumbnail, articles, articleType, scoredUp, scoredDown, hidden, reported, imgClicked }) => {
 
   return (
     <div className={hidden ? "article_outer-container-hide" : "article_outer-container"} id={id}>
@@ -26,9 +27,7 @@ const Article = ({ id, score, author, created, title, numComments, saved, thumbn
             </div>
           </div>
 
-          {thumbnail.url.includes('https') && <div className="article_img-container">
-            <img src={thumbnail.url} height={thumbnail.height} width={thumbnail.width} alt="Img..." className="article_article-img"></img>
-          </div>}
+          {thumbnail.url.includes('https') && <Image id={id} thumbnail={thumbnail} imgClicked={imgClicked} articleType={articleType} />}
         </div>
       </div>
 

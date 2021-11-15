@@ -17,7 +17,7 @@ const Report = ({ id, reported, articleType, articles }) => {
   }
 
   return (
-    <div className={!reported ? "article_report-container" : "article_report-container-clicked"} onClick={handleClick}>
+    <div className={reported ? "article_report-container-clicked" : "article_report-container"} onClick={handleClick}>
       <div className="article_report-icon-container">
         <FontAwesomeIcon className="article_report-icon" icon={['far', 'flag']} />
       </div>
