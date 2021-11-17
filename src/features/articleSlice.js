@@ -76,7 +76,10 @@ const articleSlice = createSlice({
     reportModal: false,
     modalClosed: true,
     imgClicked: false,
-
+    searchedArticlesFound: false,
+    searchedArticles: [], 
+    isSearching: false,
+    searchText: "",
     // fetchPopularIsLoading: true,
     // fetchSportIsLoading: true,
     // fetchNewsIsLoading: true,
@@ -220,6 +223,45 @@ const articleSlice = createSlice({
       });
 
       state.imgClicked = false;
+    },
+    searchArticles: (state, action) => {
+      const { searchText } = action.payload; 
+      state.searchText = searchText; 
+
+      const pattern = new RegExp(`${searchText}[a-zA-Z]*`, `ig`);
+
+      const allArticles = [state.popularArticles, state.sportArticles, state.newsArticles];
+      let count; // count for articles that are in the search. not defined 
+
+      allArticles.forEach(array => {
+        array.forEach(article => {
+          if(article.title.match(pattern)){
+            // console.log('working')
+            // console.log(current(article));
+            article.inSearch = true;
+          } else if(!article.title.match(pattern)){
+            article.inSearch = false;
+          }
+
+          if(article.inSearch){
+            count++;    // add 1 if article title is in user search. As count is undefined each time this action is called, the count will reset from 0 each time so that the count only counts up based on live state on searchText and doesnt keep adding on from previous states (ie if you type 'h' the count will be very big cos a lot of titles will have h in. if you type 'ho' there will be less, and cos the count resets, all those with 'h' aren't in the count - just 'ho')
+            // console.log(count); 
+          }
+        });
+      });
+
+      // if no articles match, count will be 0 or undefined. Setting searchedArticlesFound to true only if this count is 1 or more ensures it's only set once, whilst if you set it to true in an iteration, then you could have the first article true and the rest false's and it will be set to false even though i need it true
+      if(count === 0 || count === undefined){
+        state.searchedArticlesFound = false;
+      } else {
+        state.searchedArticlesFound = true;
+      }
+    },
+    userSearch: (state, action) => {
+      state.isSearching = true; 
+    },
+    userNoSearch: (state, action) => {
+      state.isSearching = false; 
     }
   },
   extraReducers: {
@@ -252,6 +294,7 @@ const articleSlice = createSlice({
         scoredDown: false,
         articleType: 'popular',
         imgClicked: false, 
+        inSearch: false,
         });
       })
       // console.log(current(state))
@@ -287,7 +330,8 @@ const articleSlice = createSlice({
             height: article.data.thumbnail_height, 
             width: article.data.thumbnail_width, 
           },
-        media: article.data.media, mediaEmbed: article.data.media_embed, saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false, articleType: 'sport',
+        media: article.data.media, mediaEmbed: article.data.media_embed, saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false, articleType: 'sport', imgClicked: false, 
+        inSearch: false,
         });
       });
       // console.log(current(state))
@@ -323,7 +367,8 @@ const articleSlice = createSlice({
             height: article.data.thumbnail_height, 
             width: article.data.thumbnail_width, 
           },
-        saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false, articleType: 'news',
+        saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false, articleType: 'news', imgClicked: false, 
+        inSearch: false,
         });
       })
       // console.log(current(state))
@@ -340,7 +385,7 @@ const articleSlice = createSlice({
   }
 });
 
-export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, toggleEllipsis, scoreArticle, toggleReportModal, imgToggle, closeAllImgModals } = articleSlice.actions;
+export const { ellipsisToggle, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, toggleEllipsis, scoreArticle, toggleReportModal, imgToggle, closeAllImgModals, searchArticles, userSearch, userNoSearch } = articleSlice.actions;
 
 export const selectInitialState = state => state; 
 export const selectInitialArticleState = state => state.articles; 
@@ -350,6 +395,7 @@ export const selectPopularArticle = state => state.articles.popularArticles;
 export const selectSportArticle = state => state.articles.sportArticles;
 export const selectNewsArticle = state => state.articles.newsArticles;
 export const selectSavedArticle = state => state.articles.savedArticles;
+export const selectSearchedArticle = state => state.articles.searchedArticles;
 
 export const selectDataIsLoading = state => state.articles.dataLoading;
 

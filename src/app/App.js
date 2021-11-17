@@ -21,15 +21,17 @@ function App() {
           <span className="loader"><span className="loader-inner"></span></span>
         </div> */}
         {/* <div className="App_header-container"> */}
+        <div className="content">
           <Header />
         {/* </div> */}
-        <div className="article_container">
-          <Switch>
-            <Route path="/" exact component={Articles} />
-            <Route path="/sport" exact component={Articles} />
-            <Route path="/news" exact component={Articles} />
-            <Route path="/saved" exact component={Articles} />
-          </Switch>
+          <div className="article_container">
+            <Switch>
+              <Route path="/" exact component={Articles} />
+              <Route path="/sport" exact component={Articles} />
+              <Route path="/news" exact component={Articles} />
+              <Route path="/saved" exact component={Articles} />
+            </Switch>
+          </div>
         </div>
         <Footer />
 

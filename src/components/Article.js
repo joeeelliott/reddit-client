@@ -7,11 +7,9 @@ import CommentsIcon from './CommentsIcon';
 import ShareIcon from './ShareIcon';
 import Ellipsis from './Ellipsis';
 import Image from './Image'; 
-import Media from './Media';
 import ReportModal from './ReportModal';
-
-const Article = ({ id, score, author, created, title, numComments, saved, thumbnail, articles, articleType, scoredUp, scoredDown, hidden, reported, imgClicked }) => {
-
+const Article = ({ id, score, author, created, title, numComments, saved, thumbnail, articles, articleType, allArticles, scoredUp, scoredDown, hidden, reported, imgClicked }) => {
+  
   return (
     <div className={hidden ? "article_outer-container-hide" : "article_outer-container"} id={id}>
       <Score id={id} articleType={articleType} score={score} currentArticles={articles} scoredUp={scoredUp} scoredDown={scoredDown} />
@@ -24,7 +22,7 @@ const Article = ({ id, score, author, created, title, numComments, saved, thumbn
             <div className="article_bottom-details-container">
               <CommentsIcon numComments={numComments} />
               <ShareIcon />
-              <Ellipsis id={id} saved={saved} hidden={hidden} reported={reported} articles={articles} articleType={articleType} />
+              <Ellipsis id={id} saved={saved} hidden={hidden} reported={reported} articles={articles} articleType={articleType} allArticles={allArticles} />
             </div>
           </div>
 

@@ -6,7 +6,7 @@ import { selectInitialState, toggleEllipsis } from '../features/articleSlice';
 import EllipsisDropDown from './EllipsisDropDown';
 
 
-const Ellipsis = ({ id, saved, hidden, reported, articles, articleType }) => {
+const Ellipsis = ({ id, saved, hidden, reported, articles, articleType, allArticles }) => {
   const dispatch = useDispatch();
   const initialState = useSelector(selectInitialState);
 
@@ -31,7 +31,7 @@ const Ellipsis = ({ id, saved, hidden, reported, articles, articleType }) => {
     <div className="article_ellipsis-container" onClick={handleClick}>
       <FontAwesomeIcon className="article_ellipsis-icon" icon="ellipsis-h" />
 
-      <EllipsisDropDown id={id} saved={saved} hidden={hidden} reported={reported} articles={articles} articleType={articleType} />
+      <EllipsisDropDown id={id} saved={saved} hidden={hidden} reported={reported} articles={articles} articleType={articleType} allArticles={allArticles} />
     </div> 
   )
 }

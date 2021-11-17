@@ -11,10 +11,7 @@ const sideNavSlice = createSlice({
   },
   reducers: {
     showSideNav: (state, action) => {
-      // console.log(`toggleSideNav dispatched. toggleNav currently = ${state.toggleSideNav}`)
-      // console.log('dispatch triggered'); 
       state.toggleSideNav = !state.toggleSideNav; 
-      // console.log(`toggleNav now = ${state.toggleSideNav}`)
     },
     eyeClicked: (state, action) => {
       state.eyeClicked = true;

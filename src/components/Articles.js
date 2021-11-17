@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; 
-import { selectPopularArticle,selectSportArticle, selectNewsArticle, selectSavedArticle, fetchPopularArticles, fetchSportArticles, fetchNewsArticles, selectDataIsLoading, showArticles, selectInitialState, toggleEllipsis, closeAllImgModals } from '../features/articleSlice'; 
+import { selectPopularArticle,selectSportArticle, selectNewsArticle, selectSavedArticle, fetchPopularArticles, fetchSportArticles, fetchNewsArticles, selectDataIsLoading, showArticles, selectInitialState, toggleEllipsis, closeAllImgModals, selectSearchedArticle } from '../features/articleSlice'; 
 import { selectShowSideNav } from '../features/sideNavSlice'; 
 import Article from './Article'; 
 import SavedArticles from './SavedArticles'; 
@@ -13,6 +13,7 @@ const Articles = () => {
   const sportArticles = useSelector(selectSportArticle);
   const newsArticles = useSelector(selectNewsArticle);
   const savedArticles = useSelector(selectSavedArticle);
+  // const searchedArticles = useSelector(selectSearchedArticle); 
   const sideNavState = useSelector(selectShowSideNav); 
   const initialState = useSelector(selectInitialState); 
 
@@ -35,6 +36,8 @@ const Articles = () => {
     articles = savedArticles;
     // articleType = 'saved'; 
   } 
+
+
 
   useEffect(() => {
     popularArticles.length === 0 &&  // prevents from fetching 10 more articles each re-render, only runs if no data is stored
@@ -111,20 +114,54 @@ const Articles = () => {
     }
   }
 
-  return (
-    <div>
-      {dataLoading ? 
-        <div className="App_loading-wrapper">
+  const searchedArticlesFound = initialState.articles.searchedArticlesFound; 
+  const allArticles = [initialState.articles.popularArticles, initialState.articles.sportArticles, initialState.articles.newsArticles,];
+
+  const userSearching = initialState.articles.isSearching;
+
+  const searchText = initialState.articles.searchText;
+
+  if(dataLoading){      // fetching data
+    return (
+      <div className="App_loading-wrapper">
           <span className="loader"><span className="loader-inner"></span></span>
-        </div> : !dataLoading && articles !== savedArticles ? 
+      </div>
+    )
+  } else if(!dataLoading) {      // fetching data completed
+    if(userSearching){     // value in user search input
+      if(searchedArticlesFound){   // if article titles match
+        return (
+          allArticles.map(array => {
+            return array.map(article => {
+              // console.log(allArticles);   // array of arrays
+              return article.title.toLowerCase().includes(searchText.toLowerCase()) && 
+                <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
+            });
+          })
+        )
+      } else if(!searchedArticlesFound){   // if no article titles match 
+        return (
+          <div className="article_saved-articles-none-saved">
+            <h1>No articles found</h1>
+            <p>Please use specific, related, and correctly spelt words for an effective search.</p>
+          </div>
+        )
+      }
+    
+    } else if(!userSearching) {     // no value in user search input
+      if(articles !== savedArticles){
+        return (
           articles.map(article => ( 
-            // <div className="article_container">
-              <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
-            // </div>
-          )) 
-      : <SavedArticles />}
-    </div>
-  )
+            <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
+          ))
+        )
+      } else if(articles === savedArticles) {
+        return (
+          <SavedArticles allArticles={allArticles} />
+        )
+      }
+    }
+  }
 }
 
 export default Articles;

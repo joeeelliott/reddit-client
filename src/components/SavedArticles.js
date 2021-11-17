@@ -5,7 +5,7 @@ import Article from './Article';
 import { selectSavedArticle, selectInitialState, showArticles } from '../features/articleSlice'; 
 import { selectShowSideNav } from '../features/sideNavSlice'; 
 
-const SavedArticles = () => {
+const SavedArticles = ({ allArticles }) => {
   const dispatch = useDispatch(); 
   const sideNavState = useSelector(selectShowSideNav); 
   const savedArticles = useSelector(selectSavedArticle);
@@ -29,10 +29,11 @@ const SavedArticles = () => {
   }, [sideNavState.eyeClicked]); // only executes on eyeClick state change (clicking the eye)
 
   return (
-    <div className={savedArticles.length < 3 ? "article_saved-articles" : "article_saved-articles-2plus"}> 
+    // <div className={savedArticles.length < 3 ? "article_saved-articles" : "article_saved-articles-2plus"}>    // no longer need as flexed content and footer apart in class 'App'. 
+    <div>
       {savedArticles.length > 0 ? savedArticles.map(article => (
         
-          <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} articles={savedArticles} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
+          <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} articles={savedArticles} allArticles={allArticles} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
       ))
       : 
       <div className="article_saved-articles-none-saved">
