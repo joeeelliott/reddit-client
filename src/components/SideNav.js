@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { useEffect } from 'react'; 
 import { useSelector, useDispatch } from 'react-redux'; 
 import { selectShowSideNav, showSideNav, eyeClicked, resetEyeClicked } from '../features/sideNavSlice';
 
-import { selectInitialState } from '../features/articleSlice';
+import { selectInitialState, searchArticles,userSearch, userNoSearch } from '../features/articleSlice';
 
 const SideNav = () => {
   const sideNavState = useSelector(selectShowSideNav);
@@ -13,6 +11,8 @@ const SideNav = () => {
   // console.log(sideNavState.sideNavHidden); 
   // console.log(articleState.articles.liveArticles); 
   const dispatch = useDispatch();
+
+  const [searchText, setSearchText] = useState("");
 
   // useEffect is effective when an action/state change in this component is required via another components state change. Redux store allows all Components' state to be shared, and we access it via export/import of state and reducers, and useSelector() to save these to variables. Here we access a specific state from articleSlice and depending on what that state is, useEffect() will perform an action automatically when a state changes (in this case the allArticlesShown state in articleSlice). We can then dispatch an action related to this components state to alter something in this component. useEffect makes it easy to perform actions on current component using the state of any slice. 
   useEffect(() => {  
@@ -48,13 +48,43 @@ const SideNav = () => {
     }
   }
 
+  const isSearching = articleState.articles.isSearching;
+  
+  useEffect(() => {
+    // console.log(searchText); 
+    dispatch(searchArticles({ searchText })); 
+  }, [searchText]);
+
+  useEffect(() => {
+    !isSearching && setSearchText(""); 
+  }, [isSearching]);
+
+  const handleChange = (e) => {
+    setSearchText(e.currentTarget.value);
+    // dispatch(searchArticles({ searchText })); 
+    if(e.currentTarget.value !== ""){
+      dispatch(userSearch());
+      // console.log(isSearching);
+      // dispatch(searchArticles({ searchText })); 
+      // console.log(searchText); 
+    } else {
+      dispatch(userNoSearch());
+      // console.log(isSearching);
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(searchArticles({ searchText })); 
+  }
+
   return (
     // <div role="sideNav-outer-div"> 
     // className={sideNavState.toggleSideNav ? "sideNav_show-nav" : "sideNav_hide-nav"}  ---> was inside below div with id sideNav
       <div id="sideNav" className="sideNav_sideNav" > 
         <form>
           <label>Search: </label>
-          <input type="text" placeholder="Search term here..." />
+          <input type="text" value={searchText} placeholder="Enter search term here..." onChange={handleChange} />
           <label>Filter: </label>
           <select id="filters" name="filters">
             <option value=""></option>
@@ -66,7 +96,7 @@ const SideNav = () => {
           <FontAwesomeIcon data-testid="filter-icon" icon="filter" data-test-header_filter-icon data-test-header_font-awesome-icon aria-hidden="true" />
 
           <div className="sideNav_btn-container">
-            <button className="sideNav_btn" >Confirm</button>
+            <button className="sideNav_btn" onClick={handleSubmit}>Confirm</button>
             {/* onClick={showSideNav} will need to close sideNav when button clicked */}
           </div>
         </form>
