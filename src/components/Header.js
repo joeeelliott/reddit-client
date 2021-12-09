@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SideNav from './SideNav'; 
 import Nav from './Nav'; 
 import { selectShowSideNav, showSideNav } from '../features/sideNavSlice';
-import { selectInitialArticleState, userNoSearch } from '../features/articleSlice';
+import { selectInitialArticleState, userNoSearch, userNoFilter } from '../features/articleSlice';
 import PopularArticles from './PopularArticles';
 
 const Header = () => {
@@ -78,6 +78,7 @@ const Header = () => {
 
   const handleLogoClick = (e) => {
     dispatch(userNoSearch());  
+    dispatch(userNoFilter());  
   }
 
   return (

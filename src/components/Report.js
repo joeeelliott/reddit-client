@@ -8,7 +8,7 @@ const Report = ({ id, reported, articleType, articles }) => {
   const dispatch = useDispatch(); 
   
   const handleClick = (e) => {
-    dispatch(reportArticle({ id, articleType }));   // toggle reported state of currentArticle 
+    dispatch(reportArticle({ id, articleType, reported }));   // toggle reported state of currentArticle 
 
     // we only toggle modalClosed if the article is NOT reported already. If we toggle on each report click, we will be telling our store modalClosed = false when we click report a second time to make it unreported - which would not be true, and would prevent us being able to re-open the modal again as the states won't match the required conditions to render in ReportModal in Article.js
     if(!reported){     

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; 
-import { selectPopularArticle,selectSportArticle, selectNewsArticle, selectSavedArticle, fetchPopularArticles, fetchSportArticles, fetchNewsArticles, selectDataIsLoading, showArticles, selectInitialState, toggleEllipsis, closeAllImgModals, selectSearchedArticle } from '../features/articleSlice'; 
+import { selectPopularArticle,selectSportArticle, selectNewsArticle, selectSavedArticle, fetchPopularArticles, fetchSportArticles, fetchNewsArticles, selectDataIsLoading, showArticles, selectInitialState, toggleEllipsis, closeAllImgModals, selectSearchedArticle, numOfPostsToState } from '../features/articleSlice'; 
 import { selectShowSideNav } from '../features/sideNavSlice'; 
 import Article from './Article'; 
-import SavedArticles from './SavedArticles'; 
+
 
 const Articles = () => {
   const dispatch = useDispatch(); 
@@ -12,7 +12,7 @@ const Articles = () => {
   const popularArticles = useSelector(selectPopularArticle);
   const sportArticles = useSelector(selectSportArticle);
   const newsArticles = useSelector(selectNewsArticle);
-  const savedArticles = useSelector(selectSavedArticle);
+  // const savedArticles = useSelector(selectSavedArticle);
   // const searchedArticles = useSelector(selectSearchedArticle); 
   const sideNavState = useSelector(selectShowSideNav); 
   const initialState = useSelector(selectInitialState); 
@@ -32,12 +32,7 @@ const Articles = () => {
   } else if(location.pathname === '/news'){
     articles = newsArticles; 
     // articleType = 'news';
-  } else if(location.pathname === '/saved'){
-    articles = savedArticles;
-    // articleType = 'saved'; 
   } 
-
-
 
   useEffect(() => {
     popularArticles.length === 0 &&  // prevents from fetching 10 more articles each re-render, only runs if no data is stored
@@ -51,22 +46,43 @@ const Articles = () => {
     // }
   }, []);
 
-  // useEffect below required in this component to ensure that the clicking of the eye in the sideNav when we're on the Saved Link dispatches the showArticles() method the same as the other Links. 
+  // const allArticles = [initialState.articles.popularArticles, initialState.articles.sportArticles, initialState.articles.newsArticles,];
+  const allArticles = initialState.articles.allArticles; 
+
   useEffect(() => {
-    if(sideNavState.eyeClicked) {
-      // const hiddenArticles = document.getElementsByClassName('article_outer-container-hide'); 
-      // console.log(hiddenArticles); 
+    if(!dataLoading){ 
+      let popularHiddenCount = 0;
+      let newsHiddenCount = 0;
+      let sportHiddenCount = 0; 
+      let hiddenCount = 0; 
+      let reportCount = 0; 
+        allArticles.forEach(article => { 
+          if(article.hidden){
+            hiddenCount++; 
+          } 
+          if(article.reported){
+            reportCount++; 
+          }
+          if(article.articleType === 'popular' && article.hidden){
+            popularHiddenCount++;
+          } else if(article.articleType === 'sport' && article.hidden){
+            sportHiddenCount++;
+          } else if(article.articleType === 'news' && article.hidden){
+            newsHiddenCount++;
+          }
+        });
 
-      dispatch(showArticles()); 
-
-      // let hiddenArticleIds = [];
-
-      // for(let i = 0; i < hiddenArticles.length;) {  // we make i purposely not iterate so that as each article at index 0 is removed (via the removal of the classList below), the next article ([i]) in the array to be removed is index 0 and so on. This is because for this action we do want every single article in the array to perform the class removal. 
-      //   hiddenArticleIds.push(hiddenArticles[i].id);  // used to send to state so the 'hide' state for that article can be set to false. 
-      //   hiddenArticles[i].classList.remove  ('article_outer-container-hide'); // removes this class from each article in the hiddenArticles array until none remain. 
-      // }
+      dispatch(numOfPostsToState({ 
+        All: { id: 'All', data: initialState.articles.popularArticles.length + initialState.articles.popularArticles.length + initialState.articles.popularArticles.length},
+        Popular: {id: 'Popular', data: initialState.articles.popularArticles.length - popularHiddenCount},
+        News: {id: 'News', data: initialState.articles.newsArticles.length - newsHiddenCount},
+        Sport: {id: 'Sport', data: initialState.articles.sportArticles.length - sportHiddenCount},
+        Saved: {id: 'Saved', data: initialState.articles.savedArticles.length},
+        Hidden: {id: 'Hidden', data: hiddenCount},        
+        Reported: {id: 'Reported', data: reportCount},
+      }));
     }
-  }, [sideNavState.eyeClicked]); // only executes on eyeClick state change (clicking the eye)
+  });
 
   useEffect(() => {   // only executed on change of ellipsisClicked
     if(initialState.articles.ellipsisClicked){  // if ellipsis has been clicked 
@@ -115,11 +131,19 @@ const Articles = () => {
   }
 
   const searchedArticlesFound = initialState.articles.searchedArticlesFound; 
-  const allArticles = [initialState.articles.popularArticles, initialState.articles.sportArticles, initialState.articles.newsArticles,];
 
   const userSearching = initialState.articles.isSearching;
+  const userFiltering = initialState.articles.filterMode; 
+  const filteredPosts = initialState.articles.filteredPosts; 
+
+  const filteredSpecifics = initialState.articles.filteredSpecifics; 
 
   const searchText = initialState.articles.searchText;
+
+  let reportedArticles = initialState.articles.reportedArticles; 
+  let hiddenArticles = initialState.articles.hiddenArticles; 
+  let savedArticles = initialState.articles.savedArticles; 
+  let searchedArticles = initialState.articles.searchedArticles;
 
   if(dataLoading){      // fetching data
     return (
@@ -131,13 +155,14 @@ const Articles = () => {
     if(userSearching){     // value in user search input
       if(searchedArticlesFound){   // if article titles match
         return (
-          allArticles.map(array => {
-            return array.map(article => {
-              // console.log(allArticles);   // array of arrays
-              return article.title.toLowerCase().includes(searchText.toLowerCase()) && 
-                <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
-            });
+          searchedArticles.map(article => {
+            return <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} />
           })
+
+          // allArticles.map(article => {
+          //   return article.title.toLowerCase().includes(searchText.toLowerCase()) && 
+          //     <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
+          // })
         )
       } else if(!searchedArticlesFound){   // if no article titles match 
         return (
@@ -148,19 +173,93 @@ const Articles = () => {
         )
       }
     
-    } else if(!userSearching) {     // no value in user search input
-      if(articles !== savedArticles){
+    } else if(userFiltering) {    // if filter applied
+      if(filteredPosts !== '' && filteredSpecifics === ''){ // filteredPosts BUT NO filteredSpecifics
+        if(filteredPosts === 'All'){
+          // console.log(sortArr(filteredPosts, filteredSpecifics))
+          return (
+            allArticles.map(article => {
+              return <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} />
+            })
+          )
+        } else if(filteredPosts === 'Popular'){
+          return (
+            popularArticles.map(article => {
+              return <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} />
+            })
+          )
+        } else if(filteredPosts === 'Sport'){
+          return (
+            sportArticles.map(article => {
+              return <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} />
+            })
+          )
+        } else if(filteredPosts === 'News'){
+          return (
+            newsArticles.map(article => {
+              return <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} />
+            })
+          )
+        } else if(filteredPosts === 'Saved'){
+          return (
+            savedArticles.length > 0 ? savedArticles.map(article => {
+              return <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
+            })
+            : 
+            <div className="article_saved-articles-none-saved">
+              <h1>You currently have no saved posts.</h1>
+              <p>Click <strong>save</strong> on your favorite posts and see them all together here.</p>
+            </div>
+          )
+        } else if(filteredPosts === 'Hidden'){
+          return (
+            hiddenArticles.length > 0 ? hiddenArticles.map(article => {
+              return <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
+            })
+            : 
+            <div className="article_saved-articles-none-saved">
+              <h1>You currently have no hidden posts.</h1>
+              <p>Any posts hidden from your timeline can be viewed here, where you can choose to unhide them if necessary. Alternatively, by clicking the eye icon at the bottom of the sidebar navigation, all hidden posts will be unhidden and restored to the timeline.</p>
+            </div>
+          )
+        } else if(filteredPosts === 'Reported'){
+          return (
+            reportedArticles.length > 0 ? reportedArticles.map(article => {
+              return <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
+            })
+            : 
+            <div className="article_saved-articles-none-saved">
+              <h1>You currently have no reported posts.</h1>
+              <p>If you ever report a post from your timeline it will appear here, where can you unreport it if necessary.</p>
+            </div>
+          )
+        }
+      } else if(filteredPosts !== '' && filteredSpecifics !== ''){   // filteredPosts AND filteredSpecifics
+        const arr = initialState.articles.filteredSpecificsArray; 
+        
         return (
-          articles.map(article => ( 
-            <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
-          ))
-        )
-      } else if(articles === savedArticles) {
+          arr.map(article => {
+            return <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} />
+          })
+        )    
+      } else if(filteredPosts === '' && filteredSpecifics !== ''){     // NO filteredPosts BUT filteredSpecifics
+        const arr = initialState.articles.filteredSpecificsArray; 
+        // console.log('specific filter clicked, no post filter');
         return (
-          <SavedArticles allArticles={allArticles} />
+          arr.map(article => {
+            return <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} />
+          })
         )
       }
-    }
+      
+    } else if(!userSearching && !userFiltering) {     // not searching or filtering, articles = route page => (popular, sport, news)
+      // console.log('not searching or filtering, renders based on route page')
+      return (
+        articles.map(article => ( 
+          <Article key={article.id} id={article.id} score={article.score} author={article.author} created={article.created} title={article.title} numComments={article.numComments} saved={article.saved} thumbnail={article.thumbnail} articles={articles} allArticles={allArticles} articleType={article.articleType} scoredUp={article.scoredUp} scoredDown={article.scoredDown} hidden={article.hidden} reported={article.reported} imgClicked={article.imgClicked} /> 
+        ))
+      )
+    } 
   }
 }
 

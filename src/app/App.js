@@ -8,7 +8,6 @@ import Header from '../components/Header';
 // import NewsArticles from '../components/NewsArticles';
 // import SavedArticles from '../components/SavedArticles';
 import Footer from '../components/Footer'; 
-
 import Articles from '../components/Articles'; 
 
 function App() {
@@ -29,7 +28,6 @@ function App() {
               <Route path="/" exact component={Articles} />
               <Route path="/sport" exact component={Articles} />
               <Route path="/news" exact component={Articles} />
-              <Route path="/saved" exact component={Articles} />
             </Switch>
           </div>
         </div>

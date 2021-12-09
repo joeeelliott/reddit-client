@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { abbrNum, convertUnixTimeStamp } from '../utils';
-import { fetchPopularArticles, fetchSportArticles, fetchNewsArticles, selectPopularArticle, selectDataIsLoading, selectInitialState, toggleEllipsis, addSavedArticle, removeSavedArticle, hideArticle, showArticles, reportArticle, scoreArticle } from '../features/articleSlice'; 
+import { fetchPopularArticles, fetchSportArticles, fetchNewsArticles, selectPopularArticle, selectDataIsLoading, selectInitialState, toggleEllipsis, saveArticle, hideArticle, showArticles, reportArticle, scoreArticle } from '../features/articleSlice'; 
 import { selectShowSideNav } from '../features/sideNavSlice'; 
 
 
@@ -91,13 +91,13 @@ const PopularArticles = () => {
           link.classList.add('nav_saved-article-animation');
           e.currentTarget.children[1].innerHTML = 'Saved';
           e.currentTarget.classList.toggle('article_save-container-clicked');
-          dispatch(addSavedArticle({ id: article.id })); 
+          dispatch(saveArticle({ id: article.id })); 
                 
           setTimeout(() => link.classList.remove('nav_saved-article-animation'), 1100); 
         } else {                    // else if article is saved
           e.currentTarget.children[1].innerHTML = 'Save';
           e.currentTarget.classList.toggle('article_save-container-clicked');
-          dispatch(removeSavedArticle({ id: article.id })); 
+          // dispatch(removeSavedArticle({ id: article.id })); 
         }  
       }
     });

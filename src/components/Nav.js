@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'; 
+import { useDispatch } from 'react-redux'; 
 
-import { userNoSearch } from '../features/articleSlice'; 
+import { userNoSearch, userNoFilter } from '../features/articleSlice'; 
 
 const Nav = () => {
   const dispatch = useDispatch(); 
-  const links = ["Popular", "Sport", "News", "Saved"];
+  const links = ["Popular", "Sport", "News"];
 
-
+  // if user clicks on any of the nav Links, turns of all search and filter modes, resets all relevant states related to these to original state
   const handleClick = (e) => {
     dispatch(userNoSearch()); 
+    dispatch(userNoFilter()); 
   }
 
   return (
