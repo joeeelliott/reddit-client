@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { abbrNum } from '../utils';
-import { scoreArticle } from '../features/articleSlice';
+import { scorePost } from '../features/postSlice';
 
-const Score = ({ id, articleType, score, scoredUp, scoredDown, currentArticles }) => {
+const Score = ({ id, postType, score, scoredUp, scoredDown }) => {
   const dispatch = useDispatch(); 
 
   const handleClick = (e) => {
@@ -13,14 +13,14 @@ const Score = ({ id, articleType, score, scoredUp, scoredDown, currentArticles }
 
     // classes again set colors based on state, as if class changes executed in here, they only activate on click - they dont stay based on state when clicking between Route paths. 
 
-    dispatch(scoreArticle({ articleType, id, scored }));
+    dispatch(scorePost({ postType, id, scored }));
   }
 
   return (
-    <div className="article_score-container">
-      <FontAwesomeIcon className={scoredUp ? "article_score-up-icon-clicked" : "article_score-icon"}icon="arrow-up" onClick={handleClick} /> 
-      <p className="article_score">{abbrNum(score)}</p>
-      <FontAwesomeIcon className={scoredDown ? "article_score-down-icon-clicked" : "article_score-icon"} icon="arrow-down" onClick={handleClick} /> 
+    <div className="post_score-container">
+      <FontAwesomeIcon className={scoredUp ? "post_score-up-icon-clicked" : "post_score-icon"}icon="arrow-up" onClick={handleClick} /> 
+      <p className="post_score">{abbrNum(score)}</p>
+      <FontAwesomeIcon className={scoredDown ? "post_score-down-icon-clicked" : "post_score-icon"} icon="arrow-down" onClick={handleClick} /> 
     </div>
   )
 }

@@ -5,9 +5,6 @@ const sideNavSlice = createSlice({
   name: 'sideNav',
   initialState: {
     toggleSideNav: false,
-    sideNavIconClicked: false,
-    sideNavHidden: true,
-    eyeClicked: false,
   },
   reducers: {
     showSideNav: (state, action) => {

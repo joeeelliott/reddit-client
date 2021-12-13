@@ -2,22 +2,22 @@ import React from 'react';
 import { useDispatch } from 'react-redux'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { hideArticle, showArticle } from '../features/articleSlice';
+import { hidePost } from '../features/postSlice';
 
-const Hide = ({ id, hidden, articles, articleType }) => {
+const Hide = ({ id, hidden, postType }) => {
   const dispatch = useDispatch();
 
   const handleClick = (e) => {
-    dispatch(hideArticle({ id, articleType })); 
+    dispatch(hidePost({ id, postType })); 
   }
 
   return (
-    <div className={hidden ? "article_hide-container-clicked" : "article_hide-container"} onClick={handleClick}>
-      <div className="article_hide-icon-container">
-        <FontAwesomeIcon className="article_hide-icon" icon={['far', 'eye-slash']} />
+    <div className={hidden ? "post_hide-container-clicked" : "post_hide-container"} onClick={handleClick}>
+      <div className="post_hide-icon-container">
+        <FontAwesomeIcon className="post_hide-icon" icon={['far', 'eye-slash']} />
       </div>
 
-      <p className="article_hide-text">{hidden ? 'Hidden' : 'Hide'}</p>
+      <p className="post_hide-text">{hidden ? 'Hidden' : 'Hide'}</p>
     </div>
   )
 }

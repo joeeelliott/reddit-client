@@ -1,37 +1,37 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { selectInitialState, toggleEllipsis } from '../features/articleSlice';
+
+import { selectInitialState, toggleEllipsis } from '../features/postSlice';
 
 import EllipsisDropDown from './EllipsisDropDown';
 
-
-const Ellipsis = ({ id, saved, hidden, reported, articles, articleType, allArticles }) => {
+const Ellipsis = ({ id, saved, hidden, reported, postType }) => {
   const dispatch = useDispatch();
   const initialState = useSelector(selectInitialState);
 
   const handleClick = (e) => {
-    if(!initialState.articles.ellipsisClicked){   // if ellipsis not clicked, toggle state to true
+    if(!initialState.posts.ellipsisClicked){   // if ellipsis not clicked, toggle state to true
       dispatch(toggleEllipsis());
-    } else {
+    } else {  // else toggle to false
       dispatch(toggleEllipsis()); 
     }
     
-    e.currentTarget.children[1].classList.toggle('article_ellipsis-dropdown-show');   // opens dropdown of clicked ellipsis article 
-    const currentId = e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.id;  // id of clicked ellipsis article
-    const openEllipsisArticles = document.getElementsByClassName('article_ellipsis-dropdown-show'); // array of each article which has ellipsis dropdown open
-    for(let i = 0; i < openEllipsisArticles.length; i++){  // iterate through the articles with ellipsis dropdown open
-      if(openEllipsisArticles[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id !== currentId){  // if the id of article in array doesn't match the id of clicked ellipsis article...
-        openEllipsisArticles[i].classList.remove  ('article_ellipsis-dropdown-show');  // ...remove the dropdown
+    e.currentTarget.children[1].classList.toggle('post_ellipsis-dropdown-show');   // opens dropdown of clicked ellipsis post 
+
+    const openEllipsisPosts = document.getElementsByClassName('post_ellipsis-dropdown-show'); // array of each post which has ellipsis dropdown open
+    for(let i = 0; i < openEllipsisPosts.length; i++){  // iterate through the posts with ellipsis dropdown open
+      if(openEllipsisPosts[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id !== id){  // if the id of post in array doesn't match the id of clicked ellipsis post...
+        openEllipsisPosts[i].classList.remove  ('post_ellipsis-dropdown-show');  // ...remove the dropdown
       }     
     }
   }
 
   return (
-    <div className="article_ellipsis-container" onClick={handleClick}>
-      <FontAwesomeIcon className="article_ellipsis-icon" icon="ellipsis-h" />
+    <div className="post_ellipsis-container" onClick={handleClick}>
+      <FontAwesomeIcon className="post_ellipsis-icon" icon="ellipsis-h" />
 
-      <EllipsisDropDown id={id} saved={saved} hidden={hidden} reported={reported} articles={articles} articleType={articleType} allArticles={allArticles} />
+      <EllipsisDropDown id={id} saved={saved} hidden={hidden} reported={reported} postType={postType} />
     </div> 
   )
 }

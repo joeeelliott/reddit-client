@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import SideNav from './SideNav'; 
 import Nav from './Nav'; 
 import { selectShowSideNav, showSideNav } from '../features/sideNavSlice';
-import { selectInitialArticleState, userNoSearch, userNoFilter } from '../features/articleSlice';
-import PopularArticles from './PopularArticles';
+import { selectInitialPostsState, userNoSearch, userNoFilter } from '../features/postSlice';
 
 const Header = () => {
   const sideNavState = useSelector(selectShowSideNav);
-  const articleState = useSelector(selectInitialArticleState); 
+  const postState = useSelector(selectInitialPostsState); 
   const dispatch = useDispatch();
 
   // if sidenav is open, add event listener to document that when anywhere other than sidenav or search icon is clicked, it executes sideNavDocumentEventListener. Only executes on change of toggleSideNav. 
@@ -20,16 +20,12 @@ const Header = () => {
     const sidenav = document.getElementById('sideNav'); 
 
     if(sideNavState.toggleSideNav){  // if toggle true - sidenav open
-      // console.log(`sideNav = ${sideNavState.toggleSideNav}`);
       searchIcon[0].classList.add('header_search-icon-rotate'); // add rotation to icon
       document.addEventListener('mouseup', sideNavDocumentEventListener); // add listener to document
-      // console.log('listener added'); 
       sidenav.classList.add('sideNav_show-nav'); 
     } else {    // else if toggle false - sidenav closed
-      // console.log(`sideNav = ${sideNavState.toggleSideNav}`); 
       searchIcon[0].classList.remove('header_search-icon-rotate');  // rotate icon back 
       document.removeEventListener('mouseup', sideNavDocumentEventListener);
-      // console.log('listener removed'); 
       sidenav.classList.remove('sideNav_show-nav'); 
       sidenav.classList.add('sideNav_hide-nav'); 
     }   
@@ -51,7 +47,7 @@ const Header = () => {
       const path = eyeIcon.children[0];
       
       if(e.target === eTargetParentNode || e.target === eyeIcon || e.target === eTargetParentNodeParentNode || e.target === path){   // several targets can be clicked depending on which specific part of the eye you click on... so to cover every one, if we click on any part of the eye execute following...
-        if(!articleState.allArticlesShown){  // if all articles not shown, execute following - dont want to go off sidenav on eye click if all articles are shown. 
+        if(!postState.allPostsShown){  // if all posts not shown, execute following - dont want to go off sidenav on eye click if all posts are shown. 
           searchIcon[0].classList.remove('header_search-icon-rotate');  // rotate icon back 
           sidenav.classList.remove('sideNav_show-nav');// hide sidenav
           sidenav.classList.add('sideNav_hide-nav');// hide sidenav
@@ -73,7 +69,6 @@ const Header = () => {
 
   const handleShowSideNavClick = (e) => {
     dispatch(showSideNav()); 
-    // for whatever reason, i seem to be only able to change the state in here, but changes aren't seen in here, but are in slice, devtools, and useEFfect. So changes to UI depending on state i have executed in useEffect. 
   }
 
   const handleLogoClick = (e) => {
@@ -82,7 +77,6 @@ const Header = () => {
   }
 
   return (
-
     <div className="header_header">
       <div className="header_toggle-btn-container">
           <FontAwesomeIcon icon="search" className="header_search-icon header_font-awesome-icon" onClick={handleShowSideNavClick} />

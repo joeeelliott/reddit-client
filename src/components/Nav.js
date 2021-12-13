@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; 
 
-import { userNoSearch, userNoFilter } from '../features/articleSlice'; 
+import { userNoSearch, userNoFilter } from '../features/postSlice'; 
 
 const Nav = () => {
   const dispatch = useDispatch(); 

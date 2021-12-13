@@ -2,23 +2,23 @@ import React from 'react';
 import { useDispatch } from 'react-redux'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { imgToggle } from '../features/articleSlice'; 
+import { imgToggle } from '../features/postSlice'; 
 
-const Image = ({ id, thumbnail, imgClicked, articleType }) => {
+const Image = ({ id, thumbnail, imgClicked, postType }) => {
   const dispatch = useDispatch(); 
   
   const handleClick = (e) => {
-    dispatch(imgToggle({ id, articleType }));
+    dispatch(imgToggle({ id, postType }));
   }
 
   return (
-    <div className="article_img-container">
-      <img src={thumbnail.url} height={thumbnail.height} width={thumbnail.width} alt="Img..." className="article_article-img" onClick={handleClick}></img>
+    <div className="post_img-container">
+      <img src={thumbnail.url} height={thumbnail.height} width={thumbnail.width} alt="Img..." className="post_post-img" onClick={handleClick}></img>
 
       {imgClicked && 
-        <div className="article_img-modal">
-          <img src={thumbnail.url} height={thumbnail.height * 1.5} width={thumbnail.width * 1.5} alt="Img..." className="article_article-img-clicked"></img>
-          <FontAwesomeIcon className="article_img-modal-close-icon" icon={['fas', 'times']} onClick={handleClick} />
+        <div className="post_img-modal">
+          <img src={thumbnail.url} height={thumbnail.height * 1.5} width={thumbnail.width * 1.5} alt="Img..." className="post_post-img-clicked"></img>
+          <FontAwesomeIcon className="post_img-modal-close-icon" icon={['fas', 'times']} onClick={handleClick} />
         </div>
       }
     </div>
