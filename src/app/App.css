@@ -526,9 +526,10 @@
   margin-right: 5px;
 }
 
-.post_join-btn {
-  background-color:rgb(31, 144, 231);
-  color: #fff;
+.post_link-btn {
+  background-color: #fff;
+  border: 1px solid rgb(31, 144, 231);
+  color: rgb(31, 144, 231);
   border-radius: 20px;
   padding: 3px 5px;
   display: flex;
@@ -538,9 +539,23 @@
   cursor: pointer;
 }
 
-.post_join-btn-text {
+.post_link-btn:hover {
+  background-color:rgb(31, 144, 231);
+}
+
+.post_link-btn:hover p {
+  color: #fff;
+}
+
+.post_link-btn-text {
   margin: 0px 5px;
   font-size: 0.8rem;
+}
+
+.post_permalink {
+  list-style: none;
+  text-decoration: none;
+  color: rgb(31, 144, 231);
 }
 
 .post_title-bottom-details-img-container {

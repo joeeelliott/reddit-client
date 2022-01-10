@@ -11,7 +11,7 @@ import Image from './Image';
 import ReportModal from './ReportModal';
 
 import { selectInitialState } from '../features/postSlice';
-const Post = ({ id, score, author, created, title, numComments, saved, thumbnail, posts, postType, scoredUp, scoredDown, hidden, reported, imgClicked }) => {
+const Post = ({ id, score, author, created, title, numComments, saved, thumbnail, permalink, posts, postType, scoredUp, scoredDown, hidden, reported, imgClicked }) => {
 
   const initialState = useSelector(selectInitialState);
   const filterMode = initialState.posts.filterMode; 
@@ -33,7 +33,7 @@ const Post = ({ id, score, author, created, title, numComments, saved, thumbnail
     <div className={classNameIs(hidden, filterMode, filter, postType)} id={id}>
       <Score id={id} postType={postType} score={score} scoredUp={scoredUp} scoredDown={scoredDown} />
       <div className="post_main-content-container">
-        <TopRow author={author} created={created} /> 
+        <TopRow author={author} created={created} permalink={permalink} /> 
 
         <div className="post_title-bottom-details-img-container">
           <div className="post_title-bottom-details-container">

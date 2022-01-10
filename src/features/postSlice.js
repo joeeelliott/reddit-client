@@ -470,7 +470,7 @@ const postSlice = createSlice({
       state.popularHasError = false;
 
       action.payload.forEach(post => {
-        state.allPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, url: post.data.url, thumbnail: {
+        state.allPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, permalink: `https://www.reddit.com${post.data.permalink}`, url: post.data.url, thumbnail: {
           url: post.data.thumbnail,
           height: post.data.thumbnail_height, 
           width: post.data.thumbnail_width, 
@@ -485,7 +485,7 @@ const postSlice = createSlice({
         inSearch: false,
         });
 
-        state.popularPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, url: post.data.url, thumbnail: {
+        state.popularPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, permalink: `https://www.reddit.com${post.data.permalink}`, url: post.data.url, thumbnail: {
             url: post.data.thumbnail,
             height: post.data.thumbnail_height, 
             width: post.data.thumbnail_width, 
@@ -528,7 +528,7 @@ const postSlice = createSlice({
       state.sportHasError = false;
 
       action.payload.forEach(post => {
-        state.allPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, url: post.data.url, thumbnail: {
+        state.allPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, permalink: `https://www.reddit.com${post.data.permalink}`, url: post.data.url, thumbnail: {
           url: post.data.thumbnail,
           height: post.data.thumbnail_height, 
           width: post.data.thumbnail_width, 
@@ -537,7 +537,7 @@ const postSlice = createSlice({
         inSearch: false,
         });
 
-        state.sportPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, url: post.data.url, thumbnail: {
+        state.sportPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, permalink: `https://www.reddit.com${post.data.permalink}`, url: post.data.url, thumbnail: {
             url: post.data.thumbnail,
             height: post.data.thumbnail_height, 
             width: post.data.thumbnail_width, 
@@ -574,7 +574,7 @@ const postSlice = createSlice({
       state.newsHasError = false;
 
       action.payload.forEach(post => {
-        state.allPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, url: post.data.url, thumbnail: {
+        state.allPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, permalink: `https://www.reddit.com${post.data.permalink}`, url: post.data.url, thumbnail: {
           url: post.data.thumbnail,
           height: post.data.thumbnail_height, 
           width: post.data.thumbnail_width, 
@@ -583,7 +583,7 @@ const postSlice = createSlice({
         inSearch: false,
         });
 
-        state.newsPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, url: post.data.url, thumbnail: {
+        state.newsPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, permalink: `https://www.reddit.com${post.data.permalink}`, url: post.data.url, thumbnail: {
             url: post.data.thumbnail,
             height: post.data.thumbnail_height, 
             width: post.data.thumbnail_width, 
