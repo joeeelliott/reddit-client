@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; 
 
 import { selectPopularPost, selectSportPost, selectNewsPost, fetchPopularPosts, fetchSportPosts, fetchNewsPosts, selectDataIsLoading, selectInitialState, toggleEllipsis, closeAllImgModals, numOfPostsToState } from '../features/postSlice'; 
@@ -153,7 +153,7 @@ const Posts = () => {
       if(searchedPostsFound){   // if post titles match
         return (
           searchedPosts.map(post => {
-            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
           })
         )
       } else if(!searchedPostsFound){   // if no post titles match 
@@ -169,13 +169,13 @@ const Posts = () => {
         if(postFilter === 'All'){
           return (
             allPosts.map(post => {
-              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
             })
           )
         } else if(postFilter === 'Popular'){
           return (
             !popularError ? popularPosts.map(post => {
-              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
             })
             :
             <div className="post_no-posts">
@@ -186,7 +186,7 @@ const Posts = () => {
         } else if(postFilter === 'Sport'){
           return (
             !sportError ? sportPosts.map(post => {
-              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
             })
             :
             <div className="post_no-posts">
@@ -197,7 +197,7 @@ const Posts = () => {
         } else if(postFilter === 'News'){
           return (
             !newsError ? newsPosts.map(post => {
-              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
             })
             : 
             <div className="post_no-posts">
@@ -208,7 +208,7 @@ const Posts = () => {
         } else if(postFilter === 'Saved'){
           return (
             savedPosts.length > 0 ? savedPosts.map(post => {
-              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} /> 
+              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} /> 
             })
             : 
             <div className="post_no-posts">
@@ -219,7 +219,7 @@ const Posts = () => {
         } else if(postFilter === 'Hidden'){
           return (
             hiddenPosts.length > 0 ? hiddenPosts.map(post => {
-              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} /> 
+              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} /> 
             })
             : 
             <div className="post_no-posts">
@@ -230,7 +230,7 @@ const Posts = () => {
         } else if(postFilter === 'Reported'){
           return (
             reportedPosts.length > 0 ? reportedPosts.map(post => {
-              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} /> 
+              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} /> 
             })
             : 
             <div className="post_no-posts">
@@ -243,7 +243,7 @@ const Posts = () => {
         const arr = initialState.posts.specificsSortedArray;
         return (
           arr.length > 0 ? arr.map(post => {
-            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
           }) 
           :
           <div className="post_no-posts">
@@ -257,7 +257,7 @@ const Posts = () => {
         if(arr.length > 0){  // if 
           return (
             arr.map(post => {
-              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
             })
           )
         } else {
@@ -274,7 +274,7 @@ const Posts = () => {
       if(posts === popularPosts){
         return ( 
           !popularError ? popularPosts.map(post => {
-            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
           })
           : 
           <div className="post_no-posts">
@@ -285,7 +285,7 @@ const Posts = () => {
       } else if(posts === sportPosts){
         return ( 
           !sportError ? sportPosts.map(post => {
-            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
           })
           : 
           <div className="post_no-posts">
@@ -296,7 +296,7 @@ const Posts = () => {
       } else if(posts === newsPosts){
         return ( 
           !newsError ? newsPosts.map(post => {
-            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
           })
           : 
           <div className="post_no-posts">
