@@ -14,6 +14,10 @@ const Posts = () => {
   const newsPosts = useSelector(selectNewsPost);
   const initialState = useSelector(selectInitialState); 
 
+  const popularError = initialState.posts.popularHasError;
+  const sportError = initialState.posts.sportHasError;
+  const newsError = initialState.posts.newsHasError;
+
   const searchedPostsFound = initialState.posts.searchedPostsFound; 
   const userSearching = initialState.posts.isSearching;
   const userFiltering = initialState.posts.filterMode; 
@@ -154,14 +158,14 @@ const Posts = () => {
         )
       } else if(!searchedPostsFound){   // if no post titles match 
         return (
-          <div className="post_saved-posts-none-saved">
+          <div className="post_no-posts">
             <h1>No posts found</h1>
             <p>Please use specific, related, and correctly spelt words for an effective search.</p>
           </div>
         )
       }
     } else if(userFiltering) {    // if filter applied
-      if(postFilter !== '' && specificFilter === ''){ // postFilter BUT NO specificFilter
+      if(postFilter && !specificFilter){ // postFilter BUT NO specificFilter
         if(postFilter === 'All'){
           return (
             allPosts.map(post => {
@@ -170,21 +174,36 @@ const Posts = () => {
           )
         } else if(postFilter === 'Popular'){
           return (
-            popularPosts.map(post => {
+            !popularError ? popularPosts.map(post => {
               return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
             })
+            :
+            <div className="post_no-posts">
+              <h1>We apologise! We seem to be having technical issues fetching the data for popular posts.</h1>
+              <p>Please be patient with us, we are working hard to fix the issue in a timely manor.</p>
+            </div>
           )
         } else if(postFilter === 'Sport'){
           return (
-            sportPosts.map(post => {
+            !sportError ? sportPosts.map(post => {
               return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
             })
+            :
+            <div className="post_no-posts">
+              <h1>We apologise! We seem to be having technical issues fetching the data for sport posts.</h1>
+              <p>Please be patient with us, we are working hard to fix the issue in a timely manor.</p>
+            </div>
           )
         } else if(postFilter === 'News'){
           return (
-            newsPosts.map(post => {
+            !newsError ? newsPosts.map(post => {
               return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
             })
+            : 
+            <div className="post_no-posts">
+              <h1>We apologise! We seem to be having technical issues fetching the data for news posts.</h1>
+              <p>Please be patient with us, we are working hard to fix the issue in a timely manor.</p>
+            </div>
           )
         } else if(postFilter === 'Saved'){
           return (
@@ -192,7 +211,7 @@ const Posts = () => {
               return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} /> 
             })
             : 
-            <div className="post_saved-posts-none-saved">
+            <div className="post_no-posts">
               <h1>You currently have no saved posts.</h1>
               <p>Click <strong>save</strong> on your favorite posts and see them all together here.</p>
             </div>
@@ -203,7 +222,7 @@ const Posts = () => {
               return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} /> 
             })
             : 
-            <div className="post_saved-posts-none-saved">
+            <div className="post_no-posts">
               <h1>You currently have no hidden posts.</h1>
               <p>Any posts hidden from your timeline can be viewed here, where you can choose to unhide them if necessary. Alternatively, by clicking the eye icon at the bottom of the sidebar navigation, all hidden posts will be unhidden and restored to the timeline.</p>
             </div>
@@ -214,36 +233,78 @@ const Posts = () => {
               return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} /> 
             })
             : 
-            <div className="post_saved-posts-none-saved">
+            <div className="post_no-posts">
               <h1>You currently have no reported posts.</h1>
               <p>If you ever report a post from your timeline it will appear here, where can you unreport it if necessary.</p>
             </div>
           )
         }
-      } else if(postFilter !== '' && specificFilter !== ''){   // postFilter AND specificFilter
-        const arr = initialState.posts.specificsSortedArray; 
-        
+      } else if(postFilter && specificFilter){   // postFilter AND specificFilter
+        const arr = initialState.posts.specificsSortedArray;
         return (
-          arr.map(post => {
+          arr.length > 0 ? arr.map(post => {
             return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
-          })
-        )    
-      } else if(postFilter === '' && specificFilter !== ''){     // NO postFilter BUT specificFilter
+          }) 
+          :
+          <div className="post_no-posts">
+              <h1>There are no posts stored in this filter.</h1>
+              <p>You must add posts to this category in order to add a <strong>post specifics</strong> filter.</p>
+          </div>
+        )   
+      } else if(!postFilter && specificFilter){     // NO postFilter BUT specificFilter
         const arr = initialState.posts.specificsSortedArray; 
         // console.log('specific filter clicked, no post filter');
-        return (
-          arr.map(post => {
-            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
-          })
-        )
+        if(arr.length > 0){  // if 
+          return (
+            arr.map(post => {
+              return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+            })
+          )
+        } else {
+          return (
+            <div className="post_no-posts">
+              <h1>We apologise! We seem to be having technical issues fetching the data for these posts.</h1>
+              <p>Please be patient with us, we are working hard to fix the issue in a timely manor.</p>
+            </div>
+          )
+        }
       }
       
     } else if(!userSearching && !userFiltering) {     // not searching or filtering, posts = route page => (popular, sport, news)
-      return (
-        posts.map(post => ( 
-          <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} /> 
-        ))
-      )
+      if(posts === popularPosts){
+        return ( 
+          !popularError ? popularPosts.map(post => {
+            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+          })
+          : 
+          <div className="post_no-posts">
+            <h1>We apologise! We seem to be having technical issues fetching the data for popular posts.</h1>
+            <p>Please be patient with us, we are working hard to fix the issue in a timely manor.</p>
+          </div>
+        )
+      } else if(posts === sportPosts){
+        return ( 
+          !sportError ? sportPosts.map(post => {
+            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+          })
+          : 
+          <div className="post_no-posts">
+            <h1>We apologise! We seem to be having technical issues fetching the data for sport posts.</h1>
+            <p>Please be patient with us, we are working hard to fix the issue in a timely manor.</p>
+          </div>
+        )
+      } else if(posts === newsPosts){
+        return ( 
+          !newsError ? newsPosts.map(post => {
+            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+          })
+          : 
+          <div className="post_no-posts">
+            <h1>We apologise! We seem to be having technical issues fetching the data for news posts.</h1>
+            <p>Please be patient with us, we are working hard to fix the issue in a timely manor.</p>
+          </div>
+        )
+      }
     } 
   }
 }

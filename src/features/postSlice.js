@@ -9,7 +9,7 @@ export const fetchPopularPosts = createAsyncThunk(
       const response = await fetch('https://www.reddit.com/r/popular.json?limit=10');
 
       const json = await response.json();
-      // console.log(json.data.children[0].data)
+      // console.log(json.data.children[0].data.permalink)
 
       return json.data.children;
     } catch (error) {
@@ -104,9 +104,9 @@ const postSlice = createSlice({
   reducers: {
     savePost: (state, action) => {
       const {id, postType } = action.payload;
-      const PostsArr = setPostsArr(postType, state);
+      const postsArr = setPostsArr(postType, state);
 
-      const posts = [PostsArr, state.allPosts, state.savedPosts, state.hiddenPosts, state.reportedPosts, state.specificsSortedArray, state.searchedPosts];
+      const posts = [postsArr, state.allPosts, state.savedPosts, state.hiddenPosts, state.reportedPosts, state.specificsSortedArray, state.searchedPosts];
 
       // iterate through all arrays. Any storing saved post change saved to opposite. if post not yet saved, it hasn't been pushed into savedPosts yet. 
       posts.forEach(array => {
@@ -118,7 +118,7 @@ const postSlice = createSlice({
       });
 
       // access saved post and if it's saved, push it into savedPosts array. If it's been unsaved then filter savedPosts, returning only those which dont match the id
-      PostsArr.forEach(post => {
+      postsArr.forEach(post => {
         if(post.id === id){
           if(post.saved){
             state.savedPosts.push(post); 
@@ -131,9 +131,9 @@ const postSlice = createSlice({
     hidePost: (state, action) => {
       const { id, postType } = action.payload; 
 
-      const PostsArr = setPostsArr(postType, state); 
+      const postsArr = setPostsArr(postType, state); 
 
-      const posts = [PostsArr, state.allPosts, state.savedPosts, state.hiddenPosts, state.reportedPosts, state.specificsSortedArray, state.searchedPosts];
+      const posts = [postsArr, state.allPosts, state.savedPosts, state.hiddenPosts, state.reportedPosts, state.specificsSortedArray, state.searchedPosts];
 
       // iterate through all arrays. Any storing hidden post change hidden to opposite. if post not yet hidden, it hasn't been pushed into hiddenPosts yet. 
       posts.forEach(array => {
@@ -145,7 +145,7 @@ const postSlice = createSlice({
       });
 
       // access hidden post and if it's hidden, push it into hiddenPosts array. If it's been unhidden then filter hiddenPosts, returning only those which dont match the id
-      PostsArr.forEach(post => {
+      postsArr.forEach(post => {
         if(post.id === id){
           if(post.hidden){
             state.hiddenPosts.push(post); 
@@ -178,8 +178,8 @@ const postSlice = createSlice({
       const { id, postType } = action.payload; 
 
       // console.log(id, postType); 
-      const PostsArr = setPostsArr(postType, state); 
-      const posts = [PostsArr, state.allPosts, state.savedPosts, state.hiddenPosts, state.reportedPosts, state.specificsSortedArray, state.searchedPosts]; 
+      const postsArr = setPostsArr(postType, state); 
+      const posts = [postsArr, state.allPosts, state.savedPosts, state.hiddenPosts, state.reportedPosts, state.specificsSortedArray, state.searchedPosts]; 
 
       // iterate through all arrays. Any storing reported post change reported to opposite. if post not yet reported, it hasn't been pushed into reportedPosts yet. 
       posts.forEach(array => {
@@ -191,7 +191,7 @@ const postSlice = createSlice({
       });
 
       // access reported post and if it's reported, push it into reportedPosts array. If it's been unreported then filter reportedPosts, returning only those which dont match the id
-      PostsArr.forEach(post => {
+      postsArr.forEach(post => {
         if(post.id === id){
           if(post.reported){
             state.reportedPosts.push(post); 
@@ -209,9 +209,9 @@ const postSlice = createSlice({
     },
     scorePost: (state, action) => {
       const {postType, id, scored} = action.payload; 
-      const PostsArr = setPostsArr(postType, state); 
+      const postsArr = setPostsArr(postType, state); 
 
-      const posts = [PostsArr, state.allPosts, state.savedPosts, state.hiddenPosts, state.reportedPosts, state.specificsSortedArray, state.searchedPosts];
+      const posts = [postsArr, state.allPosts, state.savedPosts, state.hiddenPosts, state.reportedPosts, state.specificsSortedArray, state.searchedPosts];
 
       posts.forEach(array => {
         array.forEach(post => {
@@ -223,9 +223,9 @@ const postSlice = createSlice({
     },
     imgToggle: (state, action) => {
       const { id, postType } = action.payload; 
-      const PostsArr = setPostsArr(postType, state); 
+      const postsArr = setPostsArr(postType, state); 
 
-      const posts = [PostsArr, state.allPosts, state.savedPosts, state.hiddenPosts, state.reportedPosts, state.specificsSortedArray, state.searchedPosts];
+      const posts = [postsArr, state.allPosts, state.savedPosts, state.hiddenPosts, state.reportedPosts, state.specificsSortedArray, state.searchedPosts];
 
       posts.forEach(array => {
         array.forEach(post => {

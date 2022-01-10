@@ -404,7 +404,7 @@
   margin: 100px 13%;  /* make % smaller the wider you want the container. 100px top to fall below the header, 100 from bottom to be able to see the ellipsis dropdown on bottom post */
 }
 
-.post_saved-posts-none-saved {
+.post_no-posts {
   /* border: 1px solid black; */
   width: 100%; 
   height: calc(100vh - 220px);  /* 100vh take the footer, header, and margins/padding inbetween - didnt actually work out just kept doing trial and error and saw how it changed on the page */ 
@@ -414,7 +414,7 @@
   justify-content: center;
 }
 
-.post_saved-posts-none-saved * {
+.post_no-posts * {
   text-align: center;
   margin: 10px 0px;
 }
