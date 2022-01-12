@@ -13,6 +13,13 @@
   justify-content: space-between; 
 }
 
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .App {
+    font-size: 0.8rem;
+  }
+}
+
 .App_loading-wrapper {
   height: 100%;
   width: 100%;
@@ -109,7 +116,7 @@
   box-shadow: 5px 5px 5px #ddd;
 
   position: relative; 
-  z-index: 100; 
+  z-index: 20; 
 
   position: fixed;
   width: 100%;
@@ -255,6 +262,7 @@
   background-color: #ddd;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  overflow: scroll; 
 }
 
 .sideNav_hide-nav {
@@ -399,9 +407,23 @@
 /* POST COMPONENT */
 
 .post_container {
-  /* border: black 1px solid; */
   border-radius: 15px;
   margin: 100px 13%;  /* make % smaller the wider you want the container. 100px top to fall below the header, 100 from bottom to be able to see the ellipsis dropdown on bottom post */
+}
+
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 740px){
+  .post_container {
+    margin: 90px 0%;
+    margin-bottom: 60px;   /* smaller bottom margin for smaller dropdown */ 
+  }
+}
+
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 741px) and (max-width: 900px){
+  .post_container {
+    margin: 90px 5%;
+  }
 }
 
 .post_no-posts {
@@ -412,11 +434,24 @@
   flex-direction: column; 
   /* align-items: center; */
   justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .post_no-posts * {
   text-align: center;
   margin: 10px 0px;
+}
+
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .post_no-posts h1 {
+    font-size: 1rem;
+  }
+
+  .post_no-posts p {
+    font-size: 0.8rem;
+  }
 }
 
 .post_saved-posts {
@@ -438,10 +473,21 @@
   width: 100%;
   display: flex;
   padding: 5px 0px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background-color: #FFFFFF;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 740px){
+  .post_outer-container {
+    border: none;
+    border-radius: 0px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 5px;
+  }
 }
 
 .post_outer-container-saved-on-render {
@@ -506,6 +552,15 @@
   align-items: center;
 }
 
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .post_details-top-container {
+    /* justify-content: flex-start; */
+
+    /* HERE IS WHERE IM UPTO. I NEED TO FIND THE CLASS NAMES OF INIDIVIDUAL DIVS IN TOP ROW AND THEN PUT SOME PADDING/MARGIN IN - AND MAYBE ALSO MAKE WRITING SMALLER - MIGHT JUST NEED TO MAKE THE FONT SIZE SMALLER IN GENERAL ON THESE SMALLER SIZES AND IT MAY SAVE ME A LOT OF TIME CHANGING SIZES AND STYLES OF THINGS. - IF I DO THIS, CHANGE THE ABOVE JUSTIFY-CONTENT BACK TO SPACE-BETWEEN. */
+  }
+}
+
 .post_post-details {
   /* border: 1px solid purple; */
   display: flex;
@@ -518,6 +573,13 @@
   color:rgb(150, 150, 150);
   font-size: 0.8rem;
   text-align: center;
+}
+
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .post_api-data {
+    font-size: 0.6rem !important;
+  }
 }
 
 .strong {
@@ -552,6 +614,13 @@
   font-size: 0.8rem;
 }
 
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .post_link-btn-text {
+    font-size: 0.6rem !important;
+  }
+}
+
 .post_permalink {
   list-style: none;
   text-decoration: none;
@@ -575,12 +644,20 @@
 .post_title-container {
   /* border: 1px solid red; */
   padding-left: 10px;
+  margin-top: 5px;
 }
 
 .post_title {
   /* border: 1px solid green; */
   font-size: 1rem;
   font-weight: 500;
+}
+
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .post_title {
+    font-size: 0.7rem !important;
+  }
 }
 
 .post_bottom-details-container {
@@ -644,7 +721,7 @@
   background-color: rgb(248, 248, 240); 
   /* background-color: red; */
   display: none;
-  z-index: 55;
+  z-index: 10;
 }
 
 .post_ellipsis-dropdown-show {
@@ -672,6 +749,28 @@
   cursor: pointer; 
   color: rgba(0, 0, 0, 0.5);
   background-color: rgba(144, 238, 144, 0.5); 
+}
+
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .post_ellipsis-dropdown {
+    position: absolute;
+    left: 0px;
+    bottom: -23px;    
+    /* ^ may need to be bigger bcos at the minute when i click near bottom of the ellipsis it works as usual on dropdown but also clicks save as well when it shouldnt ---> but this is with the weird circle cursor in responsive design mode in toolbar. maybe actually on a phone with fingers will be different. */
+    width: 80px;
+    height: 20px;
+  }
+
+  .post_save-container, .post_hide-container, .post_report-container {
+    width: 80px;
+    height: 20px;
+  }
+
+  .post_save-container-clicked, .post_hide-container-clicked, .post_report-container-clicked {
+    width: 80px;
+    height: 20px;
+  }
 }
 
 .post_report-container-clicked {
@@ -732,6 +831,17 @@
   width: 50px;
 }
 
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .post_save-icon, .post_hide-icon, .post_report-icon {
+    font-size: 0.8rem;
+  }
+
+  .post_save-text, .post_hide-text, .post_report-text {
+    font-size: 0.7rem; 
+  }
+}
+
 .post_report-text:hover {
   /* background-color: rgb(230, 230, 230); 
   color: #000;  */
@@ -771,6 +881,13 @@
   position: relative;
 }
 
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .post_img-container {
+    display: none;
+  }
+}
+
 .post_post-img {
   /* border: 1px solid rgb(0, 121, 211); */
   cursor: pointer;
@@ -789,19 +906,21 @@
   width: auto;
   top: 0px;
   right: 0px;
-  padding: 20%;
+  /* padding: 20%; */
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(233, 233, 233, 0.9);
-  z-index: 50;
+  z-index: 5;
+  overflow: hidden;
 }
 
 .post_img-modal-close-icon {
   position: absolute;
   top: 3%;
   right: 3%;
-  color: rgba(150, 150, 150);
+  /* color: rgba(150, 150, 150); */
+  color: red;
   cursor: pointer;
 }
 
@@ -815,12 +934,11 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  z-index: 100; 
+  z-index: 15; 
   background-color:rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  /* display: none; */
   visibility: hidden;  
 }
 
@@ -830,13 +948,11 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  z-index: 100; 
+  z-index: 15; 
   background-color:rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  /* display: none; */
-  /* visibility: hidden;  */
 }
 
 .post_report-modal-content {
@@ -868,14 +984,33 @@
   color: #fff;
 }
 
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .post_report-modal-content {
+    margin-top: 20px;
+  }
+
+  .post_report-modal-content h1 {
+    font-size: 0.8rem;
+  }
+
+  .post_report-modal-content p {
+    padding: 10px;
+    font-size: 0.6rem;
+  }
+
+  .post_report-modal-btn-container button {
+    font-size: 0.7rem;
+  }
+}
+
+
+
 
 /* FOOTER COMPONENT */
 
 
 .footer {
-  /* position: fixed; */
-  /* bottom: 0px; */
-  /* border: 1px solid black; */
   width: 100%;
   height: 5%;
   box-shadow: 0px -15px 20px #ddd;  
@@ -888,7 +1023,6 @@
 .footer h1 {
   font-size: 0.8rem;
   margin: 0px 2px;
-  /* border: 1px solid black; */
 }
 
 .footer p {
@@ -896,6 +1030,16 @@
   margin: 0px 2px;
 }
 
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .footer h1 {
+    font-size: 0.6rem;
+  }
+
+  .footer p {
+    font-size: 0.7rem;
+  }
+}
 
 
 /* NOTE TO SELF ----> below is how you toggle rotate on each click  */

@@ -224,7 +224,7 @@ const Posts = () => {
             : 
             <div className="post_no-posts">
               <h1>You currently have no hidden posts.</h1>
-              <p>Any posts hidden from your timeline can be viewed here, where you can choose to unhide them if necessary. Alternatively, by clicking the eye icon at the bottom of the sidebar navigation, all hidden posts will be unhidden and restored to the timeline.</p>
+              <p>Any posts hidden from your timeline can be viewed here, where you can choose to unhide them if necessary. Alternatively, by clicking the <strong>eye icon</strong> at the bottom of the sidebar navigation, all hidden posts will be unhidden and restored to the timeline.</p>
             </div>
           )
         } else if(postFilter === 'Reported'){
