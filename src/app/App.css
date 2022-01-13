@@ -20,6 +20,13 @@
   }
 }
 
+/* mobile turned horizontally */
+@media only screen and (min-height: 0px) and (max-height: 370px){
+  .App {
+    font-size: 0.8rem;
+  }
+}
+
 .App_loading-wrapper {
   height: 100%;
   width: 100%;
@@ -265,6 +272,12 @@
   overflow: scroll; 
 }
 
+@media only screen and (min-height: 560px) {
+  .sideNav_sideNav {
+    overflow: hidden; 
+  }
+}
+
 .sideNav_hide-nav {
   /* border: 1px solid red; */
   /* position: absolute; 
@@ -378,6 +391,7 @@
   font-size: 1.2rem;
   margin-right: 20px;
   margin-left: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
 
@@ -454,6 +468,17 @@
   }
 }
 
+/* mobile turned horizontally */
+@media only screen and (min-height: 0px) and (max-height: 370px) {
+  .post_no-posts h1 {
+    font-size: 1rem;
+  }
+
+  .post_no-posts p {
+    font-size: 0.8rem;
+  }
+}
+
 .post_saved-posts {
   width: 100%; 
   height: calc(100vh - 220px);  /* 100vh take the footer, header, and margins/padding inbetween - didnt actually work out just kept doing trial and error and saw how it changed on the page */ 
@@ -513,7 +538,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 10px;
+  padding: 10px 0px;
+}
+
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .post_score-container {
+    padding-left: 5px;
+  }
 }
 
 .post_score {
@@ -552,15 +584,6 @@
   align-items: center;
 }
 
-/* S mobile -> L mobile  */
-@media only screen and (min-width: 0px) and (max-width: 767px){
-  .post_details-top-container {
-    /* justify-content: flex-start; */
-
-    /* HERE IS WHERE IM UPTO. I NEED TO FIND THE CLASS NAMES OF INIDIVIDUAL DIVS IN TOP ROW AND THEN PUT SOME PADDING/MARGIN IN - AND MAYBE ALSO MAKE WRITING SMALLER - MIGHT JUST NEED TO MAKE THE FONT SIZE SMALLER IN GENERAL ON THESE SMALLER SIZES AND IT MAY SAVE ME A LOT OF TIME CHANGING SIZES AND STYLES OF THINGS. - IF I DO THIS, CHANGE THE ABOVE JUSTIFY-CONTENT BACK TO SPACE-BETWEEN. */
-  }
-}
-
 .post_post-details {
   /* border: 1px solid purple; */
   display: flex;
@@ -576,7 +599,14 @@
 }
 
 /* S mobile -> L mobile  */
-@media only screen and (min-width: 0px) and (max-width: 767px){
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .post_api-data {
+    font-size: 0.6rem !important;
+  }
+}
+
+/* mobile turned horizontally */
+@media only screen and (min-height: 0px) and (max-height: 370px) {
   .post_api-data {
     font-size: 0.6rem !important;
   }
@@ -621,6 +651,13 @@
   }
 }
 
+/* mobile turned horizontally */
+@media only screen and (min-height: 0px) and (max-height: 370px) {
+  .post_link-btn-text {
+    font-size: 0.6rem !important;
+  }
+}
+
 .post_permalink {
   list-style: none;
   text-decoration: none;
@@ -657,6 +694,15 @@
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .post_title {
     font-size: 0.7rem !important;
+    padding-right: 5px;
+  }
+}
+
+/* mobile turned horizontally */
+@media only screen and (min-height: 0px) and (max-height: 370px){
+
+  .post_title {
+    font-size: 0.6rem !important;
   }
 }
 
@@ -757,24 +803,44 @@
     position: absolute;
     left: 0px;
     bottom: -23px;    
-    /* ^ may need to be bigger bcos at the minute when i click near bottom of the ellipsis it works as usual on dropdown but also clicks save as well when it shouldnt ---> but this is with the weird circle cursor in responsive design mode in toolbar. maybe actually on a phone with fingers will be different. */
-    width: 80px;
+    width: 90px;
     height: 20px;
   }
 
   .post_save-container, .post_hide-container, .post_report-container {
-    width: 80px;
+    width: 90px;
     height: 20px;
   }
 
   .post_save-container-clicked, .post_hide-container-clicked, .post_report-container-clicked {
-    width: 80px;
+    width: 90px;
+    height: 20px;
+  }
+}
+
+/* mobile turned horizontally */
+@media only screen and (min-height: 0px) and (max-height: 370px){
+  .post_ellipsis-dropdown {
+    position: absolute;
+    left: 0px;
+    bottom: -23px;    
+    width: 90px;
+    height: 20px;
+  }
+
+  .post_save-container, .post_hide-container, .post_report-container {
+    width: 90px;
+    height: 20px;
+  }
+
+  .post_save-container-clicked, .post_hide-container-clicked, .post_report-container-clicked {
+    width: 90px;
     height: 20px;
   }
 }
 
 .post_report-container-clicked {
-  background-color: rgba(255, 0, 0, 0.8) !important; 
+  background-color: rgb(253, 27, 27) !important; 
 }
 
 .post_hide-container-clicked {
@@ -833,6 +899,17 @@
 
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px) {
+  .post_save-icon, .post_hide-icon, .post_report-icon {
+    font-size: 0.8rem;
+  }
+
+  .post_save-text, .post_hide-text, .post_report-text {
+    font-size: 0.7rem; 
+  }
+}
+
+/* mobile turned horizontally */
+@media only screen and (min-height: 0px) and (max-height: 370px) {
   .post_save-icon, .post_hide-icon, .post_report-icon {
     font-size: 0.8rem;
   }
@@ -956,15 +1033,19 @@
 }
 
 .post_report-modal-content {
-  height: 50%;
-  width: 50%;
+  height: auto;
+  width: 40%;
   background-color: rgba(255, 255, 255, 0.9); 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
   border-radius: 2%;
-  padding: 20px 0px;
+  padding: 20px 10px;
+}
+
+.post_report-modal-content * {
+  margin: 5px 0px;
 }
 
 .post_report-modal-report-icon {
@@ -988,6 +1069,9 @@
 @media only screen and (min-width: 0px) and (max-width: 767px){
   .post_report-modal-content {
     margin-top: 20px;
+    height: auto;
+    width: 50%;
+    justify-content: center;
   }
 
   .post_report-modal-content h1 {
@@ -1001,6 +1085,28 @@
 
   .post_report-modal-btn-container button {
     font-size: 0.7rem;
+  }
+}
+
+/* mobile turned horizontally */
+@media only screen and (min-height: 0px) and (max-height: 370px) {  /* 360 includes an iphone11 on sideways view, so ill do 370 to fit an iphone 13 one in */ 
+
+  .post_report-modal-content {
+    margin-top: 40px;
+    height: 50%;
+    padding: 5px 10px;
+  }
+
+  .post_report-modal-content h1 {
+    font-size: 0.6rem;
+  }
+
+  .post_report-modal-content p {
+    font-size: 0.4rem;
+  }
+
+  .post_report-modal-btn-container button {
+    font-size: 0.5rem;
   }
 }
 
