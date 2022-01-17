@@ -33,7 +33,7 @@ const Post = ({ id, score, author, created, title, numComments, saved, thumbnail
     <div className={classNameIs(hidden, filterMode, filter, postType)} id={id}>
       <Score id={id} postType={postType} score={score} scoredUp={scoredUp} scoredDown={scoredDown} />
       <div className="post_main-content-container">
-        <TopRow author={author} created={created} permalink={permalink} /> 
+        <TopRow author={author} created={created} permalink={permalink} id={id} /> 
 
         <div className="post_title-bottom-details-img-container">
           <div className="post_title-bottom-details-container">
