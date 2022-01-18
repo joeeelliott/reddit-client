@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; 
 
 import { selectPopularPost, selectSportPost, selectNewsPost, fetchPopularPosts, fetchSportPosts, fetchNewsPosts, selectDataIsLoading, selectInitialState, toggleEllipsis, closeAllImgModals, numOfPostsToState } from '../features/postSlice'; 
@@ -51,7 +51,7 @@ const Posts = () => {
     // return () => {
     //   return; 
     // }
-  }, []);
+  }, [dispatch, popularPosts.length]);
 
   const allPosts = initialState.posts.allPosts; 
 
@@ -103,7 +103,7 @@ const Posts = () => {
     return () => {
       document.removeEventListener('mouseup', ellipsisClickedDocumentEventListener); 
     }
-  }, [initialState.posts.ellipsisClicked]); 
+  }); 
 
 
   // document event listener that closes all other open dropdowns if another is clicked. Listener removed if no dropdowns open. 
@@ -133,7 +133,7 @@ const Posts = () => {
     return () => {
       document.removeEventListener('mouseup', imgClickedDocumentEventListener); 
     }
-  }, [initialState.posts.imgClicked]); 
+  }); 
 
   const imgClickedDocumentEventListener = (e) => {
     const target = document.getElementsByClassName('post_img-modal');  // access the open modal
