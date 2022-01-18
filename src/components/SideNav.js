@@ -46,7 +46,7 @@ const SideNav = () => {
   useEffect(() => {
     // console.log(searchText); 
     dispatch(searchPosts({ searchText }));   // executed in here as if executed in the handleChange, the userSearch string state is one letter behind what's in the search bar, so the search isn't accurate to what is in user search bar. 
-  }, [searchText]);    
+  }, [searchText, dispatch]);
 
   useEffect(() => {
     !isSearching && setSearchText(""); 
@@ -54,14 +54,15 @@ const SideNav = () => {
       dispatch(userNoSearch());
       dispatch(searchedPostsFound({ ids: undefined, text: searchText }));   // reset searchedPosts state array 
     }
-  }, [isSearching]);
+  }, [dispatch, searchText, isSearching]);
 
   const search = postState.searchText;
+  
   useEffect(() => {
     if(isSearching){
       dispatch(searchedPostsFound());
     }
-  }, [search]);   // each time the searchText state changes in the store - not local state as that's always one change behind
+  }, [dispatch, isSearching, search]);   // each time the searchText state changes in the store - not local state as that's always one change behind
 
   const handleChange = (e) => {
     setSearchText(e.currentTarget.value);

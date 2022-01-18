@@ -33,7 +33,7 @@ const Header = () => {
     return () => {
       document.removeEventListener('mouseup', sideNavDocumentEventListener); 
     }
-  }, [sideNavState.toggleSideNav]);
+  });
 
   // when sidenav is open, hide sidenav and change state accordingly when anywhere other than sidenav and search icon clicked. Dont 
   const sideNavDocumentEventListener = (e) => {

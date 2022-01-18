@@ -1,4 +1,5 @@
-import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+// import { current } from '@reduxjs/toolkit';
 import { scoreFunc, setPostsArr, sortSpecificsFilter } from '../utils';
 
 export const fetchPopularPosts = createAsyncThunk( 
