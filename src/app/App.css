@@ -1,6 +1,5 @@
 /* APP COMPONENT */
 
-
 .App {
   margin: 0;
   padding: 0;
@@ -101,45 +100,31 @@
   }
 }
 
-/* .App_header-container {
-  position: fixed;
-  width: 100%;
-  top: 0px;
-} */
-
 /* HEADER COMPONENT */
 
 
 .header_header {
-  /* border: 1px solid blue; */
   height: 80px;
   background-color: white;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-
   justify-content: center;
-  /* offset-x | offset-y | blur-radius | color */
+  /* box-shadow: offset-x | offset-y | blur-radius | color */
   box-shadow: 5px 5px 5px #ddd;
-
   position: relative; 
   z-index: 20; 
-
   position: fixed;
   width: 100%;
   top: 0px;
 }
 
 .header_toggle-and-title-container {
-  /* border: 1px solid blue; */
   display: flex;
   height: 75%;
   position: relative;
 }
 
 .header_toggle-btn-container {
-  /* border: 1px solid green; */
-
   position: absolute;
   left: 0px;
   height: 100%;
@@ -147,14 +132,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  z-index: 1; /* so event handler works with absolute positioning */
+  z-index: 1; 
 }
 
 .header_logo-title-container {
-  /* border: 1px solid red; */
-  /* height: 100%; */
-  /* width: 80%; */
+
   width: 100%;
   display: flex;
   align-items: center;
@@ -171,7 +153,6 @@
 
 .header_search-icon {
   cursor: pointer;
-  /* font-size: 1.5rem !important; */
   transition: all 0.5s ease;  /* part 1 of the burger menu rotation */
 }
 
@@ -204,24 +185,21 @@
 }
 
 .header_nav-container {
-  /* border: 1px solid green; */
   height: 25%;
   width: 100%;
   display: flex;
   align-content: center;
   justify-content: center;
-  /* margin-top: 10px; */
 }
+
+
 
 
 /* NAV COMPONENT */
 
 
 .nav_list {
-  /* border: 1px solid yellow; */
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
   list-style: none;
   height: 100%;
 }
@@ -229,28 +207,16 @@
 .nav_link {
   text-decoration: none;
   margin: 0px 10px;
-  /* color: black; */
   height: 100%;
   line-height: 100%;
   color: rgb(150, 150, 150);
-  /* border: 1px solid orange; */
 }
 
 .nav_link:hover {
   color: black;
 }
 
-.nav_saved-post-animation {
-  animation: saveClicked 1s;
-}
 
-@keyframes saveClicked {
-  0% {color:rgb(150, 150, 150);}
-  25% {color:rgba(144, 238, 144, 0.5);}
-  50% {color:rgba(144, 238, 144, 0.5);}
-  75% {color:rgba(144, 238, 144, 0.5);}
-  100% {color:rgb(150, 150, 150);}
-}
 
 
 /* SIDENAV COMPONENT */
@@ -279,35 +245,13 @@
 }
 
 .sideNav_hide-nav {
-  /* border: 1px solid red; */
-  /* position: absolute; 
-  left: 0;
-  top: 0;  */
-  /* height: 100vh;  */
-  /* margin-top: 80px;
-  z-index: -10; 
-  font-size: 0.7rem; */
   width: 0px;
-  /* overflow: hidden;
-  background-color: #ddd; */
   transition: width 0.4s;
 }
 
 .sideNav_show-nav {
-  /* border: 1px solid red; */
-  /* position: absolute; 
-  left: 0;
-  top: 0;  */
-  /* height: calc(100vh - 80px); */
-  /* margin-top: 80px;
-  z-index: -10; 
-  font-size: 0.7rem; */
   width: 200px;
-  /* overflow: hidden; 
-  background-color: #ddd; */
   transition: width 0.5s;
-  /* border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px; */
 }
 
 .sideNav_hide-form {
@@ -374,7 +318,6 @@
 }
 
 .sideNav_eye-text-container {
-  /* border: 1px solid blue; */
   margin-top: 30px;
   display: flex;
   flex-direction: row;
@@ -382,7 +325,6 @@
 }
 
 .sideNav_eye-icon-container {
-  /* border: 1px solid green; */
   display: flex;
   align-items: center;
 }
@@ -393,10 +335,6 @@
   margin-left: 10px;
   margin-bottom: 10px;
   cursor: pointer;
-}
-
-.sideNav_text-container {
-  /* border: 1px solid red; */
 }
 
 .sideNav_eye-icon-hover-text {
@@ -441,12 +379,10 @@
 }
 
 .post_no-posts {
-  /* border: 1px solid black; */
   width: 100%; 
   height: calc(100vh - 220px);  /* 100vh take the footer, header, and margins/padding inbetween - didnt actually work out just kept doing trial and error and saw how it changed on the page */ 
   display: flex;
   flex-direction: column; 
-  /* align-items: center; */
   justify-content: center;
   padding-left: 20px;
   padding-right: 20px;
@@ -494,7 +430,6 @@
 }
 
 .post_outer-container {
-  /* border: red 1px solid !important; */
   width: 100%;
   display: flex;
   padding: 5px 0px;
@@ -516,7 +451,6 @@
 }
 
 .post_outer-container-saved-on-render {
-  /* border: red 1px solid !important; */
   width: 100%;
   height: 100%;
   display: flex;
@@ -532,7 +466,6 @@
 }
 
 .post_score-container {
-  /* border: 1px solid green; */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -549,7 +482,6 @@
 }
 
 .post_score {
-  /* border: 1px solid lightblue; */
   margin: 10px 0px;
   font-weight: 600;
   display: flex;
@@ -571,14 +503,12 @@
 }
 
 .post_main-content-container {
-  /* border: 1px solid darkblue; */
   flex: 12;
   display: flex;
   flex-direction: column;
 }
 
 .post_details-top-container {
-  /* border: 1px solid green; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -591,7 +521,7 @@
   height: 100vh;
   width: 100vw;
   z-index: 30; 
-  background-color:rgba(0, 0, 0, 0.1);
+  background-color:rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -604,7 +534,7 @@
   height: 100vh;
   width: 100vw;
   z-index: 30; 
-  background-color:rgba(0, 0, 0, 0.1);
+  background-color:rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -614,13 +544,11 @@
 .post_link-modal-content {
   height: auto;
   width: 75%;
-  background-color: rgba(255, 255, 255); 
-  border-radius: 5%;
-  display: flex;
+  background-color: rgba(255, 255, 255, 0.9); 
+  border-radius: 2%;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+  justify-content: space-between;
+  padding: 10px 10px;
   text-align: center;
 }
 
@@ -630,10 +558,16 @@
 
 .post_link-modal-content button {
   border-radius: 5px;
-  border: none;
-  margin: 0px 10px;
-  background-color: rgba(255, 255, 255); 
+  background-color: rgba(230, 230, 230);
+  border: 1px solid grey;
+  padding: 2px;
+  margin: 10px 10px 5px 10px;
   cursor: pointer;
+}
+
+.post_link-modal-content button:hover {
+  background-color: rgba(0, 0, 0);
+  color: #fff;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 767px) {
@@ -648,10 +582,14 @@
   .post_link-modal-content p {
     font-size: 0.6rem;
   }
+
+  .post_link-modal-content button {
+    font-size: 0.7rem;
+  }
 }
 
 /* mobile turned horizontally */
-@media only screen and (min-height: 0px) and (max-height: 370px) {
+@media only screen and (min-height: 0px) and (max-height: 340px) {    /* 340 includes an iphone11 on sideways view, so ill do 370 to fit an iphone 13 one in  */
   .post_link-modal-content {
     width: 60%;
   }
@@ -665,27 +603,21 @@
   }
 
   .post_link-modal-content p {
-    font-size: 0.6rem;
+    font-size: 0.4rem;
+  }
+
+  .post_link-modal-content button {
+    font-size: 0.5rem;
   }
 }
 
-.post_link-modal-content button:nth-child(1):hover {
-  color: green;
-}
-
-.post_link-modal-content button:nth-child(2):hover {
-  color: red;
-}
-
 .post_post-details {
-  /* border: 1px solid purple; */
   display: flex;
   align-items: center;
   padding-left: 10px;
 }
 
 .post_api-data {
-  /* border: 1px solid red; */
   color:rgb(150, 150, 150);
   font-size: 0.8rem;
   text-align: center;
@@ -758,27 +690,23 @@
 }
 
 .post_title-bottom-details-img-container {
-  /* border: 1px solid red; */
   display: flex; 
   justify-content: space-between;
   height: 100%;
 }
 
 .post_title-bottom-details-container {
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .post_title-container {
-  /* border: 1px solid red; */
   padding-left: 10px;
   margin-top: 5px;
 }
 
 .post_title {
-  /* border: 1px solid green; */
   font-size: 1rem;
   font-weight: 500;
 }
@@ -786,7 +714,7 @@
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .post_title {
-    font-size: 0.7rem !important;
+    font-size: 0.8rem !important;
     padding-right: 5px;
   }
 }
@@ -795,12 +723,11 @@
 @media only screen and (min-height: 0px) and (max-height: 370px){
 
   .post_title {
-    font-size: 0.6rem !important;
+    font-size: 0.8rem !important;
   }
 }
 
 .post_bottom-details-container {
-  /* border: 2px solid yellow; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -835,8 +762,6 @@
 .post_ellipsis-container {
   margin-left: 25px;
   position: relative;
-  /* border: 1px solid black; */
-  /* background-color: green; */
   padding: 0px 4px;
 }
 
@@ -845,20 +770,15 @@
 }
 
 .post_ellipsis-icon {
-  /* margin-left: 25px; */
   font-weight: normal;
   cursor: pointer;
 }
 
 .post_ellipsis-dropdown {
-  /* border: 1px solid green; */
-  /* height: 60px;
-  width: 10px; */
   position: absolute;
   left: 0px;
   bottom: -80px;
   background-color: rgb(248, 248, 240); 
-  /* background-color: red; */
   display: none;
   z-index: 10;
 }
@@ -868,12 +788,10 @@
 }
 
 .post_save-container, .post_hide-container, .post_report-container {
-  /* border: 1px solid red; */
   width: 100px;
   height: 25px;
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   cursor: pointer; 
   color: rgba(0, 0, 0, 0.5); 
   background-color: rgb(248, 248, 240); 
@@ -884,7 +802,6 @@
   height: 25px;
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   cursor: pointer; 
   color: rgba(0, 0, 0, 0.5);
   background-color: rgba(144, 238, 144, 0.5); 
@@ -955,38 +872,23 @@
 }
 
 .post_save-icon-container, .post_hide-icon-container, .post_report-icon-container {
-  /* border: 1px solid blue;  */
   width: 40%;
-  /* width: 80px;
-  height: 25px;
-  display: flex;
-  flex-direction: row; */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* text-align: center; */
 }
 
 .post_save-icon, .post_hide-icon, .post_report-icon {
-  /* margin-right: 5px; */
-  /* flex: 2; */
-  /* height: 100%; */
-  /* font-size: 0.5rem; */
   font-size: 0.9rem;
   width: 30px;
-  /* font-weight: 0.8rem; */
 }
 
 .post_save-text, .post_hide-text, .post_report-text {
-  /* border: 1px solid black; */
   align-self: center;
   display: flex;
-  /* justify-content: center; */  
-  /* font-size: 0.9rem; */
 }
 
 .post_save-text, .post_hide-text, .post_report-text {
-  /* flex: 1; */
   width: 50px;
 }
 
@@ -1012,39 +914,7 @@
   }
 }
 
-.post_report-text:hover {
-  /* background-color: rgb(230, 230, 230); 
-  color: #000;  */
-}
-
-.post_save-icon-container {
-  /* border: 1px solid red; */
-}
-
-.post_save-icon {
-  /* display: inline-block; */
-  /* border: 1px solid black; */
-}
-
-.post_hide-icon-container {
-  /* border: 1px solid blue; */
-}
-
-.post_hide-icon {
-  /* border: 1px solid black; */
-  /* font-size: 1rem; */
-}
-
-.post_report-icon-container {
-  /* border: 1px solid yellow; */
-}
-
-.post_report-icon {
-  /* border: 1px solid black; */
-}
-
 .post_img-container {
-  /* border: 2px solid orange; */
   padding: 5px;
   display: flex;
   align-items: center;
@@ -1059,12 +929,10 @@
 }
 
 .post_post-img {
-  /* border: 1px solid rgb(0, 121, 211); */
   cursor: pointer;
 }
 
 .post_post-img-clicked {
-  /* border: 1px solid rgb(0, 121, 211); */
   border-radius: 5px;
 }
 
@@ -1076,7 +944,6 @@
   width: auto;
   top: 0px;
   right: 0px;
-  /* padding: 20%; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1089,7 +956,6 @@
   position: absolute;
   top: 3%;
   right: 3%;
-  /* color: rgba(150, 150, 150); */
   color: red;
   cursor: pointer;
 }
@@ -1127,18 +993,21 @@
 
 .post_report-modal-content {
   height: auto;
-  width: 40%;
+  width: 75%;
   background-color: rgba(255, 255, 255, 0.9); 
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
   border-radius: 2%;
-  padding: 20px 10px;
+  padding: 10px 10px;
 }
 
 .post_report-modal-content * {
-  margin: 5px 0px;
+  padding: 10px 0px;
+}
+
+.post_report-modal-content svg {
+  padding: 0px;
 }
 
 .post_report-modal-report-icon {
@@ -1151,6 +1020,7 @@
   background-color: rgba(230, 230, 230);
   border: 1px solid grey;
   border-radius: 5px;
+  margin: 10px 0px 5px 0px;
 }
 
 .post_report-modal-btn-container button:hover {
@@ -1161,10 +1031,7 @@
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px){
   .post_report-modal-content {
-    margin-top: 20px;
-    height: auto;
-    width: 50%;
-    justify-content: center;
+    width: 60%;
   }
 
   .post_report-modal-content h1 {
@@ -1172,7 +1039,6 @@
   }
 
   .post_report-modal-content p {
-    padding: 10px;
     font-size: 0.6rem;
   }
 
@@ -1185,13 +1051,15 @@
 @media only screen and (min-height: 0px) and (max-height: 370px) {  /* 360 includes an iphone11 on sideways view, so ill do 370 to fit an iphone 13 one in */ 
 
   .post_report-modal-content {
-    margin-top: 40px;
-    height: 50%;
-    padding: 5px 10px;
+    width: 60%;
+  }
+
+  .post_report-modal-content * {
+    padding: 5px 0px;
   }
 
   .post_report-modal-content h1 {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 
   .post_report-modal-content p {
@@ -1239,39 +1107,3 @@
     font-size: 0.7rem;
   }
 }
-
-
-/* NOTE TO SELF ----> below is how you toggle rotate on each click  */
-/* #shape  { width: 100px; 
-  height: 200px; 
-  background:#000;
-  -moz-transition: all 1s ease;      <------- transition property
-  -webkit-transition: all 1s ease;
-  -o-transition: all 1s ease;
-   transition: all 1s ease;
- }
-
-.rotate {-moz-transform: rotate(90deg);   <------ rotate property on 
- -webkit-transform:rotate(90deg);                 a class that will be 
- -ms-transform:rotate(90deg);                     toggled 
- -o-transform:rotate(90deg);
- } */
-
-
- 
-/*       below is example of an infinite rotation animation 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
-
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
