@@ -14,7 +14,12 @@ const Hide = ({ id, hidden, postType }) => {
   return (
     <div className={hidden ? "post_hide-container-clicked" : "post_hide-container"} onClick={handleClick}>
       <div className="post_hide-icon-container">
-        <FontAwesomeIcon className="post_hide-icon" icon={['far', 'eye-slash']} />
+        <FontAwesomeIcon 
+          aria-hidden="true"
+          aria-label="Hide this post"
+          className="post_hide-icon" 
+          icon={['far', 'eye-slash']}
+        />
       </div>
 
       <p className="post_hide-text">{hidden ? 'Hidden' : 'Hide'}</p>

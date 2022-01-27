@@ -15,7 +15,12 @@ const Save = ({ id, postType, saved }) => {
   return (
     <div className={saved ? 'post_save-container-clicked' : 'post_save-container'} onClick={handleClick}>
       <div  className="post_save-icon-container">
-      <FontAwesomeIcon className="post_save-icon" icon={['far', 'bookmark']} />
+        <FontAwesomeIcon 
+          aria-hidden="true"
+          aria-label="Save this post"
+          className="post_save-icon" 
+          icon={['far', 'bookmark']} 
+        />
       </div>
                         
       <p className="post_save-text">{saved ? 'Saved' : 'Save'}</p>

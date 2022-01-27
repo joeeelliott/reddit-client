@@ -79,15 +79,31 @@ const Header = () => {
   return (
     <div className="header_header">
       <div className="header_toggle-btn-container">
-          <FontAwesomeIcon icon="search" className="header_search-icon header_font-awesome-icon" onClick={handleShowSideNavClick} />
+        <FontAwesomeIcon 
+          aria-hidden="true" 
+          aria-label="Toggle the side navigation menu open and closed" 
+          icon="search" 
+          className="header_search-icon header_font-awesome-icon" 
+          onClick={handleShowSideNavClick} 
+        />
       </div>
 
       <div className="header_toggle-and-title-container">
-
         <div className="header_logo-title-container">
-          <Link to="/" className="header_logo-title-link" onClick={handleLogoClick}><FontAwesomeIcon data-testid="reddit-icon" icon={['fab', 'reddit']} className="header_reddit-icon header_font-awesome-icon" />
-
-          <h1 className="header_title">Reddit<span className="header_title-span">Sample</span></h1></Link>
+          <Link 
+            to="/" 
+            className="header_logo-title-link" 
+            onClick={handleLogoClick}
+          >
+            <FontAwesomeIcon 
+              data-testid="reddit-icon" 
+              aria-hidden="true"
+              aria-label="Skip to the home page"
+              icon={['fab', 'reddit']}
+              className="header_reddit-icon header_font-awesome-icon"
+            />
+            <h1 className="header_title">Reddit<span className="header_title-span">Sample</span></h1>
+          </Link>
         </div>
       </div>
       

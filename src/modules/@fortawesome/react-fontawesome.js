@@ -4,7 +4,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import {
 	faBars,
   faSearch,
-  faFilter
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function registerIcons() {
@@ -13,6 +12,5 @@ export default function registerIcons() {
     fas,
 		faBars,
     faSearch,
-    faFilter
 	);
 }
