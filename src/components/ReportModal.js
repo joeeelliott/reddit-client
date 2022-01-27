@@ -18,7 +18,11 @@ const ReportModal = ({ reported }) => {
     <div className={reported && !modalClosed ? "post_report-modal" : "post_report-modal-hidden"}>
       <div className="post_report-modal-content">
         <div>
-          <FontAwesomeIcon className="post_report-modal-report-icon" icon={['far', 'flag']} />
+          <FontAwesomeIcon 
+            aria-hidden="true"
+            className="post_report-modal-report-icon" 
+            icon={['far', 'flag']} 
+          />
         </div>
         <h1>Post Reported</h1>
         <p>Reddit authorties have been informed and an investigation into the post will be opened. 

@@ -19,7 +19,12 @@ const Report = ({ id, reported, postType }) => {
   return (
     <div className={reported ? "post_report-container-clicked" : "post_report-container"} onClick={handleClick}>
       <div className="post_report-icon-container">
-        <FontAwesomeIcon className="post_report-icon" icon={['far', 'flag']} />
+        <FontAwesomeIcon 
+          aria-hidden="true"
+          aria-label="Report this post"
+          className="post_report-icon" 
+          icon={['far', 'flag']} 
+        />
       </div>
 
       <p className="post_report-text">{reported ? 'Reported' : 'Report'}</p>

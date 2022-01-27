@@ -919,6 +919,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 }
 
 /* S mobile -> L mobile  */
@@ -929,7 +930,8 @@
 }
 
 .post_post-img {
-  cursor: pointer;
+  cursor: pointer;   
+  /* once changed to amp-img, this class no longer worked, so added this style to the img container above */
 }
 
 .post_post-img-clicked {

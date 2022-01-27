@@ -18,9 +18,21 @@ const Score = ({ id, postType, score, scoredUp, scoredDown }) => {
 
   return (
     <div className="post_score-container">
-      <FontAwesomeIcon className={scoredUp ? "post_score-up-icon-clicked" : "post_score-icon"}icon="arrow-up" onClick={handleClick} /> 
+      <FontAwesomeIcon 
+        aria-hidden="true"
+        aria-label="Upvote the post"
+        className={scoredUp ? "post_score-up-icon-clicked" : "post_score-icon"}
+        icon="arrow-up" 
+        onClick={handleClick} 
+      /> 
       <p className="post_score">{abbrNum(score)}</p>
-      <FontAwesomeIcon className={scoredDown ? "post_score-down-icon-clicked" : "post_score-icon"} icon="arrow-down" onClick={handleClick} /> 
+      <FontAwesomeIcon 
+        aria-hidden="true"
+        aria-label="Downvote the post"
+        className={scoredDown ? "post_score-down-icon-clicked" : "post_score-icon"} 
+        icon="arrow-down" 
+        onClick={handleClick} 
+      /> 
     </div>
   )
 }
