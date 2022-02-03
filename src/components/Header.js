@@ -79,13 +79,16 @@ const Header = () => {
   return (
     <div className="header_header">
       <div className="header_toggle-btn-container">
-        <button type="button" onClick={handleShowSideNavClick}>
-        <FontAwesomeIcon 
+        <button 
+          type="button" 
+          onClick={handleShowSideNavClick}
           aria-hidden="true" 
-          aria-label="Toggle the side navigation menu open and closed" 
-          icon="search" 
-          className="header_search-icon header_font-awesome-icon"  
-        />
+          aria-label="Toggle the side navigation menu open and closed"
+        >
+          <FontAwesomeIcon  
+            icon="search" 
+            className="header_search-icon header_font-awesome-icon"  
+          />
         </button>
       </div>
 
