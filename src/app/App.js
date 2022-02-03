@@ -1,23 +1,24 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
-import React, { lazy, Suspense } from 'react';
+// import React, { lazy, Suspense } from 'react';
+import React from 'react';
 
-// import Header from '../components/Header'; 
-// import Footer from '../components/Footer'; 
-// import Posts from '../components/Posts'; 
+import Header from '../components/Header'; 
+import Footer from '../components/Footer'; 
+import Posts from '../components/Posts'; 
 
-const Header = lazy(() => import('../components/Header'));
-const Footer = lazy(() => import('../components/Footer'));
-const Posts = lazy(() => import('../components/Posts'));
+// const Header = lazy(() => import('../components/Header'));
+// const Footer = lazy(() => import('../components/Footer'));
+// const Posts = lazy(() => import('../components/Posts'));
 
-const renderLoader = () => <div className="App_loading-wrapper">
-  <span className="loader"><span className="loader-inner"></span></span>
-</div>
+// const renderLoader = () => <div className="App_loading-wrapper">
+//   <span className="loader"><span className="loader-inner"></span></span>
+// </div>
 
 function App() {  
   return (
     <Router>
-      <Suspense fallback={renderLoader()}>
+      {/* <Suspense fallback={renderLoader()}> */}
       <div className="App">
         <div className="content">
           <Header />
@@ -31,7 +32,7 @@ function App() {
         </div>
         <Footer />
       </div>
-      </Suspense>
+      {/* </Suspense> */}
     </Router> 
   );
 }

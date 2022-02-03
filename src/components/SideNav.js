@@ -98,7 +98,6 @@ const SideNav = () => {
         <div className="sideNav_eye-icon-container">
           <button 
             type="button" 
-            aria-hidden="true"
             aria-label="Restore any hidden posts back to the timeline" 
             onClick={handleEyeClick}
           >
