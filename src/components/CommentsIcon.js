@@ -4,10 +4,12 @@ import { abbrNum } from '../utils';
 
 const CommentsIcon = ({ numComments }) => {
   return (
-    <button className="post_comments-icon-container">
+    <button 
+      type="button" 
+      aria-label="View comments section"
+      className="post_comments-icon-container"
+    >
       <FontAwesomeIcon 
-        aria-hidden="true"
-        aria-label="View comments section"
         className="post_comments-icon" 
         icon={['far', 'comment-alt']} 
       />

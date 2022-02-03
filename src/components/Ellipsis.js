@@ -29,7 +29,7 @@ const Ellipsis = ({ id, saved, hidden, reported, postType }) => {
 
   return (
     <div className="post_ellipsis-container" onClick={handleClick}>
-    <button aria-hidden="true" aria-label="View ellipsis dropdown box">
+    <button type="button" aria-label="View ellipsis dropdown box">
       <FontAwesomeIcon 
         className="post_ellipsis-icon" 
         icon="ellipsis-h" 

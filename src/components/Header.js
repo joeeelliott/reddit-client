@@ -82,7 +82,6 @@ const Header = () => {
         <button 
           type="button" 
           onClick={handleShowSideNavClick}
-          aria-hidden="true" 
           aria-label="Toggle the side navigation menu open and closed"
         >
           <FontAwesomeIcon  

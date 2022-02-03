@@ -21,7 +21,6 @@ const Score = ({ id, postType, score, scoredUp, scoredDown }) => {
     <div className="post_score-container">
       <button 
         type="button" 
-        aria-hidden="true"
         aria-label="Upvote the post"
         onClick={handleClick}
       >
@@ -34,7 +33,6 @@ const Score = ({ id, postType, score, scoredUp, scoredDown }) => {
       <p className="post_score">{abbrNum(score)}</p>
       <button 
         type="button" 
-        aria-hidden="true"
         aria-label="Downvote the post"
         onClick={handleClick}
       >

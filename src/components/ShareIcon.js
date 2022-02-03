@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ShareIcon = () => {
   return (
-    <button className="post_share-icon-container">
+    <button 
+      aria-label="Share this post"
+      className="post_share-icon-container"
+    >
       <FontAwesomeIcon 
-        aria-hidden="true"
-        aria-label="Share this post"
         className="post_share-icon" 
         icon="share" 
       />
