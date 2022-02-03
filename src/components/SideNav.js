@@ -96,15 +96,18 @@ const SideNav = () => {
           <p className="sideNav_eye-icon-hover-text">Show hidden posts</p>
         </div>
         <div className="sideNav_eye-icon-container">
-          <button onClick={handleEyeClick}>
+          <button 
+            type="button" 
+            aria-hidden="true"
+            aria-label="Restore any hidden posts back to the timeline" 
+            onClick={handleEyeClick}
+          >
             <FontAwesomeIcon 
-              aria-hidden="true"
-              aria-label="Restore any hidden posts back to the timeline"
               className="sideNav_eye-icon" 
               icon={['far', 'eye']} 
               onMouseOver={handleEyeMouseOver} 
               onMouseOut={handleEyeMouseOut} 
-              // onClick={handleEyeClick} 
+                // onClick={handleEyeClick} 
             />
           </button>
         </div>            
