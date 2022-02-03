@@ -8,7 +8,7 @@ const ReportModal = ({ reported }) => {
   const dispatch = useDispatch(); 
   const initialState = useSelector(selectInitialState); 
   const modalClosed = initialState.posts.modalClosed;
-
+  
   const handleClick = (e) => {
     e.preventDefault(); 
     dispatch(toggleReportModal()); 
@@ -29,7 +29,7 @@ const ReportModal = ({ reported }) => {
         </p>
         <p>In the meantime if you wish to hide this post from your timeline, click the hide button.</p>
         <div className="post_report-modal-btn-container">
-          <button onClick={handleClick}>CLOSE</button>
+          <button type="button" onClick={handleClick}>CLOSE</button>
         </div>
       </div>
     </div>

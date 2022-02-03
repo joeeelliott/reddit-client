@@ -12,7 +12,7 @@ const Hide = ({ id, hidden, postType }) => {
   }
 
   return (
-    <div className={hidden ? "post_hide-container-clicked" : "post_hide-container"} onClick={handleClick}>
+    <button className={hidden ? "post_hide-container-clicked" : "post_hide-container"} onClick={handleClick}>
       <div className="post_hide-icon-container">
         <FontAwesomeIcon 
           aria-hidden="true"
@@ -23,7 +23,7 @@ const Hide = ({ id, hidden, postType }) => {
       </div>
 
       <p className="post_hide-text">{hidden ? 'Hidden' : 'Hide'}</p>
-    </div>
+    </button>
   )
 }
 

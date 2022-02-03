@@ -9,22 +9,26 @@ const Save = ({ id, postType, saved }) => {
 
   const handleClick = (e) => {
     dispatch(savePost({ id, postType }));
+
+    console.log('working'); 
   }
 
   // below classes are dependant on state 'saved' so that the class doesn't reset when moving between Route paths. If only changed in the post iteration above, they dont save when changing tabs
   return (
-    <div className={saved ? 'post_save-container-clicked' : 'post_save-container'} onClick={handleClick}>
-      <div  className="post_save-icon-container">
-        <FontAwesomeIcon 
-          aria-hidden="true"
-          aria-label="Save this post"
-          className="post_save-icon" 
-          icon={['far', 'bookmark']} 
-        />
+    <button onClick={handleClick}>
+      <div className={saved ? 'post_save-container-clicked' : 'post_save-container'}>
+        <div className="post_save-icon-container">
+          <FontAwesomeIcon 
+            aria-hidden="true"
+            aria-label="Save this post"
+            className="post_save-icon" 
+            icon={['far', 'bookmark']} 
+          />
+        </div>
+                          
+        <p className="post_save-text">{saved ? 'Saved' : 'Save'}</p>
       </div>
-                        
-      <p className="post_save-text">{saved ? 'Saved' : 'Save'}</p>
-    </div>
+    </button>
   )
 }
 

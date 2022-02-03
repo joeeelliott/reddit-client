@@ -74,7 +74,7 @@ const SideNav = () => {
   }
 
   return (
-    <div id="sideNav" className="sideNav_sideNav" > 
+    <div id="sideNav" className="sideNav_sideNav"> 
       <form className={!sideNavState.toggleSideNav ?"sideNav_hide-form" : undefined}>
         <label className="sideNav_primary-label">Search: </label>
         <input className="sideNav_search-input" type="text" value={searchText} placeholder="Enter search term here..." onChange={handleChange} />
@@ -96,15 +96,17 @@ const SideNav = () => {
           <p className="sideNav_eye-icon-hover-text">Show hidden posts</p>
         </div>
         <div className="sideNav_eye-icon-container">
-          <FontAwesomeIcon 
-            aria-hidden="true"
-            aria-label="Restore any hidden posts back to the timeline"
-            className="sideNav_eye-icon" 
-            icon={['far', 'eye']} 
-            onMouseOver={handleEyeMouseOver} 
-            onMouseOut={handleEyeMouseOut} 
-            onClick={handleEyeClick} 
-          />
+          <button onClick={handleEyeClick}>
+            <FontAwesomeIcon 
+              aria-hidden="true"
+              aria-label="Restore any hidden posts back to the timeline"
+              className="sideNav_eye-icon" 
+              icon={['far', 'eye']} 
+              onMouseOver={handleEyeMouseOver} 
+              onMouseOut={handleEyeMouseOut} 
+              // onClick={handleEyeClick} 
+            />
+          </button>
         </div>            
       </div>
     </div>

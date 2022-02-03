@@ -135,6 +135,11 @@
   z-index: 1; 
 }
 
+.header_toggle-btn-container button {
+  border: none;     /*  new   */
+  background-color: inherit;    /*   new   */
+}
+
 .header_logo-title-container {
 
   width: 100%;
@@ -209,11 +214,13 @@
   margin: 0px 10px;
   height: 100%;
   line-height: 100%;
-  color: rgb(150, 150, 150);
+  /* color: rgb(150, 150, 150);  original */   
+  color: black;
 }
 
 .nav_link:hover {
-  color: black;
+  /* color: black;   original */
+  color: rgb(150, 150, 150);
 }
 
 
@@ -327,6 +334,11 @@
 .sideNav_eye-icon-container {
   display: flex;
   align-items: center;
+}
+
+.sideNav_eye-icon-container button {
+  border: none;
+  background-color: inherit;
 }
 
 .sideNav_eye-icon {
@@ -474,6 +486,12 @@
   padding: 10px 0px;
 }
 
+.post_score-container button {
+  border: none;
+  background-color: inherit;
+}
+
+
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px){
   .post_score-container {
@@ -619,6 +637,7 @@
 
 .post_api-data {
   color:rgb(150, 150, 150);
+  /* color: black;  */
   font-size: 0.8rem;
   text-align: center;
 }
@@ -741,6 +760,8 @@
   align-items: center;
   padding: 0px 4px;
   cursor: pointer;
+  border: none;
+  background-color: inherit;
 }
 
 .post_share-icon-container {
@@ -763,6 +784,13 @@
   margin-left: 25px;
   position: relative;
   padding: 0px 4px;
+  border: none;
+  background-color: inherit;
+}
+
+.post_ellipsis-container button {
+  border: none;
+  background-color: inherit;
 }
 
 .post_ellipsis-container:hover {
@@ -792,9 +820,12 @@
   height: 25px;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   cursor: pointer; 
   color: rgba(0, 0, 0, 0.5); 
   background-color: rgb(248, 248, 240); 
+  border: none;
 }
 
 .post_save-container-clicked, .post_hide-container-clicked, .post_report-container-clicked {
@@ -802,9 +833,12 @@
   height: 25px;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   cursor: pointer; 
   color: rgba(0, 0, 0, 0.5);
   background-color: rgba(144, 238, 144, 0.5); 
+  border: none;
 }
 
 /* S mobile -> L mobile  */
@@ -922,6 +956,11 @@
   cursor: pointer;
 }
 
+.post_img-container button {
+  border: none;
+  background-color: inherit;
+}
+
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px){
   .post_img-container {
@@ -1023,6 +1062,7 @@
   border: 1px solid grey;
   border-radius: 5px;
   margin: 10px 0px 5px 0px;
+  cursor: pointer; 
 }
 
 .post_report-modal-btn-container button:hover {
