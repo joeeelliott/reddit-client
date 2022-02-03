@@ -79,14 +79,17 @@ const Header = () => {
   return (
     <div className="header_header">
       <div className="header_toggle-btn-container">
+        <button type="button" onClick={handleShowSideNavClick}>
         <FontAwesomeIcon 
           aria-hidden="true" 
           aria-label="Toggle the side navigation menu open and closed" 
           icon="search" 
-          className="header_search-icon header_font-awesome-icon" 
-          onClick={handleShowSideNavClick} 
+          className="header_search-icon header_font-awesome-icon"  
         />
+        </button>
       </div>
+
+      <SideNav />
 
       <div className="header_toggle-and-title-container">
         <div className="header_logo-title-container">
@@ -110,8 +113,6 @@ const Header = () => {
       <div className="header_nav-container">
         <Nav />
       </div>
-
-      <SideNav />
     </div>
   )
 }

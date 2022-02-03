@@ -35,11 +35,9 @@ const TopRow = ({ author, created, permalink, id }) => {
         <p className="post_api-data">Posted by <span className="strong">{author}</span></p>
         <p className="post_api-data">{convertUnixTimeStamp(created)}</p>
       </div>
-      <div className="post_link-btn" onClick={handleClick}>
-        {/* <a href={permalink} target="_blank" rel="noreferrer noopener" className="post_permalink"> */}
-          <p className="post_link-btn-text"><strong>View post</strong></p>
-        {/* </a> */}
-      </div>
+      <button className="post_link-btn" onClick={handleClick}>
+        <p className="post_link-btn-text"><strong>View post</strong></p>
+      </button>
 
       <div className="post_link-modal-container-hidden">
         <div className="post_link-modal-content">
@@ -48,7 +46,13 @@ const TopRow = ({ author, created, permalink, id }) => {
           <p>By clicking <strong>yes</strong> you will be redirected to the official Reddit website to see the full post. If you click <strong>no</strong>, you will remain on this sample Reddit website.</p>
           <p>Do you wish to continue?</p>
           <div className="post_link-modal-btn-container">
-            <a href={permalink} target="_blank" rel="noreferrer noopener" className="post_permalink">
+            <a 
+              tabIndex="-1" 
+              href={permalink} 
+              target="_blank" 
+              rel="noreferrer noopener" 
+              className="post_permalink"
+            >
               <button onClick={handleBtnClick}>YES</button>
             </a>
             <button onClick={handleBtnClick}>NO</button>
