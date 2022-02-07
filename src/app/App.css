@@ -15,14 +15,14 @@
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px){
   .App {
-    font-size: 0.8rem;
+    /* font-size: 0.8rem; */
   }
 }
 
 /* mobile turned horizontally */
 @media only screen and (min-height: 0px) and (max-height: 370px){
   .App {
-    font-size: 0.8rem;
+    /* font-size: 0.8rem; */
   }
 }
 
@@ -223,6 +223,19 @@
   color: rgb(150, 150, 150);
 }
 
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .nav_link {
+    font-size: 0.9rem;
+  }
+}
+
+/* mobile turned horizontally */
+@media only screen and (min-height: 0px) and (max-height: 370px){
+  .nav_link {
+    font-size: 0.9rem;
+  }
+}
 
 
 
@@ -235,7 +248,7 @@
   height: calc(100vh - 80px);
   margin-top: 80px;
   z-index: -10; 
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   /* width: 170px; */
   width: 0px;
   overflow: hidden;
@@ -271,7 +284,7 @@
 }
 
 #sideNav input {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   margin: 0px 10px;
 }
 
@@ -286,7 +299,7 @@
 }
 
 .sideNav_specifics-filter-brackets {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-style: italic;
 }
 
@@ -316,14 +329,6 @@
   margin: 20px 10px; 
 }
 
-.sideNav_btn {
-  font-size: 0.7rem;
-  cursor: pointer;
-  border: 1px solid grey; 
-  border-radius: 20px;
-  padding: 5px 10px;
-}
-
 .sideNav_eye-text-container {
   margin-top: 30px;
   display: flex;
@@ -350,7 +355,7 @@
 }
 
 .sideNav_eye-icon-hover-text {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.5); 
   opacity: 0;
 }
@@ -507,6 +512,20 @@
   align-items: center;
 }
 
+/* S mobile -> L mobile  */
+@media only screen and (min-width: 0px) and (max-width: 767px){
+  .post_score {
+    font-size: 0.8rem;
+  }
+}
+
+/* mobile turned horizontally */
+@media only screen and (min-height: 0px) and (max-height: 370px){
+  .post_score {
+    font-size: 0.8rem;
+  }
+}
+
 .post_score-icon, .post_comments-icon, .post_share-icon, .post_ellipsis-icon {
   color:rgb(150, 150, 150);
   cursor: pointer; 
@@ -594,15 +613,15 @@
   }
 
   .post_link-modal-content h1 {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .post_link-modal-content p {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 
   .post_link-modal-content button {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -621,11 +640,11 @@
   }
 
   .post_link-modal-content p {
-    font-size: 0.4rem;
+    font-size: 0.8rem;
   }
 
   .post_link-modal-content button {
-    font-size: 0.5rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -645,14 +664,14 @@
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .post_api-data {
-    font-size: 0.6rem !important;
+    font-size: 0.8rem;
   }
 }
 
 /* mobile turned horizontally */
 @media only screen and (min-height: 0px) and (max-height: 370px) {
   .post_api-data {
-    font-size: 0.6rem !important;
+    font-size: 0.8rem;
   }
 }
 
@@ -691,14 +710,14 @@
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px){
   .post_link-btn-text {
-    font-size: 0.6rem !important;
+    font-size: 0.8rem;
   }
 }
 
 /* mobile turned horizontally */
 @media only screen and (min-height: 0px) and (max-height: 370px) {
   .post_link-btn-text {
-    font-size: 0.6rem !important;
+    font-size: 0.8rem;
   }
 }
 
@@ -733,7 +752,7 @@
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .post_title {
-    font-size: 0.8rem !important;
+    font-size: 0.9rem;
     padding-right: 5px;
   }
 }
@@ -742,7 +761,7 @@
 @media only screen and (min-height: 0px) and (max-height: 370px){
 
   .post_title {
-    font-size: 0.8rem !important;
+    font-size: 0.9rem;
   }
 }
 
@@ -929,22 +948,22 @@
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .post_save-icon, .post_hide-icon, .post_report-icon {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .post_save-text, .post_hide-text, .post_report-text {
-    font-size: 0.7rem; 
+    font-size: 0.8rem; 
   }
 }
 
 /* mobile turned horizontally */
 @media only screen and (min-height: 0px) and (max-height: 370px) {
   .post_save-icon, .post_hide-icon, .post_report-icon {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .post_save-text, .post_hide-text, .post_report-text {
-    font-size: 0.7rem; 
+    font-size: 0.8rem; 
   }
 }
 
@@ -1077,15 +1096,15 @@
   }
 
   .post_report-modal-content h1 {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .post_report-modal-content p {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 
   .post_report-modal-btn-container button {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -1101,15 +1120,15 @@
   }
 
   .post_report-modal-content h1 {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .post_report-modal-content p {
-    font-size: 0.4rem;
+    font-size: 0.8rem;
   }
 
   .post_report-modal-btn-container button {
-    font-size: 0.5rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -1142,10 +1161,10 @@
 /* S mobile -> L mobile  */
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .footer h1 {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 
   .footer p {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 }
