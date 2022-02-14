@@ -1,11 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'; 
+import { configureStore } from '@reduxjs/toolkit';
 
-import sideNavSlice from '../features/sideNavSlice'; 
-import postSlice from '../features/postSlice'; 
+import sideNavReducer from '../features/sideNavSlice'; 
+import postReducer from '../features/postSlice'; 
 
 export const store = configureStore({
   reducer: {
-    sideNav: sideNavSlice,
-    posts: postSlice,
+    sideNav: sideNavReducer,
+    posts: postReducer,
   }
 });

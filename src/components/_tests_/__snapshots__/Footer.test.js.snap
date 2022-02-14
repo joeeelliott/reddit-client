@@ -1,3 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer Component renders in as expected; matches snapshot 1`] = `ShallowWrapper {}`;
+exports[`Footer Component matches snapshot 1`] = `
+<div
+  className="footer"
+  data-testid="footer"
+>
+  <h1>
+    Joe Elliott
+  </h1>
+  <p>
+    ©
+  </p>
+</div>
+`;

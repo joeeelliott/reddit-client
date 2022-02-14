@@ -2,15 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { useLocation } from 'react-router-dom';
 
-import { selectInitialState, postsFilterClicked, specificsFilterClicked } from '../features/postSlice';
+import { postsFilterClicked, specificsFilterClicked, selectSpecificsFilter, selectPostFiltersArr } from '../features/postSlice';
 
 const PostFilters = () => {
   const dispatch = useDispatch(); 
   const location = useLocation(); 
 
-  const initialState = useSelector(selectInitialState);
-  const specificsFilter = initialState.posts.specificFilter;
-  const filters = initialState.posts.postFiltersArr; 
+  const specificsFilter = useSelector(selectSpecificsFilter);
+  const filters = useSelector(selectPostFiltersArr) || []; // empty array for test purposes to prevent filters being undefined
   const path = location.pathname; 
 
   let keyCount = -1;

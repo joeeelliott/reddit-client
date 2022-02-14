@@ -1,17 +1,36 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { render as rtlRender, screen, fireEvent, cleanup } from '@testing-library/react'; 
 
-import Header from '../Header'; 
-import { store } from '../../app/store';
+// local render()
+// import { Provider } from 'react-redux';
+// import { BrowserRouter } from 'react-router-dom';
+// import { render as rtlRender, screen, fireEvent, cleanup } from '@testing-library/react';  
+// import { store } from '../../app/store';
+
+// test-utils
+import { render, fireEvent, screen, cleanup } from '../../../utilities/test-utils';
+
+// regular render 
+// import { render, screen, fireEvent, cleanup } from '@testing-library/react'; 
+
+// YouTube vid: https://www.youtube.com/watch?v=rRFNRhUbMag
 
 
-// @testing-library/react
-const render = component => rtlRender(
-  <Provider store={store}>   
-    {component}
-  </Provider>
-);
+import Header from '../Header';
+
+// redux-mock-store
+// import configureStore from 'redux-mock-store';
+// const middlewares = []
+// const mockStore = configureStore(middlewares)
+
+
+// const render = component => rtlRender(
+//   <Provider store={store}>  
+//     <BrowserRouter>
+//       {component}
+//     </BrowserRouter>
+//   </Provider>
+// );
+
 
 describe('Header Component', () => {  
   let component;
@@ -20,33 +39,36 @@ describe('Header Component', () => {
     component = render(<Header />)
   });
 
-  // afterEach(cleanup);
-  
-  // it('logs the component to the console', () => {
-  // component.debug();
-  // })
+  afterEach(cleanup);
 
-  // it('logs specific part of component to the console', () => {
-  // component.debug(document.querySelector(''));
-  // })
-
-  it('renders as expected; matches snapshot', () => {
-    expect(screen).toMatchSnapshot();
-    expect(component).toMatchSnapshot();
+  it('renders without crashing', () => {
+    render(<Header />);
+    screen.debug(undefined, 300000);
   });
 
-  // SideNav snapshots included here as it requires the search icon to be clicked which is in the Header component, not the SideNav. 
-  it('SideNav appears on screen as expected when search icon clicked', () => {
-    fireEvent.click(component.getByTestId('search-icon'));
+  it('title renders "Reddit"', () => {
+    const { getByText } = component; 
+    const title = getByText('Reddit');
+    expect(title).toBeInTheDocument();
+  });
 
-    expect(screen).toMatchSnapshot();
-    expect(component).toMatchSnapshot();
-  }); 
+  // it('renders as expected; matches snapshot', () => {
+  //   expect(screen).toMatchSnapshot();
+  //   expect(component).toMatchSnapshot();
+  // });
 
-  it('SideNav appears off screen as expected when search icon clicked a second time', () => {
-    fireEvent.click(component.getByTestId('search-icon'));
+  // // SideNav snapshots included here as it requires the search icon to be clicked which is in the Header component, not the SideNav. 
+  // it('SideNav appears on screen as expected when search icon clicked', () => {
+  //   fireEvent.click(component.getByTestId('search-icon'));
 
-    expect(screen).toMatchSnapshot();
-    expect(component).toMatchSnapshot();
-  }); 
+  //   expect(screen).toMatchSnapshot();
+  //   expect(component).toMatchSnapshot();
+  // }); 
+
+  // it('SideNav appears off screen as expected when search icon clicked a second time', () => {
+  //   fireEvent.click(component.getByTestId('search-icon'));
+
+  //   expect(screen).toMatchSnapshot();
+  //   expect(component).toMatchSnapshot();
+  // }); 
 });

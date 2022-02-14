@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector, useDispatch } from 'react-redux'; 
 
-import { selectShowSideNav } from '../features/sideNavSlice';
-import { selectInitialPostsState, searchPosts, userSearch, userNoSearch, showPosts, searchedPostsFound } from '../features/postSlice';
+// import { selectShowSideNav } from '../features/sideNavSlice';
+import { selectInitialPostsState, searchPosts, userSearch, userNoSearch, showPosts, searchedPostsFound, selectIsSearching, selectSearch, selectToggleSideNav } from '../features/postSlice';
 
 import PostFilters from './PostFilters'; 
 import SpecificsFilters from './SpecificsFilters'; 
@@ -12,9 +12,10 @@ const SideNav = () => {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState(""); 
 
-  const sideNavState = useSelector(selectShowSideNav);
   const postState = useSelector(selectInitialPostsState);
-  const isSearching = postState.isSearching; 
+  const isSearching = useSelector(selectIsSearching);
+  const search = useSelector(selectSearch);
+  const toggleSideNav = useSelector(selectToggleSideNav); 
   
   const handleEyeMouseOver = (e) => {
     document.getElementsByClassName('sideNav_eye-icon-hover-text')[0].classList.add('sideNav_eye-icon-hover-text-show');    // executes animation 
@@ -55,8 +56,6 @@ const SideNav = () => {
       dispatch(searchedPostsFound({ ids: undefined, text: searchText }));   // reset searchedPosts state array 
     }
   }, [dispatch, searchText, isSearching]);
-
-  const search = postState.searchText;
   
   useEffect(() => {
     if(isSearching){
@@ -75,7 +74,7 @@ const SideNav = () => {
 
   return (
     <div id="sideNav" className="sideNav_sideNav"> 
-      <form className={!sideNavState.toggleSideNav ?"sideNav_hide-form" : undefined}>
+      <form className={!toggleSideNav ?"sideNav_hide-form" : undefined}>
         <label className="sideNav_primary-label">Search: </label>
         <input className="sideNav_search-input" type="text" value={searchText} placeholder="Enter search term here..." onChange={handleChange} />
           

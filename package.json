@@ -19,16 +19,18 @@
     "react-scripts": "4.0.3",
     "redux-promise-middleware": "^6.1.2",
     "redux-thunk": "^2.3.0",
+    "regenerator-runtime": "^0.13.9",
     "seamless-immutable": "^7.1.4",
     "web-vitals": "^1.1.2"
   },
   "jest": {
-    "resetMocks": false
+    "resetMocks": false,
+    "setupFilesAfterEnv": ["./src/setupTests.js"] 
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -611,15 +611,18 @@ export const { ellipsisToggle, savePost, hidePost, showPosts, reportPost, toggle
 
 export const selectInitialState = state => state; 
 export const selectInitialPostsState = state => state.posts; 
-
+export const selectIsSearching = state => state.posts.isSearching;
+export const selectSearch = state => state.posts.searchText;
+export const selectToggleSideNav = state => state.sideNav.toggleSideNav;
+export const selectPostFiltersArr = state => state.posts.postFiltersArr;
+export const selectSpecificFiltersArr = state => state.posts.specificsFiltersArr
+export const selectSpecificsFilter = state => state.posts.specificFilter; 
 export const selectPopularPost = state => state.posts.popularPosts;
 export const selectSportPost = state => state.posts.sportPosts;
 export const selectNewsPost = state => state.posts.newsPosts;
 export const selectSavedPost = state => state.posts.savedPosts;
 export const selectSearchedPost = state => state.posts.searchedPosts;
-
 export const selectDataIsLoading = state => state.posts.dataLoading;
-
 export const selectPopularPostsIsLoading = state => state.posts.fetchPopularIsLoading; 
 export const selectSportPostsIsLoading = state => state.posts.fetchSportIsLoading; 
 export const selectNewsPostsIsLoading = state => state.posts.fetchNewsIsLoading;
