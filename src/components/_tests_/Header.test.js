@@ -1,52 +1,47 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { render as rtlRender, screen, fireEvent, cleanup } from '@testing-library/react'; 
+import '@testing-library/jest-dom/extend-expect';
+// test-utils
+import { render, fireEvent, screen, cleanup } from '../../../utilities/test-utils';
 
-import Header from '../Header'; 
-import { store } from '../../app/store';
-
-
-// @testing-library/react
-const render = component => rtlRender(
-  <Provider store={store}>   
-    {component}
-  </Provider>
-);
+import Header from '../Header';
 
 describe('Header Component', () => {  
   let component;
 
   beforeEach(() => {
-    component = render(<Header />)
+    component = render(<Header />);
   });
 
-  // afterEach(cleanup);
-  
-  // it('logs the component to the console', () => {
-  // component.debug();
-  // })
+  afterEach(cleanup);
 
-  // it('logs specific part of component to the console', () => {
-  // component.debug(document.querySelector(''));
-  // })
+  it('renders without crashing', () => {
+    render(<Header />);
+    // screen.debug(undefined, 300000);
+  });
+
+  it('title renders "Reddit"', () => {
+    const { getByText } = component; 
+    const title = getByText('Reddit');
+    expect(title).toBeInTheDocument();
+  });
+
+  it('renders all Navigation tab text', () => {
+    const { getByText } = component; 
+    const popular = getByText('Popular');
+    const sport = getByText('Sport');
+    const news = getByText('News');
+    expect(popular).toBeInTheDocument();
+    expect(sport).toBeInTheDocument();
+    expect(news).toBeInTheDocument();
+  });
+
+  it('renders searchBtn', () => {
+    const { getByRole } = component; 
+    const btn = getByRole('button', {name: 'Toggle the side navigation menu open and closed'});
+    expect(btn).toBeInTheDocument();
+  });
 
   it('renders as expected; matches snapshot', () => {
     expect(screen).toMatchSnapshot();
-    expect(component).toMatchSnapshot();
   });
-
-  // SideNav snapshots included here as it requires the search icon to be clicked which is in the Header component, not the SideNav. 
-  it('SideNav appears on screen as expected when search icon clicked', () => {
-    fireEvent.click(component.getByTestId('search-icon'));
-
-    expect(screen).toMatchSnapshot();
-    expect(component).toMatchSnapshot();
-  }); 
-
-  it('SideNav appears off screen as expected when search icon clicked a second time', () => {
-    fireEvent.click(component.getByTestId('search-icon'));
-
-    expect(screen).toMatchSnapshot();
-    expect(component).toMatchSnapshot();
-  }); 
 });

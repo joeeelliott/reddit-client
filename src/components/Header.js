@@ -6,12 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import SideNav from './SideNav'; 
 import Nav from './Nav'; 
-import { selectShowSideNav, showSideNav } from '../features/sideNavSlice';
-import { selectInitialPostsState, userNoSearch, userNoFilter } from '../features/postSlice';
+import { showSideNav } from '../features/sideNavSlice';
+import { selectInitialPostsState, userNoSearch, userNoFilter, selectToggleSideNav } from '../features/postSlice';
 
 const Header = () => {
-  const sideNavState = useSelector(selectShowSideNav);
+  // const sideNavState = useSelector(selectShowSideNav);
   const postState = useSelector(selectInitialPostsState); 
+  const toggleSideNav = useSelector(selectToggleSideNav)
+
   const dispatch = useDispatch();
 
   // if sidenav is open, add event listener to document that when anywhere other than sidenav or search icon is clicked, it executes sideNavDocumentEventListener. Only executes on change of toggleSideNav. 
@@ -19,7 +21,7 @@ const Header = () => {
     const searchIcon = document.getElementsByClassName('header_search-icon');   // access icon
     const sidenav = document.getElementById('sideNav'); 
 
-    if(sideNavState.toggleSideNav){  // if toggle true - sidenav open
+    if(toggleSideNav){  // if toggle true - sidenav open
       searchIcon[0].classList.add('header_search-icon-rotate'); // add rotation to icon
       document.addEventListener('mouseup', sideNavDocumentEventListener); // add listener to document
       sidenav.classList.add('sideNav_show-nav'); 
@@ -80,7 +82,7 @@ const Header = () => {
     <div className="header_header">
       <div className="header_toggle-btn-container">
         <button 
-          type="button" 
+          type="button"
           onClick={handleShowSideNavClick}
           aria-label="Toggle the side navigation menu open and closed"
         >

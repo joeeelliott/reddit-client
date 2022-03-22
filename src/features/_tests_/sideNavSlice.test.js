@@ -9,8 +9,6 @@ import { Reducer } from 'redux-testkit';
 
 const initialState = {
   toggleSideNav: false,
-  sideNavIconClicked: false,
-  sideNavHidden: true,
 };
 
 describe('sideNavSlice tests', () => {
@@ -24,19 +22,8 @@ describe('sideNavSlice tests', () => {
       expect(reducer(previousState, showSideNav())).toEqual(
         {
           toggleSideNav: true,
-          sideNavIconClicked: false,
-          sideNavHidden: true,
         }
       )
     });
-  });
-
-  const emptyState = Immutable({
-    toggleSideNav: false,
-    sideNavIconClicked: false,
-    sideNavHidden: true,
-  });
-  
-  describe('selectors', () => {
   });
 });
