@@ -12,20 +12,6 @@
   justify-content: space-between; 
 }
 
-/* S mobile -> L mobile  */
-@media only screen and (min-width: 0px) and (max-width: 767px){
-  .App {
-    /* font-size: 0.8rem; */
-  }
-}
-
-/* mobile turned horizontally */
-@media only screen and (min-height: 0px) and (max-height: 370px){
-  .App {
-    /* font-size: 0.8rem; */
-  }
-}
-
 .App_loading-wrapper {
   height: 100%;
   width: 100%;

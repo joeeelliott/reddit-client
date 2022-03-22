@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector, useDispatch } from 'react-redux'; 
 
-// import { selectShowSideNav } from '../features/sideNavSlice';
 import { selectInitialPostsState, searchPosts, userSearch, userNoSearch, showPosts, searchedPostsFound, selectIsSearching, selectSearch, selectToggleSideNav } from '../features/postSlice';
 
 import PostFilters from './PostFilters'; 
@@ -73,10 +72,10 @@ const SideNav = () => {
   }
 
   return (
-    <div id="sideNav" className="sideNav_sideNav"> 
-      <form className={!toggleSideNav ?"sideNav_hide-form" : undefined}>
-        <label className="sideNav_primary-label">Search: </label>
-        <input className="sideNav_search-input" type="text" value={searchText} placeholder="Enter search term here..." onChange={handleChange} />
+    <div data-testid="sideNav-test" id="sideNav" className="sideNav_sideNav"> 
+      <form className={!toggleSideNav ? "sideNav_hide-form" : undefined}>
+        <label className="sideNav_primary-label" htmlFor="search">Search: </label>
+        <input id="search" className="sideNav_search-input" type="text" value={searchText} placeholder="Enter search term here..." onChange={handleChange} />
           
         <label className="sideNav_primary-label">Filter By: </label>
 

@@ -9,7 +9,8 @@ const PostFilters = () => {
   const location = useLocation(); 
 
   const specificsFilter = useSelector(selectSpecificsFilter);
-  const filters = useSelector(selectPostFiltersArr) || []; // empty array for test purposes to prevent filters being undefined
+  const filters = useSelector(selectPostFiltersArr) || [];  // empty array for test purposes to prevent filters being undefined
+
   const path = location.pathname; 
 
   let keyCount = -1;

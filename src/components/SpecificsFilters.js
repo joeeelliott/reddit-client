@@ -20,7 +20,7 @@ const SpecificsFilters = () => {
   return ( 
     filters.map(filter => {
       return (
-        <div data-testid="specFilter" className="sideNav_filters-container" key={keyCount++}>
+        <div className="sideNav_filters-container" key={keyCount++}>
           <input type="checkbox" className={filter.checked ? "sideNav_filters-checkbox-checked" : "sideNav_filters-checkbox"} name="specifics" value={`${filter.filter} ${filter.order}`} onClick={handleClick} />
           <label><span className="sideNav_specifics-filter-title">{filter.filter}</span> <span className="sideNav_specifics-filter-brackets">{filter.order}</span></label>
         </div>

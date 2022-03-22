@@ -10,24 +10,13 @@ import Ellipsis from './Ellipsis';
 import Image from './Image'; 
 import ReportModal from './ReportModal';
 
-import { selectInitialState } from '../features/postSlice';
+import { selectFilterMode, selectPostFilter } from '../features/postSlice';
+
 const Post = ({ id, score, author, created, title, numComments, saved, thumbnail, permalink, posts, postType, scoredUp, scoredDown, hidden, reported, imgClicked }) => {
 
-  const initialState = useSelector(selectInitialState);
-  const filterMode = initialState.posts.filterMode; 
-  const filter = initialState.posts.postFilter.toLowerCase(); 
-
-  const classNameIs = (hidden, filterMode, filter, postType) => {
-    if(hidden && !filterMode){  // if hidden and filterMode is OFF 
-      return "post_outer-container-hide";
-    } else if(hidden && filterMode && filter === postType){  // if hidden, and filterMode is ON, and user filters to the post type (e.g. popular) that the post belongs to, it doesn't appear on screen.
-      return "post_outer-container-hide";
-    } else if(hidden && filterMode && filter === 'all'){   // if hidden, and filterMode is ON, and user filters to All posts, the post doesn't appear on screen
-      return "post_outer-container-hide";
-    } else {  // else the post appears on screen
-      return "post_outer-container"; 
-    }
-  }
+  const filterMode = useSelector(selectFilterMode);
+  const selectFilter = useSelector(selectPostFilter);
+  const filter = selectFilter && selectFilter.toLowerCase();  // all / popular / sport / news. Only defined when any of these filters are clicked on in sideNav.
   
   return (
     <div className={classNameIs(hidden, filterMode, filter, postType)} id={id}>
@@ -52,6 +41,18 @@ const Post = ({ id, score, author, created, title, numComments, saved, thumbnail
       {reported && <ReportModal reported={reported} />}
     </div>
   )
+}
+
+export const classNameIs = (hidden, filterMode, filter, postType) => {
+  if(hidden && !filterMode){  // if hidden and filterMode is OFF 
+    return "post_outer-container-hide";
+  } else if(hidden && filterMode && filter === postType){  // if hidden, and filterMode is ON, and user filters to the post type (e.g. popular) that the post belongs to, it doesn't appear on screen.
+    return "post_outer-container-hide";
+  } else if(hidden && filterMode && filter === 'all'){   // if hidden, and filterMode is ON, and user filters to All posts, the post doesn't appear on screen
+    return "post_outer-container-hide";
+  } else {  // else the post appears on screen
+    return "post_outer-container"; 
+  }
 }
 
 export default Post;

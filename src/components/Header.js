@@ -83,7 +83,6 @@ const Header = () => {
       <div className="header_toggle-btn-container">
         <button 
           type="button"
-          name="searchBtn" 
           onClick={handleShowSideNavClick}
           aria-label="Toggle the side navigation menu open and closed"
         >

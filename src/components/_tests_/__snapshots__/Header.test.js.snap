@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer Component matches snapshot 1`] = `
+exports[`Header Component renders as expected; matches snapshot 1`] = `
 Object {
   "debug": [Function],
   "findAllByAltText": [Function],

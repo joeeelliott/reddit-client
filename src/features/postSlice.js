@@ -10,6 +10,7 @@ export const fetchPopularPosts = createAsyncThunk(
       const response = await fetch('https://www.reddit.com/r/popular.json?limit=10');
 
       const json = await response.json();
+      // console.log(json.data.children[2].data)
       // console.log(json.data.children[0].data.permalink)
 
       return json.data.children;
@@ -27,6 +28,7 @@ export const fetchSportPosts = createAsyncThunk(
       const response = await fetch('https://www.reddit.com/search.json?q=sport%20&limit=10');
 
       const json = await response.json();
+      // console.log(json.data.children[9].data)
       // console.log(json.data.children[0].data)
       // console.log('fetching sport data complete);
       return json.data.children;
@@ -614,6 +616,8 @@ export const selectInitialPostsState = state => state.posts;
 export const selectIsSearching = state => state.posts.isSearching;
 export const selectSearch = state => state.posts.searchText;
 export const selectToggleSideNav = state => state.sideNav.toggleSideNav;
+export const selectFilterMode = state => state.posts.filterMode;
+export const selectPostFilter = state => state.posts.postFilter;
 export const selectPostFiltersArr = state => state.posts.postFiltersArr;
 export const selectSpecificFiltersArr = state => state.posts.specificsFiltersArr
 export const selectSpecificsFilter = state => state.posts.specificFilter; 

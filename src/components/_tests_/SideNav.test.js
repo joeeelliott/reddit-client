@@ -1,36 +1,34 @@
 import React from 'react';
-// import { Provider } from 'react-redux';
-// import { render as rtlRender, screen, fireEvent, cleanup } from '@testing-library/react'; 
-// import { store } from '../../app/store';
-
 import { render, cleanup, screen } from '../../../utilities/test-utils';
-
 import SideNav from '../SideNav'; 
-
-// const render = component => rtlRender(
-//   <Provider store={store}>   
-//     {component}
-//   </Provider>
-// );
 
 describe('SideNav Component', () => {
 
-  // let component;
-  // beforeEach(() => {
-  //   component = render(<SideNav />);
-  // });
+  let component;
+  beforeEach(() => {
+    component = render(<SideNav />);
+  });
 
   afterEach(cleanup); 
 
   it('renders without crashing', () => {   
     render(<SideNav />);
-    screen.debug(undefined, 300000)
+    // screen.debug(undefined, 300000)
   });
 
-  // it('renders as expected; matches snapshot', () => {       
-  //   expect(screen).toMatchSnapshot();
-  //   expect(component).toMatchSnapshot();
-  // });
+  it('renders sideNav search label', () => {
+    const search = screen.getByLabelText('Search:');
+    expect(search).toBeInTheDocument(); 
+  });
+
+  it('renders sideNav search placeholder', () => {
+    const placeholder = component.getByPlaceholderText('Enter search term here...');
+    expect(placeholder).toBeInTheDocument(); 
+  });
+
+  it('matches snapshot', () => {       
+    expect(screen).toMatchSnapshot();
+  });
 
   // can unit test my input fields/confirm button etc. here
 });

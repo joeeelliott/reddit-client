@@ -9,8 +9,6 @@ const Save = ({ id, postType, saved }) => {
 
   const handleClick = (e) => {
     dispatch(savePost({ id, postType }));
-
-    console.log('working'); 
   }
 
   // below classes are dependant on state 'saved' so that the class doesn't reset when moving between Route paths. If only changed in the post iteration above, they dont save when changing tabs
