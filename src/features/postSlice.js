@@ -11,7 +11,7 @@ export const fetchPopularPosts = createAsyncThunk(
 
       const json = await response.json();
       // console.log(json.data.children[2].data)
-      // console.log(json.data.children[0].data.permalink)
+      // console.log(json.data.children[0].data.created)
 
       return json.data.children;
     } catch (error) {
@@ -30,7 +30,8 @@ export const fetchSportPosts = createAsyncThunk(
       const json = await response.json();
       // console.log(json.data.children[9].data)
       // console.log(json.data.children[0].data)
-      // console.log('fetching sport data complete);
+      // console.log(json.data.children[0].data.created)
+
       return json.data.children;
     } catch (error) {
       console.log(error)
@@ -47,7 +48,7 @@ export const fetchNewsPosts = createAsyncThunk(
 
       const json = await response.json();
       // console.log(json.data.children[0].data) 
-      // console.log('fetching news data complete);
+      // console.log(json.data.children[1].data.created)
       return json.data.children;
     } catch (error) {
       console.log(error)
