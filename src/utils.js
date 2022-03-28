@@ -32,6 +32,7 @@ export const setPostsArr = (posts, state) => {
 }
 
 export const scoreFunc = (post, id, scored) => {
+
   if(post.id === id){
     if(!post.scoredUp && !post.scoredDown){
       if(scored === 'up'){
@@ -112,8 +113,7 @@ export const convertUnixTimeStamp = (timeStamp) => {
 }
 
 // determines correct state array to be sorted (dependant on filter) and returns the sorted array
-export const sortSpecificsFilter = (state, specificsFilter, postFilter, route) => {
-  
+export const sortSpecificsFilter = (state, specificsFilter, postFilter, route) => {  
   if(postFilter){     // if there is a postFilter clicked
     const stateFilter = postFilter.toLowerCase(); 
     const correctArr = state[`${stateFilter}Posts`];  // returns the related state. i.e. if postFilter === 'All' (user clicked All filter), correctFilter = state[allPosts], which is equal to state.allPosts.
@@ -148,6 +148,7 @@ export const sortSpecificsFilter = (state, specificsFilter, postFilter, route) =
       miniSortArr(state, specificsFilter);   // return sorted arr based on spec filter
     }
   }
+  return state; 
 }
 
 // returns a sorted array dependant on filter passed in
@@ -185,4 +186,6 @@ export const miniSortArr = (state, specificsFilter) => {
       return a.numComments - b.numComments; 
     });   // sorted to lowest num of comments first
   }
+
+  return state;
 }

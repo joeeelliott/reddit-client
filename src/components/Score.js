@@ -5,6 +5,7 @@ import { abbrNum } from '../utils';
 import { scorePost } from '../features/postSlice';
 
 const Score = ({ id, postType, score, scoredUp, scoredDown }) => {
+
   const dispatch = useDispatch(); 
 
   const handleClick = (e) => {

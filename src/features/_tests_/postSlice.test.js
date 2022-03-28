@@ -2,14 +2,9 @@ import reducer from '../postSlice';
 // import fetchMock from 'jest-fetch-mock';
 
 describe('postSlice.js', () => {
-
   let result; 
   let mockInitialState; 
   let fetchPromise;
-  // let fetchPopularPromise; 
-  // let fetchTrendingPromise;
-  // let fetchSportPromise;
-  // let fetchNewsPromise;
 
   beforeEach( async () => {
     mockInitialState = {
