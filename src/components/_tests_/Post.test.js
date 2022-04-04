@@ -2,10 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 
 // test-utils
-import { render, fireEvent, screen, cleanup } from '../../../utilities/test-utils';
-
-import { fetchPopularPosts } from '../../features/postSlice';
-
+import { render, cleanup } from '../../../utilities/test-utils';
 
 import Post, { classNameIs } from '../Post';
 

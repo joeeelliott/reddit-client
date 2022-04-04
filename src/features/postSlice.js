@@ -473,6 +473,8 @@ const postSlice = createSlice({
 
       state.popularHasError = false;
 
+      action.payload ?
+
       action.payload.forEach(post => {
         state.allPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, permalink: `https://www.reddit.com${post.data.permalink}`, url: post.data.url, thumbnail: {
           url: post.data.thumbnail,
@@ -503,7 +505,9 @@ const postSlice = createSlice({
         imgClicked: false, 
         inSearch: false,
         });
-      });
+      })
+      :
+      state.popularHasError = true;
       // console.log(current(state))
       // console.log(action.payload)
     },      
@@ -531,6 +535,8 @@ const postSlice = createSlice({
 
       state.sportHasError = false;
 
+      action.payload ? 
+
       action.payload.forEach(post => {
         state.allPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, permalink: `https://www.reddit.com${post.data.permalink}`, url: post.data.url, thumbnail: {
           url: post.data.thumbnail,
@@ -549,7 +555,9 @@ const postSlice = createSlice({
         media: post.data.media, mediaEmbed: post.data.media_embed, saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false, postType: 'sport', imgClicked: false, 
         inSearch: false,
         });
-      });
+      })
+      :
+      state.sportHasError = true;
 
       // console.log(current(state))
     },
@@ -577,6 +585,8 @@ const postSlice = createSlice({
 
       state.newsHasError = false;
 
+      action.payload ?
+
       action.payload.forEach(post => {
         state.allPosts.push({ id: post.data.id, author: post.data.author, title: post.data.title, score: post.data.score, created: post.data.created_utc, numComments: post.data.num_comments, permalink: `https://www.reddit.com${post.data.permalink}`, url: post.data.url, thumbnail: {
           url: post.data.thumbnail,
@@ -595,7 +605,8 @@ const postSlice = createSlice({
         saved: false, hidden: false, reported: false, scored: false, scoredUp: false, scoredDown: false, postType: 'news', imgClicked: false, 
         inSearch: false,
         });
-      });
+      })
+      : state.newsHasError = true;
 
       // console.log(current(state))
     },
@@ -625,11 +636,20 @@ export const selectSpecificsFilter = state => state.posts.specificFilter;
 export const selectPopularPost = state => state.posts.popularPosts;
 export const selectSportPost = state => state.posts.sportPosts;
 export const selectNewsPost = state => state.posts.newsPosts;
+export const selectAllPosts = state => state.posts.allPosts;
 export const selectSavedPost = state => state.posts.savedPosts;
 export const selectSearchedPost = state => state.posts.searchedPosts;
 export const selectDataIsLoading = state => state.posts.dataLoading;
 export const selectPopularPostsIsLoading = state => state.posts.fetchPopularIsLoading; 
 export const selectSportPostsIsLoading = state => state.posts.fetchSportIsLoading; 
 export const selectNewsPostsIsLoading = state => state.posts.fetchNewsIsLoading;
+export const selectPopularHasError = state => state.posts.popularHasError; 
+export const selectSportHasError = state => state.posts.sportHasError; 
+export const selectNewsHasError = state => state.posts.newsHasError; 
+export const selectSearchedPostsFound = state => state.posts.searchedPostsFound;
+export const selectUserSearching = state => state.posts.isSearching;
+export const selectUserFiltering = state => state.posts.filterMode;
+export const selectReportedPosts = state => state.posts.reportedPosts;
+export const selectHiddenPosts = state => state.posts.hiddenPosts;
 
 export default postSlice.reducer; 

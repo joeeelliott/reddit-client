@@ -1,5 +1,4 @@
 import reducer from '../postSlice';
-// import fetchMock from 'jest-fetch-mock';
 
 describe('postSlice.js', () => {
   let result; 
@@ -269,6 +268,4 @@ describe('postSlice.js', () => {
     expect(fetchPromiseReject).toHaveBeenCalledTimes(1); 
     expect.assertions(2); 
   });  
-
-  
 });

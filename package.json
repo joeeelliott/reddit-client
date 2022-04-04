@@ -21,7 +21,8 @@
     "redux-thunk": "^2.3.0",
     "regenerator-runtime": "^0.13.9",
     "seamless-immutable": "^7.1.4",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "whatwg-fetch": "^3.6.2"
   },
   "jest": {
     "resetMocks": false,
@@ -65,6 +66,7 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "babel-jest": "^26.6.3",
     "enzyme": "^3.11.0",
+    "msw": "^0.39.2",
     "react-test-renderer": "^17.0.2",
     "redux-mock-store": "^1.5.4",
     "redux-testkit": "^1.0.6"

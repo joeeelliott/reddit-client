@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; 
 
-import { selectPopularPost, selectSportPost, selectNewsPost, fetchPopularPosts, fetchSportPosts, fetchNewsPosts, selectDataIsLoading, selectInitialState, toggleEllipsis, closeAllImgModals, numOfPostsToState } from '../features/postSlice'; 
+import { selectPopularPost, selectSportPost, selectNewsPost, fetchPopularPosts, fetchSportPosts, fetchNewsPosts, selectDataIsLoading, selectInitialState, toggleEllipsis, closeAllImgModals, numOfPostsToState, selectPopularHasError, selectSportHasError, selectNewsHasError, selectSearchedPostsFound, selectUserSearching, selectUserFiltering, selectPostFilter, selectSpecificsFilter, selectReportedPosts, selectHiddenPosts, selectSavedPost, selectSearchedPost, selectAllPosts } from '../features/postSlice'; 
 
 import Post from './Post'; 
 
@@ -12,22 +12,23 @@ const Posts = () => {
   const popularPosts = useSelector(selectPopularPost);
   const sportPosts = useSelector(selectSportPost);
   const newsPosts = useSelector(selectNewsPost);
+  const allPosts = useSelector(selectAllPosts); 
   const initialState = useSelector(selectInitialState); 
 
-  const popularError = initialState.posts.popularHasError;
-  const sportError = initialState.posts.sportHasError;
-  const newsError = initialState.posts.newsHasError;
+  const popularError = useSelector(selectPopularHasError);
+  const sportError = useSelector(selectSportHasError)
+  const newsError = useSelector(selectNewsHasError)
 
-  const searchedPostsFound = initialState.posts.searchedPostsFound; 
-  const userSearching = initialState.posts.isSearching;
-  const userFiltering = initialState.posts.filterMode; 
-  const postFilter = initialState.posts.postFilter; 
-  const specificFilter = initialState.posts.specificFilter; 
+  const searchedPostsFound = useSelector(selectSearchedPostsFound);
+  const userSearching = useSelector(selectUserSearching);
+  const userFiltering = useSelector(selectUserFiltering);
+  const postFilter = useSelector(selectPostFilter);
+  const specificFilter = useSelector(selectSpecificsFilter) ;
 
-  let reportedPosts = initialState.posts.reportedPosts; 
-  let hiddenPosts = initialState.posts.hiddenPosts; 
-  let savedPosts = initialState.posts.savedPosts; 
-  let searchedPosts = initialState.posts.searchedPosts;
+  let reportedPosts = useSelector(selectReportedPosts); 
+  let hiddenPosts = useSelector(selectHiddenPosts);
+  let savedPosts = useSelector(selectSavedPost);
+  let searchedPosts = useSelector(selectSearchedPost);
 
   const location = useLocation(); 
   let posts; 
@@ -42,18 +43,13 @@ const Posts = () => {
   } 
 
   useEffect(() => {
-    popularPosts.length === 0 &&  // prevents from fetching 10 more posts each re-render, only runs if no data is stored
+    // popularPosts.length === 0 &&  // prevents from fetching 10 more posts each re-render, only runs if no data is stored
     (async () => {
       await dispatch(fetchPopularPosts());
       await dispatch(fetchSportPosts());
       await dispatch(fetchNewsPosts());
     })()
-    // return () => {
-    //   return; 
-    // }
-  }, [dispatch, popularPosts.length]);
-
-  const allPosts = initialState.posts.allPosts; 
+  }, [dispatch]);
 
   // set the number that appears next to the postFilters. Once a post is hidden, the count effectively decreases by one on 'All' and whichever post type that post belongs to. However, it still appears in saved and reported (if user clicks those) and of course appears in hidden. 
   useEffect(() => {
@@ -274,7 +270,7 @@ const Posts = () => {
       if(posts === popularPosts){
         return ( 
           !popularError ? popularPosts.map(post => {
-            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+            return <Post datatest-id={`post-${post.id}`} key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
           })
           : 
           <div className="post_no-posts">
