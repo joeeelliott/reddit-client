@@ -1,4 +1,4 @@
-import { abbrNum, setPostsArr, convertUnixTimeStamp, sortSpecificsFilter, miniSortArr } from './utils';
+import { abbrNum, setPostsArr, sortSpecificsFilter, miniSortArr } from './utils';
 
 describe('utils.js', () => {
 
@@ -200,20 +200,6 @@ describe('utils.js', () => {
       imgClicked: false, 
       inSearch: false,
     }]);
-  });
-
-  it('sets the time correctly', () => {
-    const hoursAgo = convertUnixTimeStamp(1648435301);
-    const daysAgo = convertUnixTimeStamp(1648240804);
-    const monthsAgo = convertUnixTimeStamp(1637701734);
-
-    const hours = convertUnixTimeStamp(1648435301).toString().substring(0, 2); 
-    const days = convertUnixTimeStamp(1648240804).toString().substring(0, 1); 
-    const months = convertUnixTimeStamp(1637701734).toString().substring(0, 1); 
-
-    expect(hoursAgo).toBe(`${hours} hours ago`);
-    expect(daysAgo).toBe(`${days} days ago`);
-    expect(monthsAgo).toBe(`${months} months ago`);
   });
 
   it('miniSortArr works as expected', () => {
