@@ -19,7 +19,7 @@ const Post = ({ id, score, author, created, title, numComments, saved, thumbnail
   const filter = selectFilter && selectFilter.toLowerCase();  // all / popular / sport / news. Only defined when any of these filters are clicked on in sideNav.
   
   return (
-    <div className={classNameIs(hidden, filterMode, filter, postType)} id={id}>
+    <div className={[classNameIs(hidden, filterMode, filter, postType), `${postType}-post`].join(" ")} id={id}>
       <Score id={id} postType={postType} score={score} scoredUp={scoredUp} scoredDown={scoredDown} />
       <div className="post_main-content-container">
         <TopRow author={author} created={created} permalink={permalink} id={id} /> 
