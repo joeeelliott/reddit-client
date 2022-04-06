@@ -43,13 +43,13 @@ const Posts = () => {
   } 
 
   useEffect(() => {
-    // popularPosts.length === 0 &&  // prevents from fetching 10 more posts each re-render, only runs if no data is stored
+    popularPosts.length === 0 &&  // prevents from fetching 10 more posts each re-render, only runs if no data is stored
     (async () => {
       await dispatch(fetchPopularPosts());
       await dispatch(fetchSportPosts());
       await dispatch(fetchNewsPosts());
     })()
-  }, [dispatch]);
+  }, [dispatch, popularPosts.length]);
 
   // set the number that appears next to the postFilters. Once a post is hidden, the count effectively decreases by one on 'All' and whichever post type that post belongs to. However, it still appears in saved and reported (if user clicks those) and of course appears in hidden. 
   useEffect(() => {
@@ -270,7 +270,7 @@ const Posts = () => {
       if(posts === popularPosts){
         return ( 
           !popularError ? popularPosts.map(post => {
-            return <Post datatest-id={`post-${post.id}`} key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
+            return <Post key={post.id} id={post.id} score={post.score} author={post.author} created={post.created} title={post.title} numComments={post.numComments} saved={post.saved} thumbnail={post.thumbnail} permalink={post.permalink} posts={posts} postType={post.postType} scoredUp={post.scoredUp} scoredDown={post.scoredDown} hidden={post.hidden} reported={post.reported} imgClicked={post.imgClicked} />
           })
           : 
           <div className="post_no-posts">
