@@ -37,5 +37,5 @@ describe('homepage', () => {
   //   cy.get('.popular-post').should('exist');
   // });
 
-  
+  // TEST NO POSTS LOADED WHEN THERE IS AN API ERROR
 });
