@@ -290,6 +290,10 @@ const postSlice = createSlice({
       if(state.isSearching){   // if user searching 
         state.allPosts.forEach(post => {   // iterate through all posts
           if(post.inSearch){   // if it's in the search
+            // if same post is in two categories ie popular and sport, filter out so that only one is saved in state to avoid multiple of same post.
+            state.searchedPosts.forEach(searchedPost => {
+              state.searchedPosts = state.searchedPosts.filter(searchedPost => searchedPost.id !== post.id);
+            });
             state.searchedPosts.push(post); 
           }
         });

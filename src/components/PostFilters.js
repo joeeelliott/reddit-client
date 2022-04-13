@@ -26,8 +26,8 @@ const PostFilters = () => {
     filters.map(filter => {
       return (
         <div className="sideNav_filters-container" key={keyCount++}>
-          <input type="checkbox" className={filter.checked ? "sideNav_filters-checkbox-checked" : "sideNav_filters-checkbox"} name={filter.filter} value={filter.filter} onClick={handleClick} />
-          <label>{filter.filter} ({filter.posts})</label>
+          <input type="checkbox" className={filter.checked ? "sideNav_filters-checkbox-checked" : "sideNav_filters-checkbox"} name={filter.filter.toLowerCase()} value={filter.filter} onClick={handleClick} />
+          <label className={`${filter.filter.toLowerCase()}-label`}>{filter.filter} ({filter.posts})</label>
         </div>
       )
     })

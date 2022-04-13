@@ -21,7 +21,7 @@ const SpecificsFilters = () => {
     filters.map(filter => {
       return (
         <div className="sideNav_filters-container" key={keyCount++}>
-          <input type="checkbox" className={filter.checked ? "sideNav_filters-checkbox-checked" : "sideNav_filters-checkbox"} name="specifics" value={`${filter.filter} ${filter.order}`} onClick={handleClick} />
+          <input type="checkbox" className={filter.checked ? "sideNav_filters-checkbox-checked" : "sideNav_filters-checkbox"} name={`${filter.filter.toLowerCase()} ${filter.order.toLowerCase()}`} value={`${filter.filter} ${filter.order}`} onClick={handleClick} />
           <label><span className="sideNav_specifics-filter-title">{filter.filter}</span> <span className="sideNav_specifics-filter-brackets">{filter.order}</span></label>
         </div>
       )
