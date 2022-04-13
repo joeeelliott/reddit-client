@@ -25,7 +25,7 @@ describe('SepcificsFilters.js', () => {
     // use stubSample as the body in the intercepted request
     cy.intercept('GET', 'https://www.reddit.com/r/popular.json?limit=10', { body: stubSample }).as('getData-Body')  // <-- this is a reusable alias
 
-    cy.wait(2000);
+    cy.wait(3000);
   });
 
   it('Score (High to Low) filter works correctly', () => {

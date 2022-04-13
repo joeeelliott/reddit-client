@@ -1,4 +1,4 @@
-describe('initialRender.js', () => {
+describe('app.js', () => {
   beforeEach(() => {
     cy.visit('/');
   })

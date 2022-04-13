@@ -1,5 +1,5 @@
 describe('Mocking API', () => {
-  it('Data is rendered correctly from API', () => {
+  it('Data loads correctly from API', () => {
     cy.intercept('GET', 'https://www.reddit.com/r/popular.json?limit=10', { fixture: 'interceptFixture.json' }).as('getData-fixture')  // <-- this is a reusable alias
     cy.visit('http://localhost:3000/')
 
@@ -9,7 +9,7 @@ describe('Mocking API', () => {
     })
   });
 
-  it('Renders a mocked post', () => {
+  it('Renders data correctly from a mocked post', () => {
     // ChromeDevTools => network, copy & paste. Mocking the same response as from the API, but only mocked one post as opposed to 10, changed the title 
     const stubSample = {
       "kind": "Listing", 
@@ -33,6 +33,24 @@ describe('Mocking API', () => {
       const text = $text.text();
       expect(text).to.contain('Joe is fun');
     });
+
+    cy.get('.post_score').then(($text) => {
+      const text = $text.text();
+      expect(text).to.eq('20.3k');
+    });
+
+    cy.get('.post_api-data > span').then(($text) => {
+      const text = $text.text();
+      expect(text).to.contain('beerbellybegone');
+    });
+
+    cy.get('.post_bottom-details-container > button > p.post_api-data').then(($text) => {
+      const text = $text.text();
+      expect(text).to.contain('314');
+    });
+
+    cy.get('.post_post-img').should('exist');
+    cy.get('.post_post-img').should('be.visible');
   });
 
   it('Renders error messages correctly for / route', () => {
