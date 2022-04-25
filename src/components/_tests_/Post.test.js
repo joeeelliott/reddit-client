@@ -3,7 +3,6 @@ import '@testing-library/jest-dom/extend-expect';
 
 // test-utils
 import { render, cleanup } from '../../../utilities/test-utils';
-
 import Post, { classNameIs } from '../Post';
 
 describe('Post Component', () => {

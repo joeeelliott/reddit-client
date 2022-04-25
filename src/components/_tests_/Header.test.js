@@ -1,7 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-// test-utils
-import { render, fireEvent, screen, cleanup } from '../../../utilities/test-utils';
+import { render, screen, cleanup } from '../../../utilities/test-utils';
 
 import Header from '../Header';
 
