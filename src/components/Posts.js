@@ -156,7 +156,7 @@ const Posts = () => {
         return (
           <div className="post_no-posts">
             <h1>No posts found</h1>
-            <p>Please use specific, related, and correctly spelt words for an effective search.</p>
+            <p>Please use specific, related, and correctly spelt words for an effective title search.</p>
           </div>
         )
       }
