@@ -75,7 +75,7 @@ const SideNav = () => {
     <div data-testid="sideNav-test" id="sideNav" className="sideNav_sideNav"> 
       <form className={!toggleSideNav ? "sideNav_hide-form" : undefined}>
         <label className="sideNav_primary-label" htmlFor="search">Search: </label>
-        <input id="search" name="search" className="sideNav_search-input" type="text" value={searchText} placeholder="Enter search term here..." onChange={handleChange} />
+        <input id="search" name="search" className="sideNav_search-input" type="text" value={searchText} placeholder="Search post title here..." onChange={handleChange} />
           
         <label className="sideNav_primary-label">Filter By: </label>
 
