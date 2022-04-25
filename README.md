@@ -19,3 +19,15 @@ I also sharpened my skills in the general logistics of writing code by means of 
 Another key learning phase in this project was code testing. Having delved very briefly into testing in other Codecademy lessons, this was the first time I had used tests of any kind outside of a lesson environment. Having attempted numerous unsuccessful ways to even simply render my components in a test environment, I eventually found Kent C. Dodds adapted render method.
 
 After struggling initially to grasp what to/not to test, my unit tests were brief as most functions relate to changes in the DOM, as opposed to having a definitive logical output. I also didn't think it was neccessary to test implementation code as advised by numerous sources. Integration tests were also fairly brief due to the same reasons. However, with the use of cypress my end-to-end tests were rather detailed, covering all user uses of the application.
+
+## Features
+
+- Search
+
+- Filters
+
+- View Post
+
+- Score
+
+- Save, Hide, Report
