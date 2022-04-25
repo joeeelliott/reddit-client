@@ -23,12 +23,17 @@ After struggling initially to grasp what to/not to test, my unit tests were brie
 ## Features
 
 - Search
+
 Users can search through the fetched posts by title.
 - Filters
+
 Users can filter through the posts fetched on render. Posts can be filtered through the type of post, or a post specific filter, or both together. The number of posts within the brackets next to each post filter are dynamically adjusted.
 - View Post
+
 Users can choose to view each post on the official Reddit website. This is made clear to the user in a pop-up modal in which they are given a choice to stay on the sample site or leave for the official Reddit site.
 - Score
+
 Users are able to upscore or downscore posts.
 - Save, Hide, Report
+
 Users can use the save, hide, or report features on each post. Saved posts are simply added to the saved posts filtered page but remain on the original timeline. Hidden posts are hidden from the timeline but also added to the hidden posts filtered page, and reported posts remain on the timeline but congregate in the reported posts filtered page. All hidden posts can be immediately be restored to the timeline via the eye icon at the bottom of the sidenav.
