@@ -22,13 +22,11 @@ describe('SideNav Component', () => {
   });
 
   it('renders sideNav search placeholder', () => {
-    const placeholder = component.getByPlaceholderText('Enter search term here...');
+    const placeholder = component.getByPlaceholderText('Search post title here...');
     expect(placeholder).toBeInTheDocument(); 
   });
 
   it('matches snapshot', () => {       
     expect(screen).toMatchSnapshot();
   });
-
-  // can unit test my input fields/confirm button etc. here
 });
