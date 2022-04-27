@@ -1,7 +1,7 @@
 describe('SepcificsFilters.js', () => {
   beforeEach(() => {
-    cy.visit('/');
     // ChromeDevTools => network, copy & paste. Mocking the same response as from the API, but only mocked one post as opposed to 10, changed the title 
+
     const stubSample = {
       "kind": "Listing", 
       "data": {
@@ -22,10 +22,15 @@ describe('SepcificsFilters.js', () => {
         ]
       }
     }
-    // use stubSample as the body in the intercepted request
-    cy.intercept('GET', 'https://www.reddit.com/r/popular.json?limit=10', { body: stubSample }).as('getData-Body')  // <-- this is a reusable alias
 
-    cy.wait(3000);
+    // use stubSample as the body in the intercepted request
+    cy.intercept('GET', 'https://www.reddit.com/r/popular.json?limit=10', stubSample).as('getData-Body')  // <-- this is a reusable alias
+
+    // cy.intercept('GET', 'https://www.reddit.com/r/popular.json?limit=10', { fixture: 'interceptFixture.json'}).as('getData-Body');
+    cy.visit('/');
+    cy.wait('@getData-Body');
+    cy.wait(2000);
+
   });
 
   it('Score (High to Low) filter works correctly', () => {

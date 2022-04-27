@@ -1,11 +1,13 @@
 describe('Mocking API', () => {
   it('Data loads correctly from API', () => {
     cy.intercept('GET', 'https://www.reddit.com/r/popular.json?limit=10', { fixture: 'interceptFixture.json' }).as('getData-fixture')  // <-- this is a reusable alias
-    cy.visit('http://localhost:3000/')
+    
+    cy.visit('/');
+    cy.wait('@getData-fixture')
 
     cy.get('.post_title').first().then(($title) => {
       const title = $title.text();
-      expect(title).to.equal('Languages are fun!');
+      expect(title).contains('Most Recent, Lowest Scoring, Lowest Comments Sample Post');
     })
   });
 
