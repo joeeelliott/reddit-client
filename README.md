@@ -53,3 +53,8 @@ To further expand and improve this project, there are a few of additions and fea
 - The search feature can search for author names as well as titles.
 - More API calls to different endpoints for a wider range of posts.
 - Greater attention to detail on the enlargement of post images (the use of photoshop or something similar).
+
+## Testing 
+
+    npm run test-jest
+    npm run test-cypress
