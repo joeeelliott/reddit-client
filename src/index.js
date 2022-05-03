@@ -22,7 +22,6 @@ ReactDOM.render(
     </Provider>
   </React.StrictMode>,
   document.getElementById('root') 
-  // || document.createElement('div')  // for testing
 );
 
 reportWebVitals();

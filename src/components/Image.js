@@ -41,7 +41,6 @@ const Image = ({ id, thumbnail, imgClicked, postType }) => {
             aria-label="Minimize image"
             className="post_img-modal-close-icon" 
             icon={['fas', 'times']} 
-            // onClick={handleClick} 
           />
           </button>
         </div>

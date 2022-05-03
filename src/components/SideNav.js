@@ -104,7 +104,6 @@ const SideNav = () => {
               icon={['far', 'eye']} 
               onMouseOver={handleEyeMouseOver} 
               onMouseOut={handleEyeMouseOut} 
-                // onClick={handleEyeClick} 
             />
           </button>
         </div>            

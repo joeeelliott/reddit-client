@@ -12,7 +12,6 @@ describe('searchBar.js', () => {
 
   it('renders the no posts page when no equivalent posts are returned from search', () => {
     cy.get('.header_toggle-btn-container > button').click();
-    // cy.get('input[name="search"]').clear();
     cy.get('input[name="search"]').type('zxcvbnmaqwert');
     cy.get('.post_no-posts > h1').should('exist');
   });
