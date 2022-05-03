@@ -33,8 +33,3 @@ function render(
 export * from '@testing-library/react'
 //override render method
 export { render }
-
-// export const findByTestAttr = (component, attr) => {
-//   const wrapper = component.find(`[data-test='${attr}']`);
-//   return wrapper; 
-// }

@@ -1,11 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
 import React, { lazy, Suspense } from 'react';
-// import React from 'react';
-
-// import Header from '../components/Header'; 
-// import Footer from '../components/Footer'; 
-// import Posts from '../components/Posts'; 
 
 const Header = lazy(() => import('../components/Header'));
 const Footer = lazy(() => import('../components/Footer'));

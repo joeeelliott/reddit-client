@@ -28,7 +28,6 @@ const Score = ({ id, postType, score, scoredUp, scoredDown }) => {
         <FontAwesomeIcon 
           className={scoredUp ? "post_score-up-icon-clicked" : "post_score-icon"}
           icon="arrow-up" 
-          // onClick={handleClick}
         /> 
       </button>
       <p className="post_score">{abbrNum(score)}</p>
@@ -40,7 +39,6 @@ const Score = ({ id, postType, score, scoredUp, scoredDown }) => {
         <FontAwesomeIcon 
           className={scoredDown ? "post_score-down-icon-clicked" : "post_score-icon"} 
           icon="arrow-down"  
-          // onClick={handleClick}
         /> 
       </button>
     </div>

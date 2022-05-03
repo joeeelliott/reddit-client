@@ -122,17 +122,15 @@
 }
 
 .header_toggle-btn-container button {
-  border: none;     /*  new   */
-  background-color: inherit;    /*   new   */
+  border: none;
+  background-color: inherit;
 }
 
 .header_logo-title-container {
-
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-right: 20%;  so the logo and title are in the middle of the header, counters the toggle icon 20% width, didn't want toggle icon in absolute positioning  */
 }
 
 .header_logo-title-link {
@@ -150,8 +148,6 @@
 .header_filter-icon {
   font-size: 0.8rem !important;
   cursor: pointer;
-  /* transition: all 0.5s ease; */
-   /* part 1 of the burger menu rotation */
 }
 
 .header_search-icon-rotate {
@@ -199,13 +195,11 @@
   text-decoration: none;
   margin: 0px 10px;
   height: 100%;
-  line-height: 100%;
-  /* color: rgb(150, 150, 150);  original */   
+  line-height: 100%; 
   color: black;
 }
 
 .nav_link:hover {
-  /* color: black;   original */
   color: rgb(150, 150, 150);
 }
 
@@ -235,7 +229,6 @@
   margin-top: 80px;
   z-index: -10; 
   font-size: 0.8rem;
-  /* width: 170px; */
   width: 0px;
   overflow: hidden;
   background-color: #ddd;
@@ -642,7 +635,6 @@
 
 .post_api-data {
   color:rgb(150, 150, 150);
-  /* color: black;  */
   font-size: 0.8rem;
   text-align: center;
 }

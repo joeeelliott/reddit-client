@@ -11,7 +11,6 @@ export const fetchPopularPosts = createAsyncThunk(
 
       const json = await response.json();
       // console.log(json.data.children[2].data)
-      // console.log(json.data.children[0].data.created)
 
       return json.data.children;
     } catch (error) {
@@ -29,8 +28,6 @@ export const fetchSportPosts = createAsyncThunk(
 
       const json = await response.json();
       // console.log(json.data.children[9].data)
-      // console.log(json.data.children[0].data)
-      // console.log(json.data.children[0].data.created)
 
       return json.data.children;
     } catch (error) {
@@ -48,7 +45,6 @@ export const fetchNewsPosts = createAsyncThunk(
 
       const json = await response.json();
       // console.log(json.data.children[0].data) 
-      // console.log(json.data.children[1].data.created)
       return json.data.children;
     } catch (error) {
       console.log(error)
@@ -63,7 +59,6 @@ const postSlice = createSlice({
     popularPosts: [],
     sportPosts: [],
     newsPosts: [],
-    // following 3 states used to render specified articles. couldnt use allArticles with a render condition based on if it was 'saved: true' etc as if else statements were incredibly confusing and not working in return() in Articles.js. 
     savedPosts: [],
     hiddenPosts: [],
     reportedPosts: [],
@@ -77,9 +72,6 @@ const postSlice = createSlice({
     searchedPosts: [],
     isSearching: false,
     searchText: "",
-    // fetchPopularIsLoading: true,
-    // fetchSportIsLoading: true,
-    // fetchNewsIsLoading: true,
     popularHasError: false,
     sportHasError: false,
     newsHasError: false,
@@ -264,8 +256,6 @@ const postSlice = createSlice({
 
         state.allPosts.forEach(post => {
           if(post.title.match(pattern)){
-            // console.log('working')
-            // console.log(current(post));
             post.inSearch = true;
           } else if(!post.title.match(pattern)){
             post.inSearch = false;
