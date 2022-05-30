@@ -12,6 +12,8 @@ The initial project parameters were a lot less dynamic than the application I en
 
 The application is an extremely brief and simple mimic of the Reddit website. On page load, users can choose to see popular, sport, or news posts, of which 10 of each are fetched.
 
+The application can be viewed here: https://wonderful-babbage-308952.netlify.app/
+
 ## Key Learnings and Challenges
 
 During this project I learnt to use a state management tool which covers the entire app, as opposed to using solely local state management, used in smaller previous projects. This gave an insight into what it would be like in larger applications.
